@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards CSV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --bg: #dfe6e9;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h1 { color: #2d3436; }
+
+        /* Style de l'input fichier */
+        .upload-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 2px dashed var(--primary);
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 50px;
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .custom-file-upload:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Grille des cartes */
+        #cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Structure de la Flashcard (Effet Flip) */
+        .scene {
+            width: 100%;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 1.1rem;
+        }
+
+        .card__face--front {
+            background-color: var(--card-bg);
+            color: #2d3436;
+            font-weight: 600;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .card__face--back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mes Flashcards</h1>
+
+    <div class="upload-container">
+        <label for="csvFileInput" class="custom-file-upload">
+            📂 Charger un fichier CSV
+        </label>
+        <input type="file" id="csvFileInput" accept=".csv" />
+        <p id="status" style="margin-top: 10px; font-size: 0.9rem; color: #636e72;">Format attendu : Colonne 1 (Question), Colonne 2 (Réponse)</p>
+    </div>
+
+    <div id="cards-container"></div>
+
+    <script>
+        const fileInput = document.getElementById('csvFileInput');
+        const container = document.getElementById('cards-container');
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                Papa.parse(file, {
+                    complete: function(results) {
+                        generateCards(results.data);
+                    },
+                    header: false, // On suppose qu'il n'y a pas d'en-tête, ou on l'ignorera
+                    skipEmptyLines: true
+                });
+            }
+        });
+
+        function generateCards(data) {
+            container.innerHTML = ''; // Vider le conteneur
+
+            data.forEach((row, index) => {
+                // On vérifie qu'on a bien 2 colonnes
+                if (row.length >= 2) {
+                    const question = row[0];
+                    const answer = row[1];
+
+                    // Création du HTML pour une carte
+                    const scene = document.createElement('div');
+                    scene.className = 'scene';
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    // Face avant (Question)
+                    const front = document.createElement('div');
+                    front.className = 'card__face card__face--front';
+                    front.textContent = question;
+
+                    // Face arrière (Réponse)
+                    const back = document.createElement('div');
+                    back.className = 'card__face card__face--back';
+                    back.textContent = answer;
+
+                    // Assemblage
+                    card.appendChild(front);
+                    card.appendChild(back);
+                    scene.appendChild(card);
+                    container.appendChild(scene);
+
+                    // Événement de clic pour retourner la carte
+                    scene.addEventListener('click', () => {
+                        card.classList.toggle('is-flipped');
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
