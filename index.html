@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcards CSV & Maths</title>
+    <title>Simple Flashcards</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
@@ -137,7 +137,7 @@
 </head>
 <body>
 
-    <h1>Flashcards Math & Sciences</h1>
+    <h1>Simple Flashcards</h1>
 
     <div class="upload-container">
         <label for="csvFileInput" class="custom-file-upload">
@@ -145,7 +145,7 @@
         </label>
         <input type="file" id="csvFileInput" accept=".csv" />
         <p id="status" style="margin-top: 10px; font-size: 0.9rem; color: #636e72;">
-            Format : Question, Réponse (Supporte LaTeX avec $)
+            Format : Colonne 1 = Question, Colonne 2 = Réponse (Supporte LaTeX avec $)
         </p>
     </div>
 
@@ -206,7 +206,6 @@
                 }
             });
 
-            // IMPORTANT : Demander à MathJax de re-scanner la page pour transformer les $
             if (window.MathJax) {
                 MathJax.typesetPromise();
             }
