@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Flashcards</title>
+    <title>Flashcards IADE & Co</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
     <script>
         window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -22,6 +23,7 @@
             --secondary: #a29bfe;
             --bg: #dfe6e9;
             --card-bg: #ffffff;
+            --text: #2d3436;
         }
 
         body {
@@ -30,36 +32,97 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px;
+            padding: 20px;
             margin: 0;
+            color: var(--text);
         }
 
-        h1 { color: #2d3436; }
+        h1 { margin-bottom: 30px; text-align: center;}
 
-        .upload-container {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        input[type="file"] { display: none; }
-
-        .custom-file-upload {
-            border: 2px dashed var(--primary);
-            display: inline-block;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 50px;
-            color: var(--primary);
-            font-weight: 600;
-            transition: all 0.3s;
+        /* --- Zone de Contrôle (Menu + Upload) --- */
+        .controls-wrapper {
             background: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
         }
 
-        .custom-file-upload:hover {
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b2bec3;
+            margin-bottom: 10px;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            line-height: 0.1em;
+            margin: 10px 0 20px;
+        }
+        .section-title span { background:#fff; padding:0 10px; }
+
+        /* Style des Selects */
+        .select-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        select {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--secondary);
+            background: white;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text);
+            cursor: pointer;
+            outline: none;
+            min-width: 150px;
+        }
+
+        button.load-btn {
             background-color: var(--primary);
             color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        button.load-btn:hover {
+            background-color: #5649c0;
+            transform: translateY(-2px);
         }
 
+        /* Style Upload */
+        input[type="file"] { display: none; }
+        .custom-file-upload {
+            border: 2px dashed #b2bec3;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            color: #636e72;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .custom-file-upload:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* --- Grille des cartes --- */
         #cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -70,7 +133,7 @@
 
         .scene {
             width: 100%;
-            height: 250px;
+            height: 260px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -85,9 +148,7 @@
             border-radius: 15px;
         }
 
-        .card.is-flipped {
-            transform: rotateY(180deg);
-        }
+        .card.is-flipped { transform: rotateY(180deg); }
 
         .card__face {
             position: absolute;
@@ -104,12 +165,11 @@
             text-align: center;
             border-radius: 15px;
             font-size: 1.1rem;
+            overflow-y: auto; /* Scroll si trop long */
         }
 
         .card__face--front {
             background-color: var(--card-bg);
-            color: #2d3436;
-            font-weight: 600;
             border-bottom: 5px solid var(--primary);
         }
 
@@ -121,7 +181,7 @@
 
         .mini-question {
             font-size: 0.8rem;
-            opacity: 0.8; /* Légèrement plus visible pour les formules */
+            opacity: 0.8;
             margin-bottom: 15px;
             font-style: italic;
             border-bottom: 1px solid rgba(255,255,255,0.3);
@@ -129,32 +189,112 @@
             width: 80%;
         }
 
-        .answer-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
+        .answer-text { font-size: 1.1rem; font-weight: bold; }
+
+        /* Scrollbar propre pour les cartes */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
     </style>
 </head>
 <body>
 
-    <h1>Simple Flashcards</h1>
+    <h1>🧠 Révisions IADE</h1>
 
-    <div class="upload-container">
+    <div class="controls-wrapper">
+        
+        <h2 class="section-title"><span>Bibliothèque</span></h2>
+        <div class="select-group">
+            <select id="categorySelect">
+                <option value="" disabled selected>📁 Dossier</option>
+            </select>
+            <select id="fileSelect" disabled>
+                <option value="" disabled selected>📄 Sujet</option>
+            </select>
+            <button id="loadBtn" class="load-btn">Charger</button>
+        </div>
+
+        <h2 class="section-title"><span>Ou charger un fichier</span></h2>
         <label for="csvFileInput" class="custom-file-upload">
-            📂 Charger un fichier CSV
+            📂 Ouvrir un .CSV depuis mon ordinateur
         </label>
         <input type="file" id="csvFileInput" accept=".csv" />
-        <p id="status" style="margin-top: 10px; font-size: 0.9rem; color: #636e72;">
-            Format : Colonne 1 = Question, Colonne 2 = Réponse (Supporte LaTeX avec $)
-        </p>
+
     </div>
 
     <div id="cards-container"></div>
 
     <script>
+        const AVAILABLE_DECKS = {
+            "IADE": [
+                "ANATOMIE ET PHYSIOLOGIE RESPIRATOIRE.csv"
+            ]
+        };
+
+        const categorySelect = document.getElementById('categorySelect');
+        const fileSelect = document.getElementById('fileSelect');
+        const loadBtn = document.getElementById('loadBtn');
         const fileInput = document.getElementById('csvFileInput');
         const container = document.getElementById('cards-container');
 
+        // --- 1. Initialisation des menus ---
+        
+        // Remplir le select des catégories
+        Object.keys(AVAILABLE_DECKS).forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categorySelect.appendChild(option);
+        });
+
+        // Quand on change de catégorie
+        categorySelect.addEventListener('change', () => {
+            const selectedCategory = categorySelect.value;
+            const files = AVAILABLE_DECKS[selectedCategory];
+            
+            // Reset du select fichiers
+            fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
+            fileSelect.disabled = false;
+
+            files.forEach(filename => {
+                const option = document.createElement('option');
+                option.value = filename;
+                // On enlève le .csv pour l'affichage pour faire joli
+                option.textContent = filename.replace('.csv', '').replace(/_/g, ' '); 
+                fileSelect.appendChild(option);
+            });
+        });
+
+        // --- 2. Chargement depuis la bibliothèque ---
+        
+        loadBtn.addEventListener('click', () => {
+            const category = categorySelect.value;
+            const file = fileSelect.value;
+
+            if (category && file) {
+                // Construction du chemin : datas/DOSSIER/FICHIER.csv
+                const path = `datas/${category}/${file}`;
+                
+                console.log("Chargement de : " + path);
+
+                Papa.parse(path, {
+                    download: true, // Active le téléchargement via URL
+                    complete: function(results) {
+                        generateCards(results.data);
+                    },
+                    error: function(err) {
+                        alert("Erreur lors du chargement du fichier. Vérifiez que le chemin est correct sur GitHub.");
+                        console.error(err);
+                    },
+                    header: false,
+                    skipEmptyLines: true
+                });
+            } else {
+                alert("Veuillez sélectionner un dossier et un sujet.");
+            }
+        });
+
+        // --- 3. Chargement depuis l'ordinateur (Drag & Drop / Clic) ---
+        
         fileInput.addEventListener('change', (event) => {
             const file = event.target.files[0];
             if (file) {
@@ -168,8 +308,15 @@
             }
         });
 
+        // --- 4. Génération des cartes (Fonction Commune) ---
+
         function generateCards(data) {
             container.innerHTML = ''; 
+
+            if(data.length === 0) {
+                container.innerHTML = '<p style="text-align:center; width:100%;">Aucune donnée trouvée ou fichier vide.</p>';
+                return;
+            }
 
             data.forEach((row) => {
                 if (row.length >= 2) {
@@ -184,7 +331,6 @@
 
                     const front = document.createElement('div');
                     front.className = 'card__face card__face--front';
-                    // On utilise innerHTML ici aussi au cas où il y a des maths dans la question
                     front.innerHTML = question;
 
                     const back = document.createElement('div');
