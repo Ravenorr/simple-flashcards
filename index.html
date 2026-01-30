@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Flashcards</title>
+    <title>Flashcards IADE & Co</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    
+    <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
@@ -24,6 +23,12 @@
             --bg: #dfe6e9;
             --card-bg: #ffffff;
             --text: #2d3436;
+            
+            /* Couleurs d'évaluation */
+            --success-border: #00b894;
+            --success-bg: #55efc4;
+            --warning-border: #e17055;
+            --warning-bg: #fab1a0;
         }
 
         body {
@@ -39,7 +44,7 @@
 
         h1 { margin-bottom: 30px; text-align: center;}
 
-        /* --- Zone de Contrôle (Menu + Upload) --- */
+        /* --- Contrôles --- */
         .controls-wrapper {
             background: white;
             padding: 20px 30px;
@@ -54,22 +59,6 @@
             align-items: center;
         }
 
-        .section-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #b2bec3;
-            margin-bottom: 10px;
-            font-weight: bold;
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            line-height: 0.1em;
-            margin: 10px 0 20px;
-        }
-        .section-title span { background:#fff; padding:0 10px; }
-
-        /* Style des Selects */
         .select-group {
             display: flex;
             gap: 15px;
@@ -88,10 +77,9 @@
             color: var(--text);
             cursor: pointer;
             outline: none;
-            min-width: 150px;
         }
 
-        button.load-btn {
+        button.action-btn {
             background-color: var(--primary);
             color: white;
             border: none;
@@ -99,30 +87,20 @@
             border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.2s;
         }
-        button.load-btn:hover {
-            background-color: #5649c0;
-            transform: translateY(-2px);
+        button.action-btn:hover { background-color: #5649c0; transform: translateY(-2px); }
+
+        /* Bouton filtre spécial */
+        #filterBtn {
+            background-color: #636e72;
+        }
+        #filterBtn.active {
+            background-color: var(--warning-border); /* Devient orange quand actif */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
 
-        /* Style Upload */
-        input[type="file"] { display: none; }
-        .custom-file-upload {
-            border: 2px dashed #b2bec3;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 10px;
-            color: #636e72;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        .custom-file-upload:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* --- Grille des cartes --- */
+        /* --- Cartes --- */
         #cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -133,7 +111,7 @@
 
         .scene {
             width: 100%;
-            height: 260px;
+            height: 300px; /* Un peu plus haut pour caser les boutons */
             perspective: 1000px;
             cursor: pointer;
         }
@@ -146,7 +124,18 @@
             transform-style: preserve-3d;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             border-radius: 15px;
+            border: 3px solid transparent; /* Bordure invisible par défaut */
         }
+
+        /* --- États de validation (Vert / Orange) --- */
+        .card.is-correct .card__face--front { border-bottom-color: var(--success-border); }
+        .card.is-correct { border-color: var(--success-border); }
+        .card.is-correct .card__face--back { background-color: var(--success-border); }
+
+        .card.is-wrong .card__face--front { border-bottom-color: var(--warning-border); }
+        .card.is-wrong { border-color: var(--warning-border); }
+        .card.is-wrong .card__face--back { background-color: var(--warning-border); }
+
 
         .card.is-flipped { transform: rotateY(180deg); }
 
@@ -159,38 +148,43 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            
-            /* Marges intérieures */
+            justify-content: center; /* Centre verticalement */
             padding: 10px 15px;
             box-sizing: border-box;
             text-align: center;
-            border-radius: 15px;
+            border-radius: 12px; /* Un peu moins que la card pour laisser la bordure visible */
             font-size: 1.1rem;
             overflow-y: auto;
-            
-            /* --- CORRECTION DES MOTS COUPÉS --- */
-            
-            /* Empêche de couper les mots au milieu (désactive les césures) */
             hyphens: none;
             -webkit-hyphens: none;
-            
-            /* Garde les mots entiers ensemble */
-            word-break: normal; 
-            
-            /* Ne coupe un mot que s'il est PLUS LARGE que la carte entière */
-            overflow-wrap: break-word; 
+            word-break: normal;
+            overflow-wrap: break-word;
         }
 
         .card__face--front {
             background-color: var(--card-bg);
             border-bottom: 5px solid var(--primary);
+            z-index: 2;
         }
 
         .card__face--back {
             background-color: var(--primary);
             color: white;
             transform: rotateY(180deg);
+            z-index: 1;
+            /* Flex layout spécifique pour le dos */
+            justify-content: space-between; 
+            padding-bottom: 10px;
+        }
+
+        /* Contenu de la réponse (pour qu'il prenne la place au milieu) */
+        .back-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
 
         .mini-question {
@@ -205,228 +199,228 @@
 
         .answer-text { font-size: 1.1rem; font-weight: bold; }
 
-        /* Numérotation des cartes */
-.card-counter {
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
-    font-size: 0.75rem; /* Petit et discret */
-    font-weight: normal;
-    pointer-events: none; /* Pour ne pas gêner le clic */
-}
-
-/* Couleur sur la face avant (fond blanc) */
-.card__face--front .card-counter {
-    color: #b2bec3; 
-}
-
-/* Couleur sur la face arrière (fond violet) */
-.card__face--back .card-counter {
-    color: rgba(255, 255, 255, 0.6); 
-}
-
-        /* Force les formules mathématiques à rester dans le texte sans créer de ligne */
-        mjx-container[display="true"], mjx-container[jax="CHTML"][display="true"] {
-            display: inline !important;
-            margin: 0 !important;
-        }
-        
-        /* Ajuste la taille si le texte est dans une balise MathJax */
-        mjx-math {
-            font-size: 100% !important;
+        /* --- Boutons d'évaluation --- */
+        .eval-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+            justify-content: center;
         }
 
-        /* Si l'écran est petit (mobile), on réduit un peu la police */
-        @media (max-width: 600px) {
-          .card__face {
-            font-size: 0.95rem; /* Texte un peu plus petit sur mobile */
-          }
+        .btn-eval {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn-eval:active { transform: scale(0.95); }
+
+        .btn-wrong { background-color: #ffeaa7; color: #d35400; }
+        .btn-correct { background-color: #55efc4; color: #006266; }
+
+        .card-counter {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.7rem;
+            opacity: 0.7;
         }
 
-        /* Scrollbar propre pour les cartes */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+        /* Classes utilitaires pour MathJax */
+        mjx-container[display="true"] { display: inline !important; margin: 0 !important; }
     </style>
 </head>
 <body>
 
-    <h1>🧠 Révisions</h1>
+    <h1>🧠 Révisions IADE</h1>
 
     <div class="controls-wrapper">
-        
-        <h2 class="section-title"><span>Bibliothèque</span></h2>
         <div class="select-group">
-            <select id="categorySelect">
-                <option value="" disabled selected>📁 Dossier</option>
-            </select>
-            <select id="fileSelect" disabled>
-                <option value="" disabled selected>📄 Sujet</option>
-            </select>
-            <button id="loadBtn" class="load-btn">Charger</button>
+            <select id="categorySelect"><option value="" disabled selected>📁 Dossier</option></select>
+            <select id="fileSelect" disabled><option value="" disabled selected>📄 Sujet</option></select>
+            <button id="loadBtn" class="action-btn">Charger</button>
         </div>
 
-        <h2 class="section-title"><span>Ou charger un fichier</span></h2>
-        <label for="csvFileInput" class="custom-file-upload">
-            📂 Ouvrir un .CSV depuis mon ordinateur
-        </label>
-        <input type="file" id="csvFileInput" accept=".csv" />
-
+        <div style="display: flex; gap: 15px; align-items: center;">
+             <button id="filterBtn" class="action-btn" style="display:none;">👁️ Voir seulement les erreurs</button>
+            
+            <label for="csvFileInput" class="custom-file-upload" style="font-size:0.8rem; text-decoration: underline; cursor:pointer;">
+                ou charger un fichier local
+            </label>
+            <input type="file" id="csvFileInput" accept=".csv" />
+        </div>
     </div>
 
     <div id="cards-container"></div>
 
     <script>
+        // CONFIGURATION
         const AVAILABLE_DECKS = {
-            "IADE": [
-                "ANATOMIE ET PHYSIOLOGIE RESPIRATOIRE.csv",
-                "PHYSIOLOGIE DIGESTIVE.csv",
-                "APPAREIL CARDIO CIRCULATOIRE.csv",
-                "LES COMAS.csv",
-                "DIABETE & HYPERTENSION ARTERIELLE.csv",
-                "Physiologie de la Grossesse.csv"
-            ]
+            "IADE": ["Anatomie.csv", "Pharmacologie.csv", "Urgences.csv"],
+            "Anglais": ["Vocabulaire_Medical.csv"]
         };
 
+        const container = document.getElementById('cards-container');
+        const filterBtn = document.getElementById('filterBtn');
+        let isFilterActive = false;
+
+        // --- Initialisation Menus (identique avant) ---
         const categorySelect = document.getElementById('categorySelect');
         const fileSelect = document.getElementById('fileSelect');
-        const loadBtn = document.getElementById('loadBtn');
-        const fileInput = document.getElementById('csvFileInput');
-        const container = document.getElementById('cards-container');
-
-        // --- 1. Initialisation des menus ---
         
-        // Remplir le select des catégories
-        Object.keys(AVAILABLE_DECKS).forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category;
-            categorySelect.appendChild(option);
+        Object.keys(AVAILABLE_DECKS).forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat; opt.textContent = cat;
+            categorySelect.appendChild(opt);
         });
 
-        // Quand on change de catégorie
         categorySelect.addEventListener('change', () => {
-            const selectedCategory = categorySelect.value;
-            const files = AVAILABLE_DECKS[selectedCategory];
-            
-            // Reset du select fichiers
             fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
             fileSelect.disabled = false;
-
-            files.forEach(filename => {
-                const option = document.createElement('option');
-                option.value = filename;
-                // On enlève le .csv pour l'affichage pour faire joli
-                option.textContent = filename.replace('.csv', '').replace(/_/g, ' '); 
-                fileSelect.appendChild(option);
+            AVAILABLE_DECKS[categorySelect.value].forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = f; opt.textContent = f.replace('.csv', '').replace(/_/g, ' ');
+                fileSelect.appendChild(opt);
             });
         });
 
-        // --- 2. Chargement depuis la bibliothèque ---
-        
-        loadBtn.addEventListener('click', () => {
-            const category = categorySelect.value;
-            const file = fileSelect.value;
+        // Chargement
+        document.getElementById('loadBtn').addEventListener('click', () => {
+            const path = `datas/${categorySelect.value}/${fileSelect.value}`;
+            if(categorySelect.value && fileSelect.value) loadCSV(path);
+        });
 
-            if (category && file) {
-                // Construction du chemin : datas/DOSSIER/FICHIER.csv
-                const path = `datas/${category}/${file}`;
-                
-                console.log("Chargement de : " + path);
+        document.getElementById('csvFileInput').addEventListener('change', (e) => {
+            if(e.target.files[0]) Papa.parse(e.target.files[0], { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
+        });
 
-                Papa.parse(path, {
-                    download: true, // Active le téléchargement via URL
-                    complete: function(results) {
-                        generateCards(results.data);
-                    },
-                    error: function(err) {
-                        alert("Erreur lors du chargement du fichier. Vérifiez que le chemin est correct sur GitHub.");
-                        console.error(err);
-                    },
-                    header: false,
-                    skipEmptyLines: true
-                });
+        function loadCSV(path) {
+            Papa.parse(path, {
+                download: true,
+                complete: res => generateCards(res.data),
+                error: () => alert("Erreur chargement fichier"),
+                header: false, skipEmptyLines: true
+            });
+        }
+
+        // --- GESTION DU FILTRE ---
+        filterBtn.addEventListener('click', () => {
+            isFilterActive = !isFilterActive;
+            
+            if (isFilterActive) {
+                filterBtn.classList.add('active');
+                filterBtn.textContent = "❌ Afficher tout";
+                applyFilter();
             } else {
-                alert("Veuillez sélectionner un dossier et un sujet.");
+                filterBtn.classList.remove('active');
+                filterBtn.textContent = "👁️ Voir seulement les erreurs";
+                resetFilter();
             }
         });
 
-        // --- 3. Chargement depuis l'ordinateur (Drag & Drop / Clic) ---
-        
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                Papa.parse(file, {
-                    complete: function(results) {
-                        generateCards(results.data);
-                    },
-                    header: false, 
-                    skipEmptyLines: true
-                });
-            }
-        });
+        function applyFilter() {
+            const cards = document.querySelectorAll('.scene');
+            cards.forEach(scene => {
+                const card = scene.querySelector('.card');
+                // Si la carte est marquée "correcte", on cache la scène entière
+                if (card.classList.contains('is-correct')) {
+                    scene.style.display = 'none';
+                } else {
+                    scene.style.display = 'block';
+                }
+            });
+        }
 
-        // --- 4. Génération des cartes (Fonction Commune) ---
+        function resetFilter() {
+            const cards = document.querySelectorAll('.scene');
+            cards.forEach(scene => scene.style.display = 'block');
+        }
 
+
+        // --- GÉNÉRATION DES CARTES ---
         function generateCards(data) {
-    container.innerHTML = ''; 
+            container.innerHTML = '';
+            // Reset du filtre quand on charge un nouveau jeu
+            isFilterActive = false;
+            filterBtn.classList.remove('active');
+            filterBtn.textContent = "👁️ Voir seulement les erreurs";
+            filterBtn.style.display = 'block'; // On affiche le bouton filtre
 
-    // 1. On filtre d'abord pour ne garder que les lignes valides (avec au moins 2 colonnes)
-    // Cela évite de compter des lignes vides et d'avoir un total faux (ex: "5/51" alors qu'il n'y a que 50 cartes)
-    const validData = data.filter(row => row.length >= 2);
-    const totalCards = validData.length;
+            const validData = data.filter(row => row.length >= 2);
 
-    if(totalCards === 0) {
-        container.innerHTML = '<p style="text-align:center; width:100%;">Aucune donnée trouvée ou fichier vide.</p>';
-        return;
-    }
+            validData.forEach((row, index) => {
+                const question = row[0];
+                const answer = row[1];
+                const counterText = `${index + 1} / ${validData.length}`;
 
-    // 2. On génère les cartes
-    validData.forEach((row, index) => {
-        const question = row[0];
-        const answer = row[1];
-        
-        // Le numéro actuel (index commence à 0, donc on fait +1)
-        const counterText = `${index + 1} / ${totalCards}`;
+                const scene = document.createElement('div');
+                scene.className = 'scene';
+                
+                const card = document.createElement('div');
+                card.className = 'card';
 
-        const scene = document.createElement('div');
-        scene.className = 'scene';
-        
-        const card = document.createElement('div');
-        card.className = 'card';
+                // FACE AVANT
+                const front = document.createElement('div');
+                front.className = 'card__face card__face--front';
+                front.innerHTML = `${question} <span class="card-counter">${counterText}</span>`;
 
-        // --- FACE AVANT ---
-        const front = document.createElement('div');
-        front.className = 'card__face card__face--front';
-        front.innerHTML = `
-            ${question}
-            <span class="card-counter">${counterText}</span>
-        `;
+                // FACE ARRIERE
+                const back = document.createElement('div');
+                back.className = 'card__face card__face--back';
+                
+                // On structure le dos : Contenu en haut/milieu, Boutons en bas
+                back.innerHTML = `
+                    <div class="back-content">
+                        <div class="mini-question">${question}</div>
+                        <div class="answer-text">${answer}</div>
+                    </div>
+                    
+                    <div class="eval-buttons">
+                        <button class="btn-eval btn-wrong">Revoir 🟠</button>
+                        <button class="btn-eval btn-correct">Compris 🟢</button>
+                    </div>
+                    
+                    <span class="card-counter">${counterText}</span>
+                `;
 
-        // --- FACE ARRIÈRE ---
-        const back = document.createElement('div');
-        back.className = 'card__face card__face--back';
-        
-        back.innerHTML = `
-            <div class="mini-question">${question}</div>
-            <div class="answer-text">${answer}</div>
-            <span class="card-counter">${counterText}</span>
-        `;
+                card.appendChild(front);
+                card.appendChild(back);
+                scene.appendChild(card);
+                container.appendChild(scene);
 
-        card.appendChild(front);
-        card.appendChild(back);
-        scene.appendChild(card);
-        container.appendChild(scene);
+                // LOGIQUE CLIC CARTE (Flip)
+                scene.addEventListener('click', (e) => {
+                    // Si on clique sur un bouton, on ne retourne pas la carte !
+                    if (e.target.tagName === 'BUTTON') return;
+                    card.classList.toggle('is-flipped');
+                });
 
-        scene.addEventListener('click', () => {
-            card.classList.toggle('is-flipped');
-        });
-    });
+                // LOGIQUE BOUTONS EVALUATION
+                const btnCorrect = back.querySelector('.btn-correct');
+                const btnWrong = back.querySelector('.btn-wrong');
 
-    // Rafraîchir MathJax pour les formules
-    if (window.MathJax) {
-        MathJax.typesetPromise();
-    }
-}
+                btnCorrect.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Empêche le flip
+                    card.classList.remove('is-wrong');
+                    card.classList.add('is-correct');
+                    // Si le filtre est actif, cette carte doit disparaître
+                    if(isFilterActive) scene.style.display = 'none';
+                });
+
+                btnWrong.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.remove('is-correct');
+                    card.classList.add('is-wrong');
+                });
+            });
+
+            if (window.MathJax) MathJax.typesetPromise();
+        }
     </script>
 </body>
 </html>
