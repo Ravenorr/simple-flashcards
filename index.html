@@ -51,8 +51,10 @@
         <h2 class="section-title"><span>Options</span></h2>
         
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <button id="flipAllBtn" class="action-btn" style="background-color: #a29bfe;">🔄 Tout retourner</button>
+            
             <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
-            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Effacer ce sujet</button>
+            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset ce sujet</button>
         </div>
 
     </div>
@@ -61,7 +63,6 @@
 
     <script>
         let AVAILABLE_DECKS = {};
-        // On charge tout, mais on ne supprimera qu'une partie
         let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
         let currentFileName = ""; 
 
@@ -70,6 +71,8 @@
         const loadBtn = document.getElementById('loadBtn');
         const fileInput = document.getElementById('csvFileInput');
         const container = document.getElementById('cards-container');
+        
+        const flipAllBtn = document.getElementById('flipAllBtn');
         const filterBtn = document.getElementById('filterBtn');
         const resetBtn = document.getElementById('resetSaveBtn');
 
@@ -123,7 +126,7 @@
             }
         });
 
-        // --- 3. SAUVEGARDE & RESET CIBLÉ ---
+        // --- 3. SAUVEGARDE & RESET ---
         function saveScore(questionText, score) {
             if (!savedData[currentFileName]) {
                 savedData[currentFileName] = {};
@@ -139,16 +142,11 @@
             }
 
             if(confirm(`Voulez-vous remettre à zéro la progression pour : "${currentFileName}" ? (Les autres sujets ne seront pas touchés)`)) {
-                
-                // 1. Suppression de la clé spécifique au fichier en cours
                 if (savedData[currentFileName]) {
                     delete savedData[currentFileName];
                 }
-
-                // 2. Mise à jour du localStorage (sans perdre le reste)
                 localStorage.setItem('flashcards_data', JSON.stringify(savedData));
 
-                // 3. Reset visuel de l'interface
                 const currentCards = document.querySelectorAll('.card');
                 currentCards.forEach(c => {
                     c.className = 'card'; 
@@ -157,14 +155,23 @@
                 const btns = document.querySelectorAll('.rate-btn');
                 btns.forEach(b => b.classList.remove('selected'));
                 
-                // Si le filtre était actif, on rafraichit l'affichage (tout réapparaît car score = 0)
                 if (isFilterActive) applyFilterAndSort();
 
                 alert("Sujet réinitialisé.");
             }
         });
 
-        // --- 4. LOGIQUE FILTRE ---
+        // --- 4. LOGIQUE BOUTONS (FILTRE & FLIP) ---
+        
+        // BOUTON "TOUT RETOURNER"
+        flipAllBtn.addEventListener('click', () => {
+            const flippedCards = document.querySelectorAll('.card.is-flipped');
+            flippedCards.forEach(card => {
+                card.classList.remove('is-flipped');
+            });
+        });
+
+        // BOUTON FILTRE
         filterBtn.addEventListener('click', () => {
             isFilterActive = !isFilterActive;
             if (isFilterActive) {
