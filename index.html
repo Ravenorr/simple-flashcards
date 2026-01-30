@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Flashcards</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    
+    <title>Simple Flashcards & Schémas</title>
+
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -14,290 +15,442 @@
 
     <script>
         window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+            tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
-    <h1>🧠 Révisions</h1>
+<h1>🧠 Révisions</h1>
 
-    <div class="controls-wrapper">
-        
-        <h2 class="section-title"><span>Bibliothèque & Fichiers</span></h2>
-        
-        <div class="select-group">
-            <select id="categorySelect">
-                <option value="" disabled selected>⏳ Chargement...</option>
-            </select>
-            <select id="fileSelect" disabled>
-                <option value="" disabled selected>📄 Sujet</option>
-            </select>
-            <button id="loadBtn" class="load-btn">Charger</button>
-        </div>
+<div class="tabs-container">
+    <button class="tab-btn active" data-mode="flashcards">📝 Flashcards</button>
+    <button class="tab-btn" data-mode="schemas">🖼️ Schémas</button>
+</div>
 
-        <div style="width: 100%; text-align: center; margin: 15px 0 10px 0; color: #b2bec3; font-size: 0.8rem;">
-            — ou —
-        </div>
+<div class="controls-wrapper">
 
-        <div style="text-align: center;">
-            <label for="csvFileInput" class="custom-file-upload">
-                📂 Ouvrir un fichier local (.csv)
-            </label>
-            <input type="file" id="csvFileInput" accept=".csv" />
-        </div>
+    <h2 class="section-title"><span id="libraryTitle">Bibliothèque</span></h2>
 
-        <h2 class="section-title"><span>Options</span></h2>
-        
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <button id="flipAllBtn" class="action-btn" style="background-color: #a29bfe;">🔄 Tout retourner</button>
-            
-            <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
-            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset ce sujet</button>
-        </div>
-
+    <div class="select-group">
+        <select id="categorySelect">
+            <option value="" disabled selected>⏳ Chargement...</option>
+        </select>
+        <select id="fileSelect" disabled>
+            <option value="" disabled selected>📄 Sujet</option>
+        </select>
+        <button id="loadBtn" class="load-btn">Charger</button>
     </div>
 
-    <div id="cards-container"></div>
+    <div style="width: 100%; text-align: center; margin: 15px 0 10px 0; color: #b2bec3; font-size: 0.8rem;">
+        — ou —
+    </div>
 
-    <script>
-        let AVAILABLE_DECKS = {};
-        let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
-        let currentFileName = ""; 
+    <div style="text-align: center;">
+        <label for="csvFileInput" class="custom-file-upload">
+            📂 Ouvrir un fichier local (.csv)
+        </label>
+        <input type="file" id="csvFileInput" accept=".csv"/>
+    </div>
 
-        const categorySelect = document.getElementById('categorySelect');
-        const fileSelect = document.getElementById('fileSelect');
-        const loadBtn = document.getElementById('loadBtn');
-        const fileInput = document.getElementById('csvFileInput');
-        const container = document.getElementById('cards-container');
-        
-        const flipAllBtn = document.getElementById('flipAllBtn');
-        const filterBtn = document.getElementById('filterBtn');
-        const resetBtn = document.getElementById('resetSaveBtn');
+    <h2 class="section-title"><span>Options</span></h2>
 
-        let isFilterActive = false;
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+        <button id="flipAllBtn" class="action-btn" style="background-color: #a29bfe;">🔄 Tout retourner</button>
+        <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
+        <button id="resetSaveBtn" class="action-btn"
+                style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset ce sujet
+        </button>
+    </div>
 
-        // --- 1. CONFIGURATION ---
-        fetch('config.json?t=' + new Date().getTime())
-            .then(res => res.ok ? res.json() : Promise.reject())
-            .then(data => { AVAILABLE_DECKS = data; initMenu(); })
-            .catch(() => categorySelect.innerHTML = '<option disabled>Erreur config</option>');
+</div>
 
-        function initMenu() {
-            categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
-            Object.keys(AVAILABLE_DECKS).forEach(cat => {
+<div id="cards-container"></div>
+
+<script>
+    // Structure de données globale
+    let GLOBAL_DATA = {};
+    let currentMode = 'flashcards'; // 'flashcards' ou 'schemas'
+
+    let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
+    let currentFileName = "";
+
+    // DOM Elements
+    const categorySelect = document.getElementById('categorySelect');
+    const fileSelect = document.getElementById('fileSelect');
+    const loadBtn = document.getElementById('loadBtn');
+    const fileInput = document.getElementById('csvFileInput');
+    const container = document.getElementById('cards-container');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    const flipAllBtn = document.getElementById('flipAllBtn');
+    const filterBtn = document.getElementById('filterBtn');
+    const resetBtn = document.getElementById('resetSaveBtn');
+
+    let isFilterActive = false;
+
+    // --- 1. CONFIGURATION & NAVIGATION ---
+    fetch('config.json?t=' + new Date().getTime())
+        .then(res => res.ok ? res.json() : Promise.reject())
+        .then(data => {
+            GLOBAL_DATA = data;
+            updateMenuForMode();
+        })
+        .catch(() => categorySelect.innerHTML = '<option disabled>Erreur config</option>');
+
+    // Gestion des onglets
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Change l'aspect visuel
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Change le mode logique
+            currentMode = btn.dataset.mode;
+
+            // Vide l'interface actuelle
+            container.innerHTML = '';
+            currentFileName = "";
+
+            // Met à jour les listes déroulantes
+            updateMenuForMode();
+        });
+    });
+
+    function updateMenuForMode() {
+        // Récupère les données correspondant au mode (flashcards ou schemas)
+        const modeData = GLOBAL_DATA[currentMode];
+
+        categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
+        fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
+        fileSelect.disabled = true;
+
+        if (modeData) {
+            Object.keys(modeData).forEach(cat => {
                 const opt = document.createElement('option');
-                opt.value = cat; opt.textContent = cat;
+                opt.value = cat;
+                opt.textContent = cat;
                 categorySelect.appendChild(opt);
             });
+        } else {
+            categorySelect.innerHTML = '<option disabled>Aucune donnée</option>';
         }
+    }
 
-        categorySelect.addEventListener('change', () => {
-            fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
-            fileSelect.disabled = false;
-            if (AVAILABLE_DECKS[categorySelect.value]) {
-                AVAILABLE_DECKS[categorySelect.value].forEach(f => {
-                    const opt = document.createElement('option');
-                    opt.value = f; opt.textContent = f.replace('.csv', '').replace(/_/g, ' '); 
-                    fileSelect.appendChild(opt);
-                });
-            }
-        });
+    categorySelect.addEventListener('change', () => {
+        const modeData = GLOBAL_DATA[currentMode];
+        fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
+        fileSelect.disabled = false;
 
-        // --- 2. CHARGEMENT ---
-        loadBtn.addEventListener('click', () => {
-            if (categorySelect.value && fileSelect.value) {
-                currentFileName = fileSelect.value;
-                Papa.parse(`datas/${categorySelect.value}/${fileSelect.value}`, {
-                    download: true,
-                    complete: res => generateCards(res.data),
-                    error: () => alert("Erreur chargement"),
-                    header: false, skipEmptyLines: true
-                });
-            } else alert("Sélectionnez un sujet.");
-        });
+        if (modeData && modeData[categorySelect.value]) {
+            modeData[categorySelect.value].forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = f;
+                opt.textContent = f.replace('.csv', '').replace(/_/g, ' ');
+                fileSelect.appendChild(opt);
+            });
+        }
+    });
 
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                currentFileName = file.name; 
-                Papa.parse(file, { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
-            }
-        });
+    // --- 2. CHARGEMENT ---
+    loadBtn.addEventListener('click', () => {
+        if (categorySelect.value && fileSelect.value) {
+            currentFileName = fileSelect.value;
+            const filePath = `datas/${encodeURIComponent(categorySelect.value)}/${currentMode}/${encodeURIComponent(fileSelect.value)}`;
+            console.log(filePath)
+            // Le chemin dépend du dossier catégorie
+            Papa.parse(filePath, {
+                download: true,
+                complete: res => {
+                    // Check if response is HTML (SPA 404 fallback)
+                    if (res.data && res.data.length > 0 && typeof res.data[0][0] === 'string' && res.data[0][0].trim().startsWith('<!DOCTYPE')) {
+                        alert("Fichier introuvable (404). Vérifiez le nom du fichier.");
+                        return;
+                    }
+                    generateCards(res.data);
+                },
+                error: () => alert("Erreur chargement"),
+                header: false, skipEmptyLines: true
+            });
+        } else alert("Sélectionnez un sujet.");
+    });
 
-        // --- 3. SAUVEGARDE & RESET ---
-        function saveScore(questionText, score) {
-            if (!savedData[currentFileName]) {
-                savedData[currentFileName] = {};
-            }
-            savedData[currentFileName][questionText] = score;
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            currentFileName = file.name;
+            Papa.parse(file, {complete: res => generateCards(res.data), header: false, skipEmptyLines: true});
+        }
+    });
+
+    // --- 3. SAUVEGARDE & RESET ---
+    function saveScore(key, score) {
+        if (!savedData[currentFileName]) {
+            savedData[currentFileName] = {};
+        }
+        savedData[currentFileName][key] = score;
+        localStorage.setItem('flashcards_data', JSON.stringify(savedData));
+    }
+
+    resetBtn.addEventListener('click', () => {
+        if (!currentFileName) {
+            alert("Aucun sujet n'est chargé actuellement.");
+            return;
+        }
+        if (confirm(`Supprimer la progression pour le sujet en cours ?`)) {
+            if (savedData[currentFileName]) delete savedData[currentFileName];
             localStorage.setItem('flashcards_data', JSON.stringify(savedData));
-        }
 
-        resetBtn.addEventListener('click', () => {
-            if (!currentFileName) {
-                alert("Aucun sujet n'est chargé actuellement.");
-                return;
-            }
-
-            if(confirm(`Voulez-vous remettre à zéro la progression pour : "${currentFileName}" ? (Les autres sujets ne seront pas touchés)`)) {
-                if (savedData[currentFileName]) {
-                    delete savedData[currentFileName];
-                }
-                localStorage.setItem('flashcards_data', JSON.stringify(savedData));
-
-                const currentCards = document.querySelectorAll('.card');
-                currentCards.forEach(c => {
-                    c.className = 'card'; 
-                    c.dataset.score = 0;
-                });
-                const btns = document.querySelectorAll('.rate-btn');
-                btns.forEach(b => b.classList.remove('selected'));
-                
-                if (isFilterActive) applyFilterAndSort();
-
-                alert("Sujet réinitialisé.");
-            }
-        });
-
-        // --- 4. LOGIQUE BOUTONS (FILTRE & FLIP) ---
-        
-        // BOUTON "TOUT RETOURNER"
-        flipAllBtn.addEventListener('click', () => {
-            const flippedCards = document.querySelectorAll('.card.is-flipped');
-            flippedCards.forEach(card => {
-                card.classList.remove('is-flipped');
+            // Refresh visuel
+            const currentCards = document.querySelectorAll('.card');
+            currentCards.forEach(c => {
+                c.className = 'card';
+                c.dataset.score = 0;
             });
-        });
-
-        // BOUTON FILTRE
-        filterBtn.addEventListener('click', () => {
-            isFilterActive = !isFilterActive;
-            if (isFilterActive) {
-                filterBtn.classList.add('active');
-                filterBtn.textContent = "❌ Tout afficher";
-                applyFilterAndSort();
-            } else {
-                filterBtn.classList.remove('active');
-                filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
-                resetFilterAndSort();
-            }
-        });
-
-        function applyFilterAndSort() {
-            const scenes = document.querySelectorAll('.scene');
-            scenes.forEach(scene => {
-                const card = scene.querySelector('.card');
-                const score = parseInt(card.dataset.score) || 0;
-                if (score === 5) scene.style.display = 'none';
-                else scene.style.display = 'block';
-                
-                if (score > 0) scene.style.order = score;
-                else scene.style.order = 10; 
-            });
+            document.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('selected'));
+            if (isFilterActive) applyFilterAndSort();
         }
+    });
 
-        function resetFilterAndSort() {
-            const scenes = document.querySelectorAll('.scene');
-            scenes.forEach(scene => {
-                scene.style.display = 'block';
-                scene.style.order = 10; 
-            });
-        }
+    // --- 4. BOUTONS ACTION ---
+    flipAllBtn.addEventListener('click', () => {
+        // Retourne toutes les cartes classiques
+        document.querySelectorAll('.card.is-flipped').forEach(c => c.classList.remove('is-flipped'));
 
-        // --- 5. GENERATION ---
-        function generateCards(data) {
-            container.innerHTML = ''; 
-            isFilterActive = false;
+        // Réinitialise tous les masques interactifs (Schémas)
+        document.querySelectorAll('.schema-mask.revealed').forEach(m => m.classList.remove('revealed'));
+    });
+
+    filterBtn.addEventListener('click', () => {
+        isFilterActive = !isFilterActive;
+        if (isFilterActive) {
+            filterBtn.classList.add('active');
+            filterBtn.textContent = "❌ Tout afficher";
+            applyFilterAndSort();
+        } else {
             filterBtn.classList.remove('active');
             filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
+            resetFilterAndSort();
+        }
+    });
 
-            const validData = data.filter(row => row.length >= 2);
+    function applyFilterAndSort() {
+        const scenes = document.querySelectorAll('.scene');
+        scenes.forEach(scene => {
+            const card = scene.querySelector('.card');
+            const score = parseInt(card.dataset.score) || 0;
+            if (score === 5) scene.style.display = 'none';
+            else scene.style.display = 'block';
 
-            if(validData.length === 0) {
-                container.innerHTML = '<p style="text-align:center; width:100%;">Fichier vide.</p>'; return;
+            scene.style.order = (score > 0) ? score : 10;
+        });
+    }
+
+    function resetFilterAndSort() {
+        document.querySelectorAll('.scene').forEach(s => {
+            s.style.display = 'block';
+            s.style.order = 10;
+        });
+    }
+
+    // --- 5. GENERATION DES CARTES ---
+    function generateCards(data) {
+        container.innerHTML = '';
+        isFilterActive = false;
+        filterBtn.classList.remove('active');
+        filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
+
+        // Toggle container mode class
+        if (currentMode === 'schemas') {
+            container.classList.add('mode-schemas');
+        } else {
+            container.classList.remove('mode-schemas');
+        }
+
+        // On filtre les lignes vides
+        const validData = data.filter(row => row.length >= 2);
+
+        if (validData.length === 0) {
+            container.innerHTML = '<p style="text-align:center; width:100%;">Fichier vide ou format incorrect.</p>';
+            return;
+        }
+
+        validData.forEach((row, index) => {
+            // Clé unique pour la sauvegarde (Titre ou Question)
+            const uniqueKey = row[0];
+
+            let savedScore = 0;
+            if (savedData[currentFileName] && savedData[currentFileName][uniqueKey]) {
+                savedScore = savedData[currentFileName][uniqueKey];
             }
 
-            validData.forEach((row, index) => {
+            // Boutons notation (Pré-générés pour être utilisés flexiblement)
+            let buttonsHtml = '<div class="rating-container">';
+            for (let i = 1; i <= 5; i++) {
+                const isSelected = (i === savedScore) ? 'selected' : '';
+                buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
+            }
+            buttonsHtml += '</div>';
+
+            const scene = document.createElement('div');
+            scene.className = 'scene';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.score = savedScore;
+            if (savedScore > 0) card.classList.add(`rate-${savedScore}`);
+
+            const counterText = `${index + 1} / ${validData.length}`;
+
+            // --- LOGIQUE D'AFFICHAGE SELON LE MODE ---
+            let frontContent = '';
+            let backContentHtml = '';
+            let isInteractive = false; // Flag pour savoir si schema interactif
+
+            if (currentMode === 'flashcards') {
+                // MODE TEXTE CLASSIQUE
                 const question = row[0];
                 const answer = row[1];
-                const counterText = `${index + 1} / ${validData.length}`;
 
-                let savedScore = 0;
-                if (savedData[currentFileName] && savedData[currentFileName][question]) {
-                    savedScore = savedData[currentFileName][question];
-                }
+                frontContent = `
+                        <div>${question}</div>
+                        <span class="card-counter">${counterText}</span>
+                    `;
 
-                const scene = document.createElement('div');
-                scene.className = 'scene'; 
-                
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.dataset.score = savedScore; 
-                
-                if (savedScore > 0) {
-                    card.classList.add(`rate-${savedScore}`);
-                }
-
-                // FRONT
-                const front = document.createElement('div');
-                front.className = 'card__face card__face--front';
-                front.innerHTML = `${question}<span class="card-counter">${counterText}</span>`;
-
-                // BACK
-                const back = document.createElement('div');
-                back.className = 'card__face card__face--back';
-                
-                let buttonsHtml = '<div class="rating-container">';
-                for(let i=1; i<=5; i++) {
-                    const isSelected = (i === savedScore) ? 'selected' : '';
-                    buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
-                }
-                buttonsHtml += '</div>';
-
-                back.innerHTML = `
+                backContentHtml = `
                     <div class="back-content">
                         <div class="mini-question">${question}</div>
                         <div class="answer-text">${answer}</div>
                     </div>
                     ${buttonsHtml}
                     <span class="card-counter">${counterText}</span>
-                `;
+                    `;
 
-                card.appendChild(front);
+            } else if (currentMode === 'schemas') {
+                // MODE IMAGE
+                const title = row[0];
+                const imgQuestion = row[1] ? row[1].trim() : '';
+                const imgAnswer = row[2] ? row[2].trim() : '';
+                const jsonCoordsFile = row[3] ? row[3].trim() : null;
+
+                const cardId = 'schema-' + index;
+
+                if (jsonCoordsFile) {
+                    isInteractive = true;
+                    // --- MODE INTERACTIF ---
+                    // Tout sur le FRONT : Image interactive + Boutons notation
+
+                    frontContent = `
+                        <div class="schema-title">${title}</div>
+                        <div id="${cardId}-interactive" class="schema-content-wrapper" style="width:100%; min-height:100px;">
+                             <p style="text-align:center; color:#b2bec3; padding:20px;">Chargement du schéma interactif...</p>
+                        </div>
+                        <br>
+                        ${buttonsHtml}
+                        <span class="card-counter">${counterText}</span>
+                    `;
+
+                    // Chargement JSON
+                    fetch(`datas/${categorySelect.value}/schemas/${jsonCoordsFile}`)
+                        .then(r => r.json())
+                        .then(coords => {
+                            const wrapper = document.getElementById(`${cardId}-interactive`);
+                            if (!wrapper) return;
+
+                            let masksHtml = '';
+                            coords.forEach(c => {
+                                masksHtml += `<div class="schema-mask" style="left:${c.x}%; top:${c.y}%; width:${c.w}%; height:${c.h}%;" onclick="this.classList.add('revealed'); event.stopPropagation();"></div>`;
+                            });
+
+                            wrapper.innerHTML = `
+                                <div class="interactive-container">
+                                    <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" alt="Schéma Interactif" style="width:100%; display:block;">
+                                    ${masksHtml}
+                                </div>
+                            `;
+                        })
+                        .catch(err => {
+                             const wrapper = document.getElementById(`${cardId}-interactive`);
+                             if(wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees</div>`;
+                        });
+
+                } else {
+                    // --- MODE CLASSIQUE ---
+                    frontContent = `
+                        <div class="schema-title">${title}</div>
+                        <img src="datas/${categorySelect.value}/schemas/${imgQuestion}" class="card-image" alt="Question" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
+                        <span class="card-counter">${counterText}</span>
+                    `;
+
+                    backContentHtml = `
+                    <div class="back-content">
+                        <div class="schema-title">${title}</div>
+                        <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" class="card-image" alt="Réponse" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
+                    </div>
+                    ${buttonsHtml}
+                    <span class="card-counter">${counterText}</span>
+                    `;
+                }
+            }
+
+            // Construction HTML
+            const front = document.createElement('div');
+            front.className = 'card__face card__face--front';
+            front.innerHTML = frontContent;
+            card.appendChild(front);
+
+            // Back face seulement si pas interactif
+            if (!isInteractive) {
+                const back = document.createElement('div');
+                back.className = 'card__face card__face--back';
+                back.innerHTML = backContentHtml;
                 card.appendChild(back);
-                scene.appendChild(card);
-                container.appendChild(scene);
+            }
 
-                // EVENTS
+            scene.appendChild(card);
+            container.appendChild(scene);
+
+            // Events
+            // On ne flip que si NON interactif
+            if (!isInteractive) {
                 scene.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('rate-btn')) return; 
+                    if (e.target.classList.contains('rate-btn')) return;
                     card.classList.toggle('is-flipped');
                 });
+            } else {
+                scene.style.cursor = 'default';
+            }
 
-                const rateBtns = back.querySelectorAll('.rate-btn');
-                rateBtns.forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation(); 
-                        const score = parseInt(btn.dataset.score);
-                        
-                        saveScore(question, score);
+            // Gestion des boutons (front ou back)
+            card.querySelectorAll('.rate-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const score = parseInt(btn.dataset.score);
 
-                        card.dataset.score = score;
-                        card.className = 'card is-flipped'; 
-                        card.classList.add(`rate-${score}`); 
+                    saveScore(uniqueKey, score);
 
-                        rateBtns.forEach(b => b.classList.remove('selected'));
-                        btn.classList.add('selected');
+                    card.dataset.score = score;
+                    // On nettoie les anciennes classes rate-
+                    card.classList.remove('rate-1', 'rate-2', 'rate-3', 'rate-4', 'rate-5');
+                    card.classList.add(`rate-${score}`);
 
-                        if (isFilterActive) applyFilterAndSort();
-                    });
+                    if (!isInteractive) {
+                        card.classList.add('is-flipped');
+                    }
+
+                    // Reset selection visuelle
+                    card.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+
+                    if (isFilterActive) applyFilterAndSort();
                 });
             });
+        });
 
-            if (window.MathJax) MathJax.typesetPromise();
-        }
-    </script>
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+</script>
 </body>
 </html>
+
