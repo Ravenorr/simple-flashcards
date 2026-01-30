@@ -161,17 +161,25 @@
             align-items: center;
             justify-content: center;
             
-            /* --- MODIFICATIONS ICI --- */
-            padding: 10px 15px; /* Moins de marge sur les côtés (15px au lieu de 20px) */
+            /* Marges intérieures */
+            padding: 10px 15px;
             box-sizing: border-box;
             text-align: center;
             border-radius: 15px;
             font-size: 1.1rem;
+            overflow-y: auto;
             
-            /* Permet de couper les mots proprement si nécessaire */
-            hyphens: auto; 
-            -webkit-hyphens: auto;
-            word-wrap: break-word; 
+            /* --- CORRECTION DES MOTS COUPÉS --- */
+            
+            /* Empêche de couper les mots au milieu (désactive les césures) */
+            hyphens: none;
+            -webkit-hyphens: none;
+            
+            /* Garde les mots entiers ensemble */
+            word-break: normal; 
+            
+            /* Ne coupe un mot que s'il est PLUS LARGE que la carte entière */
+            overflow-wrap: break-word; 
         }
 
         .card__face--front {
