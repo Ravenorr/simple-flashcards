@@ -52,7 +52,7 @@
         
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
             <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
-            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Effacer Sauvegarde</button>
+            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Effacer ce sujet</button>
         </div>
 
     </div>
@@ -61,6 +61,7 @@
 
     <script>
         let AVAILABLE_DECKS = {};
+        // On charge tout, mais on ne supprimera qu'une partie
         let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
         let currentFileName = ""; 
 
@@ -122,7 +123,7 @@
             }
         });
 
-        // --- 3. SAUVEGARDE & RESET ---
+        // --- 3. SAUVEGARDE & RESET CIBLÉ ---
         function saveScore(questionText, score) {
             if (!savedData[currentFileName]) {
                 savedData[currentFileName] = {};
@@ -132,9 +133,22 @@
         }
 
         resetBtn.addEventListener('click', () => {
-            if(confirm("Voulez-vous vraiment effacer TOUTE votre progression sur cet appareil ?")) {
-                localStorage.removeItem('flashcards_data');
-                savedData = {};
+            if (!currentFileName) {
+                alert("Aucun sujet n'est chargé actuellement.");
+                return;
+            }
+
+            if(confirm(`Voulez-vous remettre à zéro la progression pour : "${currentFileName}" ? (Les autres sujets ne seront pas touchés)`)) {
+                
+                // 1. Suppression de la clé spécifique au fichier en cours
+                if (savedData[currentFileName]) {
+                    delete savedData[currentFileName];
+                }
+
+                // 2. Mise à jour du localStorage (sans perdre le reste)
+                localStorage.setItem('flashcards_data', JSON.stringify(savedData));
+
+                // 3. Reset visuel de l'interface
                 const currentCards = document.querySelectorAll('.card');
                 currentCards.forEach(c => {
                     c.className = 'card'; 
@@ -142,7 +156,11 @@
                 });
                 const btns = document.querySelectorAll('.rate-btn');
                 btns.forEach(b => b.classList.remove('selected'));
-                alert("Progression effacée.");
+                
+                // Si le filtre était actif, on rafraichit l'affichage (tout réapparaît car score = 0)
+                if (isFilterActive) applyFilterAndSort();
+
+                alert("Sujet réinitialisé.");
             }
         });
 
