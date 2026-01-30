@@ -418,6 +418,78 @@ mjx-math { font-size: 100% !important; }
     margin: 15px 0;
 }
 
+/* --- Interactive Schema Mode --- */
+.interactive-container {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.interactive-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.schema-mask {
+    position: absolute;
+    /* Motif rayé pour signifier "zone cachée à révéler" */
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 10px,
+        #dfe6e9 10px,
+        #dfe6e9 20px
+    );
+    border: 2px dashed #636e72;
+    opacity: 1; /* Totalement opaque pour bien cacher */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Ombre pour donner du relief */
+
+    /* Centrage du contenu (icone) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Petite icône indicative au centre de chaque zone masquée */
+.schema-mask::after {
+    content: "❓";
+    font-size: 1.2rem;
+    opacity: 0.6;
+    transition: transform 0.2s;
+}
+
+.schema-mask:hover {
+    border-color: var(--primary);
+    transform: scale(1.02);
+    /* Changement de couleur des rayures au survol */
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 10px,
+        #a29bfe 10px,
+        #a29bfe 20px
+    );
+    box-shadow: 0 8px 15px rgba(108, 92, 231, 0.2);
+    z-index: 100; /* Passe devant les autres au survol */
+}
+
+.schema-mask:hover::after {
+    content: "👆"; /* Change l'icone au survol */
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.schema-mask.revealed {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
 #cards-container.mode-schemas .card__face--back {
     background-color: white;
     color: var(--text);

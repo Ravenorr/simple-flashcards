@@ -1,0 +1,6 @@
+[
+  { "x": 68, "y": 16, "w": 25, "h": 15, "label": "Oreillettes : Réservoirs" },
+  { "x": 72, "y": 54, "w": 28, "h": 15, "label": "Ventricule Gauche : Paroi épaisse" },
+  { "x": 73, "y": 80, "w": 24, "h": 10, "label": "Septum Inter-ventriculaire" },
+  { "x": 0, "y": 73, "w": 28, "h": 12, "label": "Ventricule Droit : Paroi fine" }
+]

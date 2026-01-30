@@ -312,21 +312,67 @@
 
             } else if (currentMode === 'schemas') {
                 // MODE IMAGE
-                // CSV attendu : Titre, ImageQuestion.jpg, ImageReponse.jpg
+                // CSV attendu : Titre, ImageQuestion.jpg, ImageReponse.jpg, [Optional: Coords.json]
                 const title = row[0];
                 const imgQuestion = row[1] ? row[1].trim() : '';
                 const imgAnswer = row[2] ? row[2].trim() : '';
+                const jsonCoordsFile = row[3] ? row[3].trim() : null;
 
-                frontContent = `
+                const cardId = 'schema-' + index;
+
+                if (jsonCoordsFile) {
+                    frontContent = `
+                        <div class="schema-title">${title}</div>
+                        <div id="${cardId}-interactive" class="schema-content-wrapper" style="width:100%; min-height:100px;">
+                             <!-- Placeholder chargement -->
+                             <p style="text-align:center; color:#b2bec3; padding:20px;">Chargement du schéma interactif...</p>
+                        </div>
+                        <span class="card-counter">${counterText}</span>
+                    `;
+
+                    backContentTop = `
+                        <div class="schema-title">${title}</div>
+                        <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" class="card-image" alt="Réponse Complète" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
+                    `;
+
+                    // Chargement JSON
+                    fetch(`datas/${categorySelect.value}/schemas/${jsonCoordsFile}`)
+                        .then(r => r.json())
+                        .then(coords => {
+                            const wrapper = document.getElementById(`${cardId}-interactive`);
+                            if (!wrapper) return;
+
+                            let masksHtml = '';
+                            coords.forEach(c => {
+                                masksHtml += `<div class="schema-mask" style="left:${c.x}%; top:${c.y}%; width:${c.w}%; height:${c.h}%;" onclick="this.classList.add('revealed'); event.stopPropagation();"></div>`;
+                            });
+
+                            wrapper.innerHTML = `
+                                <div class="interactive-container">
+                                    <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" alt="Schéma Interactif" style="width:100%; display:block;">
+                                    ${masksHtml}
+                                </div>
+                            `;
+                        })
+                        .catch(err => {
+                            console.error("Erreur JSON", err);
+                             const wrapper = document.getElementById(`${cardId}-interactive`);
+                             if(wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees: ${err}</div>`;
+                        });
+
+                } else {
+                    // --- MODE CLASSIQUE ---
+                    frontContent = `
                         <div class="schema-title">${title}</div>
                         <img src="datas/${categorySelect.value}/schemas/${imgQuestion}" class="card-image" alt="Question" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
                         <span class="card-counter">${counterText}</span>
                     `;
 
-                backContentTop = `
+                    backContentTop = `
                         <div class="schema-title">${title}</div>
                         <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" class="card-image" alt="Réponse" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
                     `;
+                }
             }
 
             // Construction HTML
@@ -388,3 +434,4 @@
 </script>
 </body>
 </html>
+
