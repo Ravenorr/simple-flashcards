@@ -125,25 +125,20 @@
             const scenes = document.querySelectorAll('.scene');
             scenes.forEach(scene => {
                 const card = scene.querySelector('.card');
-                // Récupère le score (0 si pas encore noté)
                 const score = parseInt(card.dataset.score) || 0;
 
-                // 1. FILTRE : On cache uniquement les 5 (Parfait)
+                // FILTRE
                 if (score === 5) {
                     scene.style.display = 'none';
                 } else {
                     scene.style.display = 'block';
                 }
 
-                // 2. TRI VISUEL (via Flexbox Order)
-                // Score 1 -> order: 1 (Tout en haut)
-                // Score 2 -> order: 2
-                // ...
-                // Pas de note (0) -> order: 10 (Tout en bas, ou après les erreurs)
+                // TRI
                 if (score > 0) {
                     scene.style.order = score;
                 } else {
-                    scene.style.order = 10; // Les non-notés à la fin
+                    scene.style.order = 10; 
                 }
             });
         }
@@ -152,7 +147,7 @@
             const scenes = document.querySelectorAll('.scene');
             scenes.forEach(scene => {
                 scene.style.display = 'block';
-                scene.style.order = 10; // Remet tout le monde au même niveau (ou ordre d'origine du DOM)
+                scene.style.order = 10; 
             });
         }
 
@@ -175,11 +170,11 @@
                 const counterText = `${index + 1} / ${validData.length}`;
 
                 const scene = document.createElement('div');
-                scene.className = 'scene'; // Order 10 par défaut (dans CSS)
+                scene.className = 'scene'; 
                 
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.dataset.score = 0; // Pas de note au départ
+                card.dataset.score = 0; 
 
                 // FRONT
                 const front = document.createElement('div');
@@ -190,7 +185,6 @@
                 const back = document.createElement('div');
                 back.className = 'card__face card__face--back';
                 
-                // HTML des boutons 1 à 5
                 const buttonsHtml = `
                     <div class="rating-container">
                         <button class="rate-btn" data-score="1">1</button>
@@ -219,7 +213,7 @@
                 
                 // Flip
                 scene.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('rate-btn')) return; // Ignore clic bouton
+                    if (e.target.classList.contains('rate-btn')) return; 
                     card.classList.toggle('is-flipped');
                 });
 
@@ -227,17 +221,23 @@
                 const rateBtns = back.querySelectorAll('.rate-btn');
                 rateBtns.forEach(btn => {
                     btn.addEventListener('click', (e) => {
-                        e.stopPropagation(); // Pas de flip
+                        e.stopPropagation(); 
                         const score = parseInt(btn.dataset.score);
                         
-                        // Mise à jour du score
+                        // 1. Mise à jour de la donnée
                         card.dataset.score = score;
 
-                        // Mise à jour visuelle (supprime les anciennes classes rate-X)
-                        card.className = 'card is-flipped'; // Reset classes
-                        card.classList.add(`rate-${score}`); // Ajoute la bonne couleur
+                        // 2. Mise à jour visuelle (Classes de la carte)
+                        card.className = 'card is-flipped'; 
+                        card.classList.add(`rate-${score}`); 
 
-                        // Si le filtre est actif, on réapplique le tri immédiatement
+                        // 3. Highlight du bouton sélectionné
+                        // On retire d'abord 'selected' de tous les boutons de cette carte
+                        rateBtns.forEach(b => b.classList.remove('selected'));
+                        // On l'ajoute au bouton cliqué
+                        btn.classList.add('selected');
+
+                        // 4. Tri/Filtre si actif
                         if (isFilterActive) {
                             applyFilterAndSort();
                         }
