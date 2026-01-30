@@ -198,7 +198,7 @@
             alert("Aucun sujet n'est chargé actuellement.");
             return;
         }
-        if (confirm(`Reset progression pour : "${currentFileName}" ?`)) {
+        if (confirm(`Supprimer la progression pour le sujet en cours ?`)) {
             if (savedData[currentFileName]) delete savedData[currentFileName];
             localStorage.setItem('flashcards_data', JSON.stringify(savedData));
 
@@ -215,7 +215,11 @@
 
     // --- 4. BOUTONS ACTION ---
     flipAllBtn.addEventListener('click', () => {
+        // Retourne toutes les cartes classiques
         document.querySelectorAll('.card.is-flipped').forEach(c => c.classList.remove('is-flipped'));
+
+        // Réinitialise tous les masques interactifs (Schémas)
+        document.querySelectorAll('.schema-mask.revealed').forEach(m => m.classList.remove('revealed'));
     });
 
     filterBtn.addEventListener('click', () => {
@@ -281,6 +285,14 @@
                 savedScore = savedData[currentFileName][uniqueKey];
             }
 
+            // Boutons notation (Pré-générés pour être utilisés flexiblement)
+            let buttonsHtml = '<div class="rating-container">';
+            for (let i = 1; i <= 5; i++) {
+                const isSelected = (i === savedScore) ? 'selected' : '';
+                buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
+            }
+            buttonsHtml += '</div>';
+
             const scene = document.createElement('div');
             scene.className = 'scene';
 
@@ -293,7 +305,8 @@
 
             // --- LOGIQUE D'AFFICHAGE SELON LE MODE ---
             let frontContent = '';
-            let backContentTop = '';
+            let backContentHtml = '';
+            let isInteractive = false; // Flag pour savoir si schema interactif
 
             if (currentMode === 'flashcards') {
                 // MODE TEXTE CLASSIQUE
@@ -305,14 +318,17 @@
                         <span class="card-counter">${counterText}</span>
                     `;
 
-                backContentTop = `
+                backContentHtml = `
+                    <div class="back-content">
                         <div class="mini-question">${question}</div>
                         <div class="answer-text">${answer}</div>
+                    </div>
+                    ${buttonsHtml}
+                    <span class="card-counter">${counterText}</span>
                     `;
 
             } else if (currentMode === 'schemas') {
                 // MODE IMAGE
-                // CSV attendu : Titre, ImageQuestion.jpg, ImageReponse.jpg, [Optional: Coords.json]
                 const title = row[0];
                 const imgQuestion = row[1] ? row[1].trim() : '';
                 const imgAnswer = row[2] ? row[2].trim() : '';
@@ -321,18 +337,18 @@
                 const cardId = 'schema-' + index;
 
                 if (jsonCoordsFile) {
+                    isInteractive = true;
+                    // --- MODE INTERACTIF ---
+                    // Tout sur le FRONT : Image interactive + Boutons notation
+
                     frontContent = `
                         <div class="schema-title">${title}</div>
                         <div id="${cardId}-interactive" class="schema-content-wrapper" style="width:100%; min-height:100px;">
-                             <!-- Placeholder chargement -->
                              <p style="text-align:center; color:#b2bec3; padding:20px;">Chargement du schéma interactif...</p>
                         </div>
+                        <br>
+                        ${buttonsHtml}
                         <span class="card-counter">${counterText}</span>
-                    `;
-
-                    backContentTop = `
-                        <div class="schema-title">${title}</div>
-                        <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" class="card-image" alt="Réponse Complète" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
                     `;
 
                     // Chargement JSON
@@ -355,9 +371,8 @@
                             `;
                         })
                         .catch(err => {
-                            console.error("Erreur JSON", err);
                              const wrapper = document.getElementById(`${cardId}-interactive`);
-                             if(wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees: ${err}</div>`;
+                             if(wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees</div>`;
                         });
 
                 } else {
@@ -368,9 +383,13 @@
                         <span class="card-counter">${counterText}</span>
                     `;
 
-                    backContentTop = `
+                    backContentHtml = `
+                    <div class="back-content">
                         <div class="schema-title">${title}</div>
                         <img src="datas/${categorySelect.value}/schemas/${imgAnswer}" class="card-image" alt="Réponse" onerror="this.style.display='none'; this.parentNode.innerHTML+='<br><small>Image introuvable</small>'">
+                    </div>
+                    ${buttonsHtml}
+                    <span class="card-counter">${counterText}</span>
                     `;
                 }
             }
@@ -379,38 +398,32 @@
             const front = document.createElement('div');
             front.className = 'card__face card__face--front';
             front.innerHTML = frontContent;
-
-            const back = document.createElement('div');
-            back.className = 'card__face card__face--back';
-
-            // Boutons notation
-            let buttonsHtml = '<div class="rating-container">';
-            for (let i = 1; i <= 5; i++) {
-                const isSelected = (i === savedScore) ? 'selected' : '';
-                buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
-            }
-            buttonsHtml += '</div>';
-
-            back.innerHTML = `
-                    <div class="back-content">
-                        ${backContentTop}
-                    </div>
-                    ${buttonsHtml}
-                    <span class="card-counter">${counterText}</span>
-                `;
-
             card.appendChild(front);
-            card.appendChild(back);
+
+            // Back face seulement si pas interactif
+            if (!isInteractive) {
+                const back = document.createElement('div');
+                back.className = 'card__face card__face--back';
+                back.innerHTML = backContentHtml;
+                card.appendChild(back);
+            }
+
             scene.appendChild(card);
             container.appendChild(scene);
 
             // Events
-            scene.addEventListener('click', (e) => {
-                if (e.target.classList.contains('rate-btn')) return;
-                card.classList.toggle('is-flipped');
-            });
+            // On ne flip que si NON interactif
+            if (!isInteractive) {
+                scene.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('rate-btn')) return;
+                    card.classList.toggle('is-flipped');
+                });
+            } else {
+                scene.style.cursor = 'default';
+            }
 
-            back.querySelectorAll('.rate-btn').forEach(btn => {
+            // Gestion des boutons (front ou back)
+            card.querySelectorAll('.rate-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const score = parseInt(btn.dataset.score);
@@ -418,10 +431,16 @@
                     saveScore(uniqueKey, score);
 
                     card.dataset.score = score;
-                    card.className = 'card is-flipped';
+                    // On nettoie les anciennes classes rate-
+                    card.classList.remove('rate-1', 'rate-2', 'rate-3', 'rate-4', 'rate-5');
                     card.classList.add(`rate-${score}`);
 
-                    back.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('selected'));
+                    if (!isInteractive) {
+                        card.classList.add('is-flipped');
+                    }
+
+                    // Reset selection visuelle
+                    card.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('selected'));
                     btn.classList.add('selected');
 
                     if (isFilterActive) applyFilterAndSort();
