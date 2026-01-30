@@ -6,9 +6,7 @@
     <title>Simple Flashcards</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    
     <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
@@ -40,6 +38,8 @@
         
         <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
             <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
+            
+            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset Sauvegarde</button>
 
             <label for="csvFileInput" class="custom-file-upload">
                 📂 Ouvrir un .CSV local
@@ -53,6 +53,11 @@
 
     <script>
         let AVAILABLE_DECKS = {};
+        
+        // --- GESTION DU LOCAL STORAGE ---
+        // On récupère les données ou on crée un objet vide
+        let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
+        let currentFileName = ""; // Pour savoir dans quel "dossier" sauvegarder
 
         const categorySelect = document.getElementById('categorySelect');
         const fileSelect = document.getElementById('fileSelect');
@@ -60,16 +65,16 @@
         const fileInput = document.getElementById('csvFileInput');
         const container = document.getElementById('cards-container');
         const filterBtn = document.getElementById('filterBtn');
+        const resetBtn = document.getElementById('resetSaveBtn');
 
         let isFilterActive = false;
 
-        // --- 1. CHARGEMENT CONFIG ---
+        // --- 1. CONFIGURATION ---
         fetch('config.json?t=' + new Date().getTime())
             .then(res => res.ok ? res.json() : Promise.reject())
             .then(data => { AVAILABLE_DECKS = data; initMenu(); })
             .catch(() => categorySelect.innerHTML = '<option disabled>Erreur config</option>');
 
-        // --- 2. MENU ---
         function initMenu() {
             categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
             Object.keys(AVAILABLE_DECKS).forEach(cat => {
@@ -91,9 +96,12 @@
             }
         });
 
-        // --- 3. CHARGEMENT ---
+        // --- 2. CHARGEMENT ---
         loadBtn.addEventListener('click', () => {
             if (categorySelect.value && fileSelect.value) {
+                // On stocke le nom du fichier pour la sauvegarde
+                currentFileName = fileSelect.value;
+                
                 Papa.parse(`datas/${categorySelect.value}/${fileSelect.value}`, {
                     download: true,
                     complete: res => generateCards(res.data),
@@ -104,10 +112,42 @@
         });
 
         fileInput.addEventListener('change', (e) => {
-            if (e.target.files[0]) Papa.parse(e.target.files[0], { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
+            const file = e.target.files[0];
+            if (file) {
+                currentFileName = file.name; // On utilise le nom du fichier local
+                Papa.parse(file, { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
+            }
         });
 
-        // --- 4. LOGIQUE FILTRE & TRI ---
+        // --- 3. SAUVEGARDE & RESET ---
+        function saveScore(questionText, score) {
+            // Structure : { "NomFichier.csv": { "Question...": 5, "Question2...": 1 } }
+            if (!savedData[currentFileName]) {
+                savedData[currentFileName] = {};
+            }
+            savedData[currentFileName][questionText] = score;
+            
+            // Écriture dans le navigateur
+            localStorage.setItem('flashcards_data', JSON.stringify(savedData));
+        }
+
+        resetBtn.addEventListener('click', () => {
+            if(confirm("Voulez-vous vraiment effacer TOUTE votre progression sur cet appareil ?")) {
+                localStorage.removeItem('flashcards_data');
+                savedData = {};
+                // On recharge la vue actuelle pour remettre à zéro
+                const currentCards = document.querySelectorAll('.card');
+                currentCards.forEach(c => {
+                    c.className = 'card'; // Retire les couleurs
+                    c.dataset.score = 0;
+                });
+                const btns = document.querySelectorAll('.rate-btn');
+                btns.forEach(b => b.classList.remove('selected'));
+                alert("Progression effacée.");
+            }
+        });
+
+        // --- 4. LOGIQUE FILTRE ---
         filterBtn.addEventListener('click', () => {
             isFilterActive = !isFilterActive;
             if (isFilterActive) {
@@ -126,20 +166,11 @@
             scenes.forEach(scene => {
                 const card = scene.querySelector('.card');
                 const score = parseInt(card.dataset.score) || 0;
-
-                // FILTRE
-                if (score === 5) {
-                    scene.style.display = 'none';
-                } else {
-                    scene.style.display = 'block';
-                }
-
-                // TRI
-                if (score > 0) {
-                    scene.style.order = score;
-                } else {
-                    scene.style.order = 10; 
-                }
+                if (score === 5) scene.style.display = 'none';
+                else scene.style.display = 'block';
+                
+                if (score > 0) scene.style.order = score;
+                else scene.style.order = 10; 
             });
         }
 
@@ -169,12 +200,24 @@
                 const answer = row[1];
                 const counterText = `${index + 1} / ${validData.length}`;
 
+                // --- RÉCUPÉRATION DE LA SAUVEGARDE ---
+                // On regarde si on a une note pour ce fichier et cette question
+                let savedScore = 0;
+                if (savedData[currentFileName] && savedData[currentFileName][question]) {
+                    savedScore = savedData[currentFileName][question];
+                }
+
                 const scene = document.createElement('div');
                 scene.className = 'scene'; 
                 
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.dataset.score = 0; 
+                card.dataset.score = savedScore; 
+                
+                // Si on a un score sauvegardé, on applique la couleur tout de suite
+                if (savedScore > 0) {
+                    card.classList.add(`rate-${savedScore}`);
+                }
 
                 // FRONT
                 const front = document.createElement('div');
@@ -185,15 +228,14 @@
                 const back = document.createElement('div');
                 back.className = 'card__face card__face--back';
                 
-                const buttonsHtml = `
-                    <div class="rating-container">
-                        <button class="rate-btn" data-score="1">1</button>
-                        <button class="rate-btn" data-score="2">2</button>
-                        <button class="rate-btn" data-score="3">3</button>
-                        <button class="rate-btn" data-score="4">4</button>
-                        <button class="rate-btn" data-score="5">5</button>
-                    </div>
-                `;
+                // Génération des boutons avec pré-sélection
+                let buttonsHtml = '<div class="rating-container">';
+                for(let i=1; i<=5; i++) {
+                    // Si le score sauvegardé correspond à ce bouton, on ajoute 'selected'
+                    const isSelected = (i === savedScore) ? 'selected' : '';
+                    buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
+                }
+                buttonsHtml += '</div>';
 
                 back.innerHTML = `
                     <div class="back-content">
@@ -211,39 +253,35 @@
 
                 // --- EVENTS ---
                 
-                // Flip
                 scene.addEventListener('click', (e) => {
                     if (e.target.classList.contains('rate-btn')) return; 
                     card.classList.toggle('is-flipped');
                 });
 
-                // Clic sur une note (1-5)
                 const rateBtns = back.querySelectorAll('.rate-btn');
                 rateBtns.forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation(); 
                         const score = parseInt(btn.dataset.score);
                         
-                        // 1. Mise à jour de la donnée
-                        card.dataset.score = score;
+                        // 1. Sauvegarde dans le localStorage
+                        saveScore(question, score);
 
-                        // 2. Mise à jour visuelle (Classes de la carte)
+                        // 2. Mise à jour visuelle
+                        card.dataset.score = score;
                         card.className = 'card is-flipped'; 
                         card.classList.add(`rate-${score}`); 
 
-                        // 3. Highlight du bouton sélectionné
-                        // On retire d'abord 'selected' de tous les boutons de cette carte
                         rateBtns.forEach(b => b.classList.remove('selected'));
-                        // On l'ajoute au bouton cliqué
                         btn.classList.add('selected');
 
-                        // 4. Tri/Filtre si actif
-                        if (isFilterActive) {
-                            applyFilterAndSort();
-                        }
+                        if (isFilterActive) applyFilterAndSort();
                     });
                 });
             });
+
+            // Si le mode filtre était actif avant chargement (optionnel), on pourrait le réappliquer ici
+            // mais on a reset le bouton au début de la fonction par sécurité.
 
             if (window.MathJax) MathJax.typesetPromise();
         }
