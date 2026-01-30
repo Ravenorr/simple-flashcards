@@ -39,7 +39,7 @@
         <h2 class="section-title"><span>Options & Upload</span></h2>
         
         <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
-            <button id="filterBtn" class="action-btn">👁️ Voir seulement les erreurs</button>
+            <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
 
             <label for="csvFileInput" class="custom-file-upload">
                 📂 Ouvrir un .CSV local
@@ -52,7 +52,6 @@
     <div id="cards-container"></div>
 
     <script>
-        // VARIABLE VIDE AU DEPART
         let AVAILABLE_DECKS = {};
 
         const categorySelect = document.getElementById('categorySelect');
@@ -64,172 +63,150 @@
 
         let isFilterActive = false;
 
-        // --- 1. CHARGEMENT DE LA CONFIGURATION (JSON) ---
+        // --- 1. CHARGEMENT CONFIG ---
         fetch('config.json?t=' + new Date().getTime())
-            .then(response => {
-                if (!response.ok) throw new Error("Impossible de charger config.json");
-                return response.json();
-            })
-            .then(data => {
-                AVAILABLE_DECKS = data;
-                initMenu();
-            })
-            .catch(error => {
-                console.error("Erreur:", error);
-                categorySelect.innerHTML = '<option disabled>Erreur config</option>';
-            });
+            .then(res => res.ok ? res.json() : Promise.reject())
+            .then(data => { AVAILABLE_DECKS = data; initMenu(); })
+            .catch(() => categorySelect.innerHTML = '<option disabled>Erreur config</option>');
 
-
-        // --- 2. Initialisation des menus ---
+        // --- 2. MENU ---
         function initMenu() {
             categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
-            
-            Object.keys(AVAILABLE_DECKS).forEach(category => {
-                const option = document.createElement('option');
-                option.value = category;
-                option.textContent = category;
-                categorySelect.appendChild(option);
+            Object.keys(AVAILABLE_DECKS).forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat; opt.textContent = cat;
+                categorySelect.appendChild(opt);
             });
         }
 
         categorySelect.addEventListener('change', () => {
-            const selectedCategory = categorySelect.value;
-            const files = AVAILABLE_DECKS[selectedCategory];
-            
             fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
             fileSelect.disabled = false;
-
-            if (files) {
-                files.forEach(filename => {
-                    const option = document.createElement('option');
-                    option.value = filename;
-                    option.textContent = filename.replace('.csv', '').replace(/_/g, ' '); 
-                    fileSelect.appendChild(option);
+            if (AVAILABLE_DECKS[categorySelect.value]) {
+                AVAILABLE_DECKS[categorySelect.value].forEach(f => {
+                    const opt = document.createElement('option');
+                    opt.value = f; opt.textContent = f.replace('.csv', '').replace(/_/g, ' '); 
+                    fileSelect.appendChild(opt);
                 });
             }
         });
 
-        // --- 3. Chargement ---
+        // --- 3. CHARGEMENT ---
         loadBtn.addEventListener('click', () => {
-            const category = categorySelect.value;
-            const file = fileSelect.value;
-
-            if (category && file) {
-                const path = `datas/${category}/${file}`;
-                console.log("Chargement de : " + path);
-
-                Papa.parse(path, {
+            if (categorySelect.value && fileSelect.value) {
+                Papa.parse(`datas/${categorySelect.value}/${fileSelect.value}`, {
                     download: true,
-                    complete: function(results) {
-                        generateCards(results.data);
-                    },
-                    error: function(err) {
-                        alert("Erreur lors du chargement. Vérifiez le chemin sur GitHub.");
-                        console.error(err);
-                    },
-                    header: false,
-                    skipEmptyLines: true
+                    complete: res => generateCards(res.data),
+                    error: () => alert("Erreur chargement"),
+                    header: false, skipEmptyLines: true
                 });
-            } else {
-                alert("Veuillez sélectionner un dossier et un sujet.");
-            }
+            } else alert("Sélectionnez un sujet.");
         });
 
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                Papa.parse(file, {
-                    complete: function(results) {
-                        generateCards(results.data);
-                    },
-                    header: false, 
-                    skipEmptyLines: true
-                });
-            }
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) Papa.parse(e.target.files[0], { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
         });
 
-        // --- 4. Logique du Filtre ---
+        // --- 4. LOGIQUE FILTRE & TRI ---
         filterBtn.addEventListener('click', () => {
             isFilterActive = !isFilterActive;
-            
             if (isFilterActive) {
                 filterBtn.classList.add('active');
-                filterBtn.textContent = "❌ Afficher tout";
-                applyFilter();
+                filterBtn.textContent = "❌ Tout afficher";
+                applyFilterAndSort();
             } else {
                 filterBtn.classList.remove('active');
-                filterBtn.textContent = "👁️ Voir seulement les erreurs";
-                resetFilter();
+                filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
+                resetFilterAndSort();
             }
         });
 
-        function applyFilter() {
-            const cards = document.querySelectorAll('.scene');
-            cards.forEach(scene => {
+        function applyFilterAndSort() {
+            const scenes = document.querySelectorAll('.scene');
+            scenes.forEach(scene => {
                 const card = scene.querySelector('.card');
-                if (card.classList.contains('is-correct')) {
+                // Récupère le score (0 si pas encore noté)
+                const score = parseInt(card.dataset.score) || 0;
+
+                // 1. FILTRE : On cache uniquement les 5 (Parfait)
+                if (score === 5) {
                     scene.style.display = 'none';
                 } else {
                     scene.style.display = 'block';
                 }
+
+                // 2. TRI VISUEL (via Flexbox Order)
+                // Score 1 -> order: 1 (Tout en haut)
+                // Score 2 -> order: 2
+                // ...
+                // Pas de note (0) -> order: 10 (Tout en bas, ou après les erreurs)
+                if (score > 0) {
+                    scene.style.order = score;
+                } else {
+                    scene.style.order = 10; // Les non-notés à la fin
+                }
             });
         }
 
-        function resetFilter() {
-            const cards = document.querySelectorAll('.scene');
-            cards.forEach(scene => scene.style.display = 'block');
+        function resetFilterAndSort() {
+            const scenes = document.querySelectorAll('.scene');
+            scenes.forEach(scene => {
+                scene.style.display = 'block';
+                scene.style.order = 10; // Remet tout le monde au même niveau (ou ordre d'origine du DOM)
+            });
         }
 
-        // --- 5. Génération des cartes ---
+        // --- 5. GENERATION ---
         function generateCards(data) {
             container.innerHTML = ''; 
-            
             isFilterActive = false;
             filterBtn.classList.remove('active');
-            filterBtn.textContent = "👁️ Voir seulement les erreurs";
+            filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
 
             const validData = data.filter(row => row.length >= 2);
-            const totalCards = validData.length;
 
-            if(totalCards === 0) {
-                container.innerHTML = '<p style="text-align:center; width:100%;">Aucune donnée trouvée ou fichier vide.</p>';
-                return;
+            if(validData.length === 0) {
+                container.innerHTML = '<p style="text-align:center; width:100%;">Fichier vide.</p>'; return;
             }
 
             validData.forEach((row, index) => {
                 const question = row[0];
                 const answer = row[1];
-                const counterText = `${index + 1} / ${totalCards}`;
+                const counterText = `${index + 1} / ${validData.length}`;
 
                 const scene = document.createElement('div');
-                scene.className = 'scene';
+                scene.className = 'scene'; // Order 10 par défaut (dans CSS)
                 
                 const card = document.createElement('div');
                 card.className = 'card';
+                card.dataset.score = 0; // Pas de note au départ
 
                 // FRONT
                 const front = document.createElement('div');
                 front.className = 'card__face card__face--front';
-                front.innerHTML = `
-                    ${question}
-                    <span class="card-counter">${counterText}</span>
-                `;
+                front.innerHTML = `${question}<span class="card-counter">${counterText}</span>`;
 
                 // BACK
                 const back = document.createElement('div');
                 back.className = 'card__face card__face--back';
                 
+                // HTML des boutons 1 à 5
+                const buttonsHtml = `
+                    <div class="rating-container">
+                        <button class="rate-btn" data-score="1">1</button>
+                        <button class="rate-btn" data-score="2">2</button>
+                        <button class="rate-btn" data-score="3">3</button>
+                        <button class="rate-btn" data-score="4">4</button>
+                        <button class="rate-btn" data-score="5">5</button>
+                    </div>
+                `;
+
                 back.innerHTML = `
                     <div class="back-content">
                         <div class="mini-question">${question}</div>
                         <div class="answer-text">${answer}</div>
                     </div>
-                    
-                    <div class="eval-buttons">
-                        <button class="btn-eval btn-wrong">Revoir 🟠</button>
-                        <button class="btn-eval btn-correct">Compris 🟢</button>
-                    </div>
-
+                    ${buttonsHtml}
                     <span class="card-counter">${counterText}</span>
                 `;
 
@@ -238,32 +215,37 @@
                 scene.appendChild(card);
                 container.appendChild(scene);
 
-                // EVENEMENTS
+                // --- EVENTS ---
+                
+                // Flip
                 scene.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'BUTTON') return;
+                    if (e.target.classList.contains('rate-btn')) return; // Ignore clic bouton
                     card.classList.toggle('is-flipped');
                 });
 
-                const btnCorrect = back.querySelector('.btn-correct');
-                const btnWrong = back.querySelector('.btn-wrong');
+                // Clic sur une note (1-5)
+                const rateBtns = back.querySelectorAll('.rate-btn');
+                rateBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Pas de flip
+                        const score = parseInt(btn.dataset.score);
+                        
+                        // Mise à jour du score
+                        card.dataset.score = score;
 
-                btnCorrect.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    card.classList.remove('is-wrong');
-                    card.classList.add('is-correct');
-                    if(isFilterActive) scene.style.display = 'none';
-                });
+                        // Mise à jour visuelle (supprime les anciennes classes rate-X)
+                        card.className = 'card is-flipped'; // Reset classes
+                        card.classList.add(`rate-${score}`); // Ajoute la bonne couleur
 
-                btnWrong.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    card.classList.remove('is-correct');
-                    card.classList.add('is-wrong');
+                        // Si le filtre est actif, on réapplique le tri immédiatement
+                        if (isFilterActive) {
+                            applyFilterAndSort();
+                        }
+                    });
                 });
             });
 
-            if (window.MathJax) {
-                MathJax.typesetPromise();
-            }
+            if (window.MathJax) MathJax.typesetPromise();
         }
     </script>
 </body>

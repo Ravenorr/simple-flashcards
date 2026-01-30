@@ -4,10 +4,13 @@
     --bg: #dfe6e9;
     --card-bg: #ffffff;
     --text: #2d3436;
-    --success-border: #00b894;
-    --success-bg: #55efc4;
-    --warning-border: #e17055;
-    --warning-bg: #fab1a0;
+
+    /* ÉCHELLE DE NOTATION (1 à 5) */
+    --rate-1: #d63031; /* Rouge fort */
+    --rate-2: #e17055; /* Orange foncé */
+    --rate-3: #fdcb6e; /* Jaune/Orange */
+    --rate-4: #55efc4; /* Vert clair */
+    --rate-5: #00b894; /* Vert validé */
 }
 
 body {
@@ -90,12 +93,14 @@ button.load-btn:hover, button.action-btn:hover {
     transform: translateY(-2px);
 }
 
+/* Bouton Filtre */
 #filterBtn {
     background-color: #636e72;
     margin-right: 15px;
 }
 #filterBtn.active {
-    background-color: var(--warning-border);
+    background-color: var(--rate-3); /* Devient orange quand actif */
+    color: #2d3436;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
 }
 
@@ -125,9 +130,11 @@ input[type="file"] { display: none; }
 
 .scene {
     width: 100%;
-    height: 300px;
+    height: 320px; /* Un peu plus haut pour les 5 boutons */
     perspective: 1000px;
     cursor: pointer;
+    /* Par défaut, ordre 10 (après les erreurs classées) */
+    order: 10; 
 }
 
 .card {
@@ -141,16 +148,34 @@ input[type="file"] { display: none; }
     border: 3px solid transparent;
 }
 
-/* États de validation */
-.card.is-correct .card__face--front { border-bottom-color: var(--success-border); }
-.card.is-correct { border-color: var(--success-border); }
-.card.is-correct .card__face--back { background-color: var(--success-border); }
-
-.card.is-wrong .card__face--front { border-bottom-color: var(--warning-border); }
-.card.is-wrong { border-color: var(--warning-border); }
-.card.is-wrong .card__face--back { background-color: var(--warning-border); }
-
 .card.is-flipped { transform: rotateY(180deg); }
+
+/* --- Styles selon la note (1-5) --- */
+/* Note 1 */
+.card.rate-1 { border-color: var(--rate-1); }
+.card.rate-1 .card__face--front { border-bottom-color: var(--rate-1); }
+.card.rate-1 .card__face--back { background-color: var(--rate-1); }
+
+/* Note 2 */
+.card.rate-2 { border-color: var(--rate-2); }
+.card.rate-2 .card__face--front { border-bottom-color: var(--rate-2); }
+.card.rate-2 .card__face--back { background-color: var(--rate-2); }
+
+/* Note 3 */
+.card.rate-3 { border-color: var(--rate-3); }
+.card.rate-3 .card__face--front { border-bottom-color: var(--rate-3); }
+.card.rate-3 .card__face--back { background-color: var(--rate-3); color: #2d3436; } /* Texte foncé pour lisibilité sur jaune */
+
+/* Note 4 */
+.card.rate-4 { border-color: var(--rate-4); }
+.card.rate-4 .card__face--front { border-bottom-color: var(--rate-4); }
+.card.rate-4 .card__face--back { background-color: var(--rate-4); color: #2d3436; }
+
+/* Note 5 */
+.card.rate-5 { border-color: var(--rate-5); }
+.card.rate-5 .card__face--front { border-bottom-color: var(--rate-5); }
+.card.rate-5 .card__face--back { background-color: var(--rate-5); }
+
 
 /* Faces de la carte */
 .card__face {
@@ -169,8 +194,6 @@ input[type="file"] { display: none; }
     border-radius: 12px;
     font-size: 1.1rem;
     overflow-y: auto;
-    
-    /* Anti-coupure des mots */
     hyphens: none;
     -webkit-hyphens: none;
     word-break: normal; 
@@ -213,53 +236,57 @@ input[type="file"] { display: none; }
 
 .answer-text { font-size: 1.1rem; font-weight: bold; }
 
-/* Boutons d'évaluation */
-.eval-buttons {
+/* --- Zone de notation (1-5) --- */
+.rating-container {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
     z-index: 10;
 }
 
-.btn-eval {
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
+.rate-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
     font-weight: bold;
-    font-size: 0.8rem;
     cursor: pointer;
     transition: transform 0.1s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.btn-eval:active { transform: scale(0.95); }
+.rate-btn:hover { background: white; color: var(--primary); transform: scale(1.1); }
+.rate-btn:active { transform: scale(0.9); }
 
-.btn-wrong { background-color: #ffeaa7; color: #d35400; }
-.btn-correct { background-color: #55efc4; color: #006266; }
+/* Couleur spécifique au survol des boutons */
+.rate-btn[data-score="1"]:hover { color: var(--rate-1); }
+.rate-btn[data-score="2"]:hover { color: var(--rate-2); }
+.rate-btn[data-score="3"]:hover { color: var(--rate-3); }
+.rate-btn[data-score="4"]:hover { color: var(--rate-4); }
+.rate-btn[data-score="5"]:hover { color: var(--rate-5); }
 
-/* Compteur */
+
 .card-counter {
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     right: 15px;
-    font-size: 0.75rem; 
-    font-weight: normal;
+    font-size: 0.7rem; 
     pointer-events: none;
+    opacity: 0.6;
 }
-.card__face--front .card-counter { color: #b2bec3; }
-.card__face--back .card-counter { color: rgba(255, 255, 255, 0.6); }
 
-/* MathJax */
 mjx-container[display="true"], mjx-container[jax="CHTML"][display="true"] {
     display: inline !important;
     margin: 0 !important;
 }
 mjx-math { font-size: 100% !important; }
 
-/* Mobile & Scrollbar */
 @media (max-width: 600px) {
     .card__face { font-size: 0.95rem; }
+    .rate-btn { width: 30px; height: 30px; font-size: 0.8rem; }
 }
 
 ::-webkit-scrollbar { width: 6px; }
