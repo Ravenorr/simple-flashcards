@@ -6,7 +6,9 @@
     <title>Simple Flashcards</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    
     <link rel="stylesheet" href="style.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
@@ -23,7 +25,8 @@
 
     <div class="controls-wrapper">
         
-        <h2 class="section-title"><span>Bibliothèque</span></h2>
+        <h2 class="section-title"><span>Bibliothèque & Fichiers</span></h2>
+        
         <div class="select-group">
             <select id="categorySelect">
                 <option value="" disabled selected>⏳ Chargement...</option>
@@ -34,17 +37,22 @@
             <button id="loadBtn" class="load-btn">Charger</button>
         </div>
 
-        <h2 class="section-title"><span>Options & Upload</span></h2>
-        
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
-            <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
-            
-            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset Sauvegarde</button>
+        <div style="width: 100%; text-align: center; margin: 15px 0 10px 0; color: #b2bec3; font-size: 0.8rem;">
+            — ou —
+        </div>
 
+        <div style="text-align: center;">
             <label for="csvFileInput" class="custom-file-upload">
-                📂 Ouvrir un .CSV local
+                📂 Ouvrir un fichier local (.csv)
             </label>
             <input type="file" id="csvFileInput" accept=".csv" />
+        </div>
+
+        <h2 class="section-title"><span>Options</span></h2>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
+            <button id="resetSaveBtn" class="action-btn" style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Effacer Sauvegarde</button>
         </div>
 
     </div>
@@ -53,11 +61,8 @@
 
     <script>
         let AVAILABLE_DECKS = {};
-        
-        // --- GESTION DU LOCAL STORAGE ---
-        // On récupère les données ou on crée un objet vide
         let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
-        let currentFileName = ""; // Pour savoir dans quel "dossier" sauvegarder
+        let currentFileName = ""; 
 
         const categorySelect = document.getElementById('categorySelect');
         const fileSelect = document.getElementById('fileSelect');
@@ -99,9 +104,7 @@
         // --- 2. CHARGEMENT ---
         loadBtn.addEventListener('click', () => {
             if (categorySelect.value && fileSelect.value) {
-                // On stocke le nom du fichier pour la sauvegarde
                 currentFileName = fileSelect.value;
-                
                 Papa.parse(`datas/${categorySelect.value}/${fileSelect.value}`, {
                     download: true,
                     complete: res => generateCards(res.data),
@@ -114,20 +117,17 @@
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) {
-                currentFileName = file.name; // On utilise le nom du fichier local
+                currentFileName = file.name; 
                 Papa.parse(file, { complete: res => generateCards(res.data), header: false, skipEmptyLines: true });
             }
         });
 
         // --- 3. SAUVEGARDE & RESET ---
         function saveScore(questionText, score) {
-            // Structure : { "NomFichier.csv": { "Question...": 5, "Question2...": 1 } }
             if (!savedData[currentFileName]) {
                 savedData[currentFileName] = {};
             }
             savedData[currentFileName][questionText] = score;
-            
-            // Écriture dans le navigateur
             localStorage.setItem('flashcards_data', JSON.stringify(savedData));
         }
 
@@ -135,10 +135,9 @@
             if(confirm("Voulez-vous vraiment effacer TOUTE votre progression sur cet appareil ?")) {
                 localStorage.removeItem('flashcards_data');
                 savedData = {};
-                // On recharge la vue actuelle pour remettre à zéro
                 const currentCards = document.querySelectorAll('.card');
                 currentCards.forEach(c => {
-                    c.className = 'card'; // Retire les couleurs
+                    c.className = 'card'; 
                     c.dataset.score = 0;
                 });
                 const btns = document.querySelectorAll('.rate-btn');
@@ -200,8 +199,6 @@
                 const answer = row[1];
                 const counterText = `${index + 1} / ${validData.length}`;
 
-                // --- RÉCUPÉRATION DE LA SAUVEGARDE ---
-                // On regarde si on a une note pour ce fichier et cette question
                 let savedScore = 0;
                 if (savedData[currentFileName] && savedData[currentFileName][question]) {
                     savedScore = savedData[currentFileName][question];
@@ -214,7 +211,6 @@
                 card.className = 'card';
                 card.dataset.score = savedScore; 
                 
-                // Si on a un score sauvegardé, on applique la couleur tout de suite
                 if (savedScore > 0) {
                     card.classList.add(`rate-${savedScore}`);
                 }
@@ -228,10 +224,8 @@
                 const back = document.createElement('div');
                 back.className = 'card__face card__face--back';
                 
-                // Génération des boutons avec pré-sélection
                 let buttonsHtml = '<div class="rating-container">';
                 for(let i=1; i<=5; i++) {
-                    // Si le score sauvegardé correspond à ce bouton, on ajoute 'selected'
                     const isSelected = (i === savedScore) ? 'selected' : '';
                     buttonsHtml += `<button class="rate-btn ${isSelected}" data-score="${i}">${i}</button>`;
                 }
@@ -251,8 +245,7 @@
                 scene.appendChild(card);
                 container.appendChild(scene);
 
-                // --- EVENTS ---
-                
+                // EVENTS
                 scene.addEventListener('click', (e) => {
                     if (e.target.classList.contains('rate-btn')) return; 
                     card.classList.toggle('is-flipped');
@@ -264,10 +257,8 @@
                         e.stopPropagation(); 
                         const score = parseInt(btn.dataset.score);
                         
-                        // 1. Sauvegarde dans le localStorage
                         saveScore(question, score);
 
-                        // 2. Mise à jour visuelle
                         card.dataset.score = score;
                         card.className = 'card is-flipped'; 
                         card.classList.add(`rate-${score}`); 
@@ -279,9 +270,6 @@
                     });
                 });
             });
-
-            // Si le mode filtre était actif avant chargement (optionnel), on pourrait le réappliquer ici
-            // mais on a reset le bouton au début de la fonction par sécurité.
 
             if (window.MathJax) MathJax.typesetPromise();
         }
