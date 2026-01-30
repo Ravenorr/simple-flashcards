@@ -1,13 +1,20 @@
 {
-    "IADE": [
-        "ANATOMIE ET PHYSIOLOGIE RESPIRATOIRE.csv",
-        "PHYSIOLOGIE DIGESTIVE.csv",
-        "APPAREIL CARDIO CIRCULATOIRE.csv",
-        "LES COMAS.csv",
-        "DIABETE & HYPERTENSION ARTERIELLE.csv",
-        "Physiologie de la Grossesse.csv",
-        "L’Hémostase.csv",
-        "SYSTEME IMMUNITAIRE.csv",
-        "Appareil Locomoteur.csv"
-    ]
+    "flashcards": {
+        "IADE": [
+            "ANATOMIE_ET_PHYSIOLOGIE_RESPIRATOIRE.csv",
+            "PHYSIOLOGIE_DIGESTIVE.csv",
+            "APPAREIL_CARDIO_CIRCULATOIRE.csv",
+            "LES_COMAS.csv",
+            "DIABETE_&_HYPERTENSION_ARTERIELLE.csv",
+            "PHYSIOLOGIE_DE_LA_GROSSESSE.csv",
+            "L’HÉMOSTASE.csv",
+            "SYSTEME_IMMUNITAIRE.csv",
+            "APPAREIL_LOCOMOTEUR.csv"
+        ]
+    },
+    "schemas": {
+        "IADE": [
+            "COEUR.csv"
+        ]
+    }
 }

@@ -293,3 +293,171 @@ mjx-math { font-size: 100% !important; }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+
+
+/* --- ONGLETS (TABS) --- */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: #e6e6e6;
+    padding: 5px;
+    border-radius: 50px;
+    gap: 10px;
+}
+
+.tab-btn {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #636e72;
+    background: transparent;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+}
+
+/* --- IMAGES DANS LES CARTES --- */
+.card-image {
+    max-width: 100%;
+    max-height: 180px; /* Limite la hauteur pour que ça rentre */
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: white; /* Fond blanc si image transparente */
+}
+
+/* Ajustement pour laisser de la place à l'image */
+.card__face {
+    padding: 10px;
+}
+
+/* Titre du schéma */
+.schema-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+/* --- Mode SCHEMAS (List View) --- */
+#cards-container.mode-schemas {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+#cards-container.mode-schemas .scene {
+    height: auto;
+    width: 100%;
+    max-width: 800px;
+    perspective: none;
+    order: unset !important; /* Disable ordering by score to keep list order if desired, or keep it */
+}
+
+#cards-container.mode-schemas .card {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background: transparent;
+    transform: none !important;
+    transition: none;
+    height: auto;
+    display: block;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Toggle logic for Schema Mode (Display Swap with Animation) */
+#cards-container.mode-schemas .card.is-flipped .card__face--front {
+    display: none;
+}
+#cards-container.mode-schemas .card.is-flipped .card__face--back {
+    display: flex;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+#cards-container.mode-schemas .card:not(.is-flipped) .card__face--back {
+    display: none;
+}
+#cards-container.mode-schemas .card:not(.is-flipped) .card__face--front {
+    display: flex;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+#cards-container.mode-schemas .card__face {
+    position: relative;
+    height: auto;
+    width: 100%;
+    border-radius: 12px;
+    border-bottom: none;
+    background: white;
+    backface-visibility: visible;
+    transform: none;
+    padding: 20px;
+    justify-content: center;
+}
+
+#cards-container.mode-schemas .card-image {
+    max-height: none;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 15px 0;
+}
+
+#cards-container.mode-schemas .card__face--back {
+    background-color: white;
+    color: var(--text);
+    border: 2px solid var(--primary); /* Visual indicator for 'Reveal' state */
+}
+
+/* Adjust rating buttons for white background */
+#cards-container.mode-schemas .rate-btn {
+    border-color: #b2bec3;
+    color: #636e72;
+    background: #f0f0f0;
+}
+
+/* Colorisation des boutons sélectionnés/au survol en mode Schémas (spécificité augmentée pour surcharger le gris par défaut) */
+#cards-container.mode-schemas .rate-btn[data-score="1"]:hover,
+#cards-container.mode-schemas .rate-btn[data-score="1"].selected { color: var(--rate-1); border-color: var(--rate-1); background: #fff; }
+
+#cards-container.mode-schemas .rate-btn[data-score="2"]:hover,
+#cards-container.mode-schemas .rate-btn[data-score="2"].selected { color: var(--rate-2); border-color: var(--rate-2); background: #fff; }
+
+#cards-container.mode-schemas .rate-btn[data-score="3"]:hover,
+#cards-container.mode-schemas .rate-btn[data-score="3"].selected { color: var(--rate-3); border-color: var(--rate-3); background: #fff; }
+
+#cards-container.mode-schemas .rate-btn[data-score="4"]:hover,
+#cards-container.mode-schemas .rate-btn[data-score="4"].selected { color: var(--rate-4); border-color: var(--rate-4); background: #fff; }
+
+#cards-container.mode-schemas .rate-btn[data-score="5"]:hover,
+#cards-container.mode-schemas .rate-btn[data-score="5"].selected { color: var(--rate-5); border-color: var(--rate-5); background: #fff; }
+
+/* --- Couleurs de notation pour le mode SCHEMAS --- */
+/* Remplace la bordure primaire par la couleur de la note */
+#cards-container.mode-schemas .card.rate-1 .card__face { border: 2px solid var(--rate-1); box-shadow: 0 4px 15px rgba(214, 48, 49, 0.15); }
+#cards-container.mode-schemas .card.rate-2 .card__face { border: 2px solid var(--rate-2); box-shadow: 0 4px 15px rgba(225, 112, 85, 0.15); }
+#cards-container.mode-schemas .card.rate-3 .card__face { border: 2px solid var(--rate-3); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.15); }
+#cards-container.mode-schemas .card.rate-4 .card__face { border: 2px solid var(--rate-4); box-shadow: 0 4px 15px rgba(85, 239, 196, 0.15); }
+#cards-container.mode-schemas .card.rate-5 .card__face { border: 2px solid var(--rate-5); box-shadow: 0 4px 15px rgba(0, 184, 148, 0.15); }
+
+/* Légère teinte de fond sur le verso pour renforcer l'identité visuelle de la note sans gêner la lecture */
+#cards-container.mode-schemas .card.rate-1 .card__face--back { background-color: rgba(214, 48, 49, 0.03); }
+#cards-container.mode-schemas .card.rate-2 .card__face--back { background-color: rgba(225, 112, 85, 0.03); }
+#cards-container.mode-schemas .card.rate-3 .card__face--back { background-color: rgba(253, 203, 110, 0.03); }
+#cards-container.mode-schemas .card.rate-4 .card__face--back { background-color: rgba(85, 239, 196, 0.03); }
+#cards-container.mode-schemas .card.rate-5 .card__face--back { background-color: rgba(0, 184, 148, 0.03); }
