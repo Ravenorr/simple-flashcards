@@ -24,8 +24,6 @@
             --bg: #dfe6e9;
             --card-bg: #ffffff;
             --text: #2d3436;
-
-            /* Couleurs d'évaluation */
             --success-border: #00b894;
             --success-bg: #55efc4;
             --warning-border: #e17055;
@@ -45,7 +43,6 @@
 
         h1 { margin-bottom: 30px; text-align: center;}
 
-        /* --- Zone de Contrôle (Menu + Upload) --- */
         .controls-wrapper {
             background: white;
             padding: 20px 30px;
@@ -75,7 +72,6 @@
         }
         .section-title span { background:#fff; padding:0 10px; }
 
-        /* Style des Selects */
         .select-group {
             display: flex;
             gap: 15px;
@@ -112,7 +108,6 @@
             transform: translateY(-2px);
         }
 
-        /* Bouton filtre spécial */
         #filterBtn {
             background-color: #636e72;
             margin-right: 15px;
@@ -122,7 +117,6 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
 
-        /* Style Upload */
         input[type="file"] { display: none; }
         .custom-file-upload {
             border: 2px dashed #b2bec3;
@@ -138,7 +132,6 @@
             color: var(--primary);
         }
 
-        /* --- Grille des cartes --- */
         #cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -149,7 +142,7 @@
 
         .scene {
             width: 100%;
-            height: 300px; /* Augmenté pour caser les boutons */
+            height: 300px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -162,10 +155,9 @@
             transform-style: preserve-3d;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             border-radius: 15px;
-            border: 3px solid transparent; /* Bordure invisible par défaut */
+            border: 3px solid transparent;
         }
 
-        /* --- États de validation (Vert / Orange) --- */
         .card.is-correct .card__face--front { border-bottom-color: var(--success-border); }
         .card.is-correct { border-color: var(--success-border); }
         .card.is-correct .card__face--back { background-color: var(--success-border); }
@@ -186,16 +178,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            
-            /* Marges intérieures */
             padding: 10px 15px;
             box-sizing: border-box;
             text-align: center;
             border-radius: 12px;
             font-size: 1.1rem;
             overflow-y: auto;
-            
-            /* --- CORRECTION DES MOTS COUPÉS --- */
             hyphens: none;
             -webkit-hyphens: none;
             word-break: normal; 
@@ -213,7 +201,6 @@
             color: white;
             transform: rotateY(180deg);
             z-index: 1;
-            /* Layout spécifique pour le dos */
             justify-content: space-between; 
             padding-bottom: 10px;
         }
@@ -239,7 +226,6 @@
 
         .answer-text { font-size: 1.1rem; font-weight: bold; }
 
-        /* --- Boutons d'évaluation --- */
         .eval-buttons {
             display: flex;
             gap: 10px;
@@ -264,7 +250,6 @@
         .btn-wrong { background-color: #ffeaa7; color: #d35400; }
         .btn-correct { background-color: #55efc4; color: #006266; }
 
-        /* Numérotation des cartes */
         .card-counter {
             position: absolute;
             bottom: 10px;
@@ -276,7 +261,6 @@
         .card__face--front .card-counter { color: #b2bec3; }
         .card__face--back .card-counter { color: rgba(255, 255, 255, 0.6); }
 
-        /* MathJax fixes */
         mjx-container[display="true"], mjx-container[jax="CHTML"][display="true"] {
             display: inline !important;
             margin: 0 !important;
@@ -300,7 +284,7 @@
         <h2 class="section-title"><span>Bibliothèque</span></h2>
         <div class="select-group">
             <select id="categorySelect">
-                <option value="" disabled selected>📁 Dossier</option>
+                <option value="" disabled selected>⏳ Chargement...</option>
             </select>
             <select id="fileSelect" disabled>
                 <option value="" disabled selected>📄 Sujet</option>
@@ -324,16 +308,8 @@
     <div id="cards-container"></div>
 
     <script>
-        const AVAILABLE_DECKS = {
-            "IADE": [
-                "ANATOMIE ET PHYSIOLOGIE RESPIRATOIRE.csv",
-                "PHYSIOLOGIE DIGESTIVE.csv",
-                "APPAREIL CARDIO CIRCULATOIRE.csv",
-                "LES COMAS.csv",
-                "DIABETE & HYPERTENSION ARTERIELLE.csv",
-                "Physiologie de la Grossesse.csv"
-            ]
-        };
+        // VARIABLE VIDE AU DEPART
+        let AVAILABLE_DECKS = {};
 
         const categorySelect = document.getElementById('categorySelect');
         const fileSelect = document.getElementById('fileSelect');
@@ -344,14 +320,37 @@
 
         let isFilterActive = false;
 
-        // --- 1. Initialisation des menus ---
+        // --- 1. CHARGEMENT DE LA CONFIGURATION (JSON) ---
         
-        Object.keys(AVAILABLE_DECKS).forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category;
-            categorySelect.appendChild(option);
-        });
+        // On va chercher le fichier config.json
+        // L'argument ?t=... sert à éviter que le navigateur ne garde une vieille version en cache
+        fetch('config.json?t=' + new Date().getTime())
+            .then(response => {
+                if (!response.ok) throw new Error("Impossible de charger config.json");
+                return response.json();
+            })
+            .then(data => {
+                AVAILABLE_DECKS = data;
+                initMenu(); // Une fois chargé, on construit le menu
+            })
+            .catch(error => {
+                console.error("Erreur:", error);
+                categorySelect.innerHTML = '<option disabled>Erreur config</option>';
+            });
+
+
+        // --- 2. Initialisation des menus (appelé après le chargement du JSON) ---
+        
+        function initMenu() {
+            categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
+            
+            Object.keys(AVAILABLE_DECKS).forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
 
         categorySelect.addEventListener('change', () => {
             const selectedCategory = categorySelect.value;
@@ -360,15 +359,17 @@
             fileSelect.innerHTML = '<option value="" disabled selected>📄 Sujet</option>';
             fileSelect.disabled = false;
 
-            files.forEach(filename => {
-                const option = document.createElement('option');
-                option.value = filename;
-                option.textContent = filename.replace('.csv', '').replace(/_/g, ' '); 
-                fileSelect.appendChild(option);
-            });
+            if (files) {
+                files.forEach(filename => {
+                    const option = document.createElement('option');
+                    option.value = filename;
+                    option.textContent = filename.replace('.csv', '').replace(/_/g, ' '); 
+                    fileSelect.appendChild(option);
+                });
+            }
         });
 
-        // --- 2. Chargement depuis la bibliothèque ---
+        // --- 3. Chargement depuis la bibliothèque ---
         
         loadBtn.addEventListener('click', () => {
             const category = categorySelect.value;
@@ -395,7 +396,7 @@
             }
         });
 
-        // --- 3. Chargement local ---
+        // --- 4. Chargement local ---
         
         fileInput.addEventListener('change', (event) => {
             const file = event.target.files[0];
@@ -410,7 +411,7 @@
             }
         });
 
-        // --- 4. Logique du Filtre ---
+        // --- 5. Logique du Filtre ---
 
         filterBtn.addEventListener('click', () => {
             isFilterActive = !isFilterActive;
@@ -430,7 +431,6 @@
             const cards = document.querySelectorAll('.scene');
             cards.forEach(scene => {
                 const card = scene.querySelector('.card');
-                // Si la carte est marquée "correcte", on cache la scène entière
                 if (card.classList.contains('is-correct')) {
                     scene.style.display = 'none';
                 } else {
@@ -444,12 +444,11 @@
             cards.forEach(scene => scene.style.display = 'block');
         }
 
-        // --- 5. Génération des cartes ---
+        // --- 6. Génération des cartes ---
 
         function generateCards(data) {
             container.innerHTML = ''; 
             
-            // Reset du filtre lors d'un nouveau chargement
             isFilterActive = false;
             filterBtn.classList.remove('active');
             filterBtn.textContent = "👁️ Voir seulement les erreurs";
@@ -473,7 +472,7 @@
                 const card = document.createElement('div');
                 card.className = 'card';
 
-                // --- FACE AVANT ---
+                // FACE AVANT
                 const front = document.createElement('div');
                 front.className = 'card__face card__face--front';
                 front.innerHTML = `
@@ -481,11 +480,10 @@
                     <span class="card-counter">${counterText}</span>
                 `;
 
-                // --- FACE ARRIÈRE ---
+                // FACE ARRIÈRE
                 const back = document.createElement('div');
                 back.className = 'card__face card__face--back';
                 
-                // Structure avec contenu + boutons
                 back.innerHTML = `
                     <div class="back-content">
                         <div class="mini-question">${question}</div>
@@ -505,24 +503,19 @@
                 scene.appendChild(card);
                 container.appendChild(scene);
 
-                // --- LOGIQUE CLICS ---
-
-                // Flip général
+                // LOGIQUE CLICS
                 scene.addEventListener('click', (e) => {
-                    // Si on clique sur un bouton, on ne flip PAS
                     if (e.target.tagName === 'BUTTON') return;
                     card.classList.toggle('is-flipped');
                 });
 
-                // Boutons
                 const btnCorrect = back.querySelector('.btn-correct');
                 const btnWrong = back.querySelector('.btn-wrong');
 
                 btnCorrect.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Empêche le flip
+                    e.stopPropagation(); 
                     card.classList.remove('is-wrong');
                     card.classList.add('is-correct');
-                    // Si le filtre est actif, on cache immédiatement la carte validée
                     if(isFilterActive) scene.style.display = 'none';
                 });
 
@@ -533,7 +526,6 @@
                 });
             });
 
-            // Rafraîchir MathJax
             if (window.MathJax) {
                 MathJax.typesetPromise();
             }
