@@ -289,6 +289,7 @@ mjx-math { font-size: 100% !important; }
 @media (max-width: 600px) {
     .card__face { font-size: 0.95rem; }
     .rate-btn { width: 30px; height: 30px; font-size: 0.8rem; }
+    .schema-mask::after { font-size: 0.7rem; }
 }
 
 ::-webkit-scrollbar { width: 6px; }
