@@ -169,6 +169,12 @@
                         return;
                     }
                     generateCards(res.data);
+
+                    // Scroll automatique vers la section Options
+                    const optionsTitle = document.querySelectorAll('.section-title')[1]; // Le deuxi��me titre est "Options"
+                    if (optionsTitle) {
+                        optionsTitle.scrollIntoView({behavior: 'smooth', block: 'start'});
+                    }
                 },
                 error: () => alert("Erreur chargement"),
                 header: false, skipEmptyLines: true
@@ -222,8 +228,8 @@
     adminBtn.addEventListener('click', () => {
         const password = prompt("🔐 Mot de passe config :");
         if (password === "Config123!") {
-             sessionStorage.setItem('isAdmin', 'true');
-             window.location.href = 'admin.html';
+            sessionStorage.setItem('isAdmin', 'true');
+            window.location.href = 'admin.html';
         } else if (password !== null) {
             alert("❌ Mot de passe incorrect");
         }
@@ -244,7 +250,7 @@
     });
 
     scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     });
 
     // --- 4. BOUTONS ACTION ---
@@ -405,8 +411,8 @@
                             `;
                         })
                         .catch(err => {
-                             const wrapper = document.getElementById(`${cardId}-interactive`);
-                             if(wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees</div>`;
+                            const wrapper = document.getElementById(`${cardId}-interactive`);
+                            if (wrapper) wrapper.innerHTML = `<div style="color:red">Erreur chargement coordonnees</div>`;
                         });
 
                 } else {
