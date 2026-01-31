@@ -449,19 +449,6 @@ mjx-math { font-size: 100% !important; }
     border-radius: 6px;
     z-index: 10;
     box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Ombre pour donner du relief */
-
-    /* Centrage du contenu (icone) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Petite icône indicative au centre de chaque zone masquée */
-.schema-mask::after {
-    content: "❓";
-    font-size: 1.2rem;
-    opacity: 0.6;
-    transition: transform 0.2s;
 }
 
 .schema-mask:hover {
@@ -477,12 +464,6 @@ mjx-math { font-size: 100% !important; }
     );
     box-shadow: 0 8px 15px rgba(108, 92, 231, 0.2);
     z-index: 100; /* Passe devant les autres au survol */
-}
-
-.schema-mask:hover::after {
-    content: "👆"; /* Change l'icone au survol */
-    transform: scale(1.2);
-    opacity: 1;
 }
 
 .schema-mask.revealed {
