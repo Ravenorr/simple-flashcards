@@ -213,6 +213,22 @@
         }
     });
 
+    // --- ADMIN BUTTON ---
+    const adminBtn = document.createElement('button');
+    adminBtn.textContent = '⚙️ Config';
+    adminBtn.style.cssText = 'position:fixed; bottom:10px; right:10px; opacity:0.5; font-size:0.8rem; background:#2d3436; color:white; border:none; padding:5px 10px; border-radius:15px; cursor:pointer; z-index:9999;';
+    document.body.appendChild(adminBtn);
+
+    adminBtn.addEventListener('click', () => {
+        const password = prompt("🔐 Mot de passe config :");
+        if (password === "Config123!") {
+             sessionStorage.setItem('isAdmin', 'true');
+             window.location.href = 'admin.html';
+        } else if (password !== null) {
+            alert("❌ Mot de passe incorrect");
+        }
+    });
+
     // --- 4. BOUTONS ACTION ---
     flipAllBtn.addEventListener('click', () => {
         // Retourne toutes les cartes classiques

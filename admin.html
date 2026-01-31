@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Éditeur de Schémas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-layout">
+
+    <div class="header">
+        <div class="header-left">
+            <a href="index.html" class="nav-btn">← Retour</a>
+            <h2 class="page-title">Éditeur de Zones</h2>
+        </div>
+
+        <div class="header-controls">
+             <!-- Input caché simulé par le bouton -->
+            <input type="file" id="imgLoader" accept="image/*" />
+            <label for="imgLoader" class="control-btn primary-btn">📂 Charger Image</label>
+            <button class="control-btn secondary-btn" id="copyBtn">📋 Copier JSON</button>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="canvas-area" id="canvasArea">
+            <p id="placeholderText" class="hint">Commencez par charger une image de schéma...</p>
+
+            <div id="editor" class="editor-container">
+                <img id="targetImg" class="editor-img" src="" alt="Schema">
+                <!-- Les rectangles seront insérés ici par JS -->
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h3 class="section-title"><span>Zones (<span id="zoneCount">0</span>)</span></h3>
+            <p style="font-size:0.8rem; color:#636e72;">Dessinez des rectangles sur l'image pour créer des zones cliquables.</p>
+
+            <div id="zonesList" style="flex-grow:1; display:flex; flex-direction:column; gap:10px; overflow-y:auto;"></div>
+
+            <div>
+                <h3>Export JSON</h3>
+                <textarea id="jsonOutput" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple client-side security check
+        if (sessionStorage.getItem('isAdmin') !== 'true') {
+            alert("Accès refusé. Veuillez vous connecter depuis l'accueil.");
+            window.location.href = 'index.html';
+        }
+
+        const imgLoader = document.getElementById('imgLoader');
+        const editor = document.getElementById('editor');
+        const targetImg = document.getElementById('targetImg');
+        const zonesList = document.getElementById('zonesList');
+        const jsonOutput = document.getElementById('jsonOutput');
+        const countSpan = document.getElementById('zoneCount');
+        const placeholder = document.getElementById('placeholderText');
+        const copyBtn = document.getElementById('copyBtn');
+
+        let zones = []; // {x, y, w, h, label, id}
+        let isDrawing = false;
+        let startX, startY;
+        let tempRect = null;
+        let currentImgWidth = 0;
+        let currentImgHeight = 0;
+
+        // 1. CHARGEMENT IMAGE
+        imgLoader.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if(!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                targetImg.src = event.target.result;
+                targetImg.onload = () => {
+                    editor.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    currentImgWidth = targetImg.width; // Dimension naturelle affichée
+                    currentImgHeight = targetImg.height;
+
+                    // Reset zones
+                    zones = [];
+                    renderZones();
+                }
+            }
+            reader.readAsDataURL(file);
+        });
+
+        // 2. DESSIN SOURIS
+        editor.addEventListener('mousedown', (e) => {
+            if(e.target.classList.contains('delete-btn')) return;
+            // Si clic sur un rect existant, on le sélectionne (géré ailleurs), sinon on dessine
+            if(e.target !== editor && e.target !== targetImg) return;
+
+            isDrawing = true;
+            const rect = editor.getBoundingClientRect();
+            // Coordonnées relatives au conteneur image
+            startX = e.clientX - rect.left;
+            startY = e.clientY - rect.top;
+
+            // Création div temporaire
+            tempRect = document.createElement('div');
+            tempRect.className = 'draw-rect';
+            tempRect.style.left = startX + 'px';
+            tempRect.style.top = startY + 'px';
+            editor.appendChild(tempRect);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if(!isDrawing || !tempRect) return;
+
+            const rect = editor.getBoundingClientRect();
+            let currentX = e.clientX - rect.left;
+            let currentY = e.clientY - rect.top;
+
+            // Contraindre dans l'image
+            currentX = Math.max(0, Math.min(currentX, rect.width));
+            currentY = Math.max(0, Math.min(currentY, rect.height));
+
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
+            const left = Math.min(currentX, startX);
+            const top = Math.min(currentY, startY); // Correction ici : c'était startX
+
+            tempRect.style.width = width + 'px';
+            tempRect.style.height = height + 'px';
+            tempRect.style.left = left + 'px';
+            tempRect.style.top = top + 'px';
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if(!isDrawing) return;
+            isDrawing = false;
+
+            if(tempRect) {
+                // Convertir en % et enregistrer
+                const rect = editor.getBoundingClientRect(); // Dimensions actuelles réelles
+
+                // Récupérer les styles finaux
+                const l = parseFloat(tempRect.style.left);
+                const t = parseFloat(tempRect.style.top);
+                const w = parseFloat(tempRect.style.width);
+                const h = parseFloat(tempRect.style.height);
+
+                // Si trop petit, on ignore
+                if(w < 10 || h < 10) {
+                    tempRect.remove();
+                    return;
+                }
+
+                const zone = {
+                    id: Date.now(),
+                    x: Math.round((l / rect.width) * 100),
+                    y: Math.round((t / rect.height) * 100),
+                    w: Math.round((w / rect.width) * 100),
+                    h: Math.round((h / rect.height) * 100),
+                    label: ""
+                };
+
+                zones.push(zone);
+                tempRect.remove(); // On l'enlève pour le redessiner proprement via renderZones
+                renderZones();
+            }
+        });
+
+        // 3. RENDU ET GESTION
+        function renderZones() {
+            // Nettoyage visuel de l'éditeur (sauf l'image)
+            const existingRects = editor.querySelectorAll('.draw-rect');
+            existingRects.forEach(el => el.remove());
+
+            // Nettoyage liste
+            zonesList.innerHTML = '';
+            countSpan.textContent = zones.length;
+
+            zones.forEach((z, index) => {
+                // 1. Rectangle sur l'image
+                const el = document.createElement('div');
+                el.className = 'draw-rect';
+                el.style.left = z.x + '%';
+                el.style.top = z.y + '%';
+                el.style.width = z.w + '%';
+                el.style.height = z.h + '%';
+                el.title = z.label || `Zone ${index+1}`;
+
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    highlightZone(z.id);
+                });
+
+                editor.appendChild(el);
+
+                // 2. Item dans la sidebar
+                const item = document.createElement('div');
+                item.className = 'zone-item';
+                item.dataset.id = z.id;
+                item.innerHTML = `
+                    <div class="zone-header">
+                        <span>#${index+1}</span>
+                        <button class="delete-btn" onclick="deleteZone(${z.id})">×</button>
+                    </div>
+                    <div class="zone-inputs">
+                        <input type="text" placeholder="Label (ex: Oreillette)" value="${z.label}" oninput="updateLabel(${z.id}, this.value)">
+                        <div class="zone-coords">
+                            <span>x: ${z.x}%</span><span>y: ${z.y}%</span>
+                            <span>w: ${z.w}%</span><span>h: ${z.h}%</span>
+                        </div>
+                    </div>
+                `;
+                item.addEventListener('click', () => highlightZone(z.id));
+                zonesList.appendChild(item);
+            });
+
+            updateJson();
+        }
+
+        function deleteZone(id) {
+            zones = zones.filter(z => z.id !== id);
+            renderZones();
+        }
+
+        function updateLabel(id, val) {
+            const z = zones.find(z => z.id === id);
+            if(z) {
+                z.label = val;
+                updateJson();
+            }
+        }
+
+        function highlightZone(id) {
+            // Visuel sidebar
+            document.querySelectorAll('.zone-item').forEach(i => i.classList.remove('selected'));
+            const item = document.querySelector(`.zone-item[data-id='${id}']`);
+            if(item) {
+                item.classList.add('selected');
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Visuel editeur
+             // Re-render pour simplifier ou gestion classe
+             // Ici hack rapide: on trouve l'index dans le array
+             const idx = zones.findIndex(z => z.id === id);
+             const rects = editor.querySelectorAll('.draw-rect');
+             rects.forEach(r => r.classList.remove('selected'));
+             if(rects[idx]) rects[idx].classList.add('selected');
+        }
+
+        function updateJson() {
+            // On retire l'ID interne avant export
+            const exportData = zones.map(({id, ...rest}) => rest);
+            jsonOutput.value = JSON.stringify(exportData, null, 2);
+        }
+
+        copyBtn.addEventListener('click', () => {
+            jsonOutput.select();
+            document.execCommand('copy');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = "✅ Copié !";
+            setTimeout(() => copyBtn.textContent = originalText, 2000);
+        });
+
+    </script>
+</body>
+</html>
