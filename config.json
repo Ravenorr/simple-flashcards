@@ -14,7 +14,7 @@
     },
     "schemas": {
         "IADE": [
-            "COEUR.csv"
+            "CARDIO.csv"
         ]
     }
 }
