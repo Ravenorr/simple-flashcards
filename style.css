@@ -748,7 +748,25 @@ mjx-math { font-size: 100% !important; }
     border-radius: 4px;
     font-size: 0.9rem;
     box-sizing: border-box; /* Fix input width overflow */
+    outline: none;
 }
+
+/* Styles pour les petits inputs de coordonnées */
+.coord-input {
+    width: 35px !important;
+    padding: 2px 4px !important;
+    font-size: 0.75rem !important;
+    text-align: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #dfe6e9;
+    color: #636e72;
+}
+.coord-input:focus {
+    border-color: var(--primary);
+    background: white;
+}
+
 .zone-inputs input:focus {
     outline: none;
     border-color: var(--primary);

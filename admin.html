@@ -205,9 +205,11 @@
                     </div>
                     <div class="zone-inputs">
                         <input type="text" placeholder="Label (ex: Oreillette)" value="${z.label}" oninput="updateLabel(${z.id}, this.value)">
-                        <div class="zone-coords">
-                            <span>x: ${z.x}%</span><span>y: ${z.y}%</span>
-                            <span>w: ${z.w}%</span><span>h: ${z.h}%</span>
+                        <div style="display:flex; justify-content:space-between; gap:2px; font-size:0.7rem; color:#aaa;">
+                            <label>X: <input type="number" class="coord-input" value="${z.x}" oninput="updateZoneCoord(${z.id}, 'x', this.value)" onchange="renderZones()"></label>
+                            <label>Y: <input type="number" class="coord-input" value="${z.y}" oninput="updateZoneCoord(${z.id}, 'y', this.value)" onchange="renderZones()"></label>
+                            <label>W: <input type="number" class="coord-input" value="${z.w}" oninput="updateZoneCoord(${z.id}, 'w', this.value)" onchange="renderZones()"></label>
+                            <label>H: <input type="number" class="coord-input" value="${z.h}" oninput="updateZoneCoord(${z.id}, 'h', this.value)" onchange="renderZones()"></label>
                         </div>
                     </div>
                 `;
@@ -227,6 +229,24 @@
             const z = zones.find(z => z.id === id);
             if(z) {
                 z.label = val;
+                updateJson();
+            }
+        }
+
+        function updateZoneCoord(id, prop, val) {
+            const z = zones.find(z => z.id === id);
+            if(z) {
+                z[prop] = parseInt(val) || 0;
+                // Mise à jour visuelle immédiate du rectangle correspondant sans tout redessiner
+                // (renderZones sera appelé au 'change' pour nettoyer)
+                const index = zones.findIndex(item => item.id === id);
+                const rect = editor.querySelectorAll('.draw-rect')[index];
+                if(rect) {
+                    if (prop === 'x') rect.style.left = z.x + '%';
+                    if (prop === 'y') rect.style.top = z.y + '%';
+                    if (prop === 'w') rect.style.width = z.w + '%';
+                    if (prop === 'h') rect.style.height = z.h + '%';
+                }
                 updateJson();
             }
         }
