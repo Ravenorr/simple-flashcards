@@ -158,7 +158,6 @@
         if (categorySelect.value && fileSelect.value) {
             currentFileName = fileSelect.value;
             const filePath = `datas/${encodeURIComponent(categorySelect.value)}/${currentMode}/${encodeURIComponent(fileSelect.value)}`;
-            console.log(filePath)
             // Le chemin dépend du dossier catégorie
             Papa.parse(filePath, {
                 download: true,

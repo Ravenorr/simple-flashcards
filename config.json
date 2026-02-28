@@ -15,7 +15,8 @@
     "schemas": {
         "IADE": [
             "CARDIO.csv",
-            "IMMUNO.csv"
+            "IMMUNO.csv",
+            "SOINS_AU_PATIENT.csv"
         ]
     }
 }
