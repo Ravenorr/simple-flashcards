@@ -1,0 +1,60 @@
+Comment définit-on le « risque infectieux » selon Magis et Ducel ?,Des causes potentielles liées à une contamination microbiologique pouvant entraîner des conséquences infectieuses.
+Quelle est la prévalence des infections nosocomiales chez les patients hospitalisés en CHU en France ?,Un patient sur 12.
+"Une infection est dite « associée aux soins » (IAS) si elle n'était ni présente, ni en _____ au début de la prise en charge.",incubation
+Quel est le délai par défaut après l'admission pour considérer qu'une infection est une IAS ?,48 heures.
+Comment définit-on spécifiquement une « Infection Nosocomiale » ?,Il s'agit d'une IAS contractée au sein d'un établissement de santé.
+Dans quel délai une infection du site opératoire est-elle considérée comme une IAS après une intervention standard ?,Dans les 30 jours.
+Quel est le délai de surveillance d'une ISO en cas de mise en place d'une prothèse ou d'un implant ?,Un an.
+Quels sont les trois niveaux de profondeur d'une infection du site opératoire (ISO) ?,"ISO superficielle, ISO profonde, et ISO de l'organe ou de l'espace."
+Citez trois facteurs de risque d'ISO liés aux antécédents ou à l'état du patient.,"Âges extrêmes, diabète et tabagisme (ou obésité/immunodépression)."
+À quelle classe d'Altemeier correspond une chirurgie sans ouverture de viscère creux ni inflammation ?,Classe 1 (Chirurgie propre).
+Définissez la Classe 2 d'Altemeier (Chirurgie propre contaminée).,Ouverture de viscères creux avec contamination minime ou rupture d'asepsie minime.
+Une plaie traumatique récente datant de moins de 4 heures relève de quelle classe d'Altemeier ?,Classe 3 (Chirurgie contaminée).
+Quels critères définissent la Classe 4 d'Altemeier (Chirurgie sale) ?,"Plaie traumatique $> 4$ h, tissus dévitalisés, contamination fécale ou présence de pus."
+L'insertion d'une prothèse orthopédique est un exemple de quelle classe d'Altemeier ?,Classe 1
+Une péritonite est classée dans quelle catégorie d'intervention selon Altemeier ?,Classe 4
+Quels sont les trois paramètres permettant de calculer le score NNIS ?,"Durée de l'intervention, score ASA et classe de contamination."
+"Dans le calcul du score NNIS, quel percentile de durée d'intervention attribue 1 point ?",Un percentile $\ge 75$.
+Quelles classes de contamination d'Altemeier valent 1 point dans le score NNIS ?,Les classes 3 et 4.
+Pourquoi une colonisation urinaire asymptomatique est-elle exclue de la définition des IAS ?,L'absence de signes cliniques l'exclut du diagnostic d'infection.
+Quel est le seuil de significativité pour $E. coli$ dans les urines pour les deux sexes ?,$10^3 \text{ UFC/ml}$.
+Quel est le seuil de significativité urinaire pour une femme porteuse d'entérobactéries autres qu'E. coli ?,$10^4 \text{ UFC/ml}$.
+Quels signes cliniques ou biologiques caractérisent un patient infecté (par opposition à colonisé) ?,"Hyperthermie, brûlures mictionnelles ou élévation des globules blancs."
+"L'infection est le résultat d'une rupture d'équilibre entre la résistance de l'hôte, le nombre de micro-organismes et leur _____.",virulence
+Citez deux facteurs favorisants liés aux soins pour le risque infectieux.,Agressions diagnostiques et agressions thérapeutiques.
+À quelle catégorie d'agents infectieux appartient la gale ?,Parasites.
+Qu'est-ce qu'un prion dans le contexte des maladies infectieuses ?,"Un agent transmissible non conventionnel, comme celui de la maladie de Creutzfeldt-Jakob."
+Quelle est la couleur d'une bactérie Gram + après coloration ?,Bleue.
+Pourquoi les bactéries Gram + sont-elles plus résistantes à la dessiccation ?,Elles possèdent une paroi plus épaisse.
+Quelle particularité structurale rend les bactéries Gram - moins pénétrables par les détergents ?,Leur paroi est riche en lipides.
+Donnez un exemple de bactérie Gram + résistante aux glycopeptides.,Enterococcus faecium (ERG).
+Que signifie l'acronyme SARM ?,Staphylococcus aureus Résistant à la Méticilline.
+Que signifie l'acronyme EPC ?,Entérobactérie Productrice de Carbapénémase.
+Qu'est-ce qu'une spore bactérienne ?,"Une forme de résistance aux conditions défavorables (chaleur, UV, agents chimiques)."
+Citez un genre bactérien capable de sporuler.,Clostridium (ou Bacillus).
+Quels sont les trois principaux mécanismes de défense des bactéries contre les antibiotiques ?,"Diminution de la perméabilité/efflux, modification de la cible et production d'enzymes."
+Définition : Résistance naturelle,Résistance présente chez toutes les souches d'une même espèce bactérienne pour un antibiotique donné.
+Qu'est-ce que le spectre d'activité d'un antibiotique ?,L'ensemble des espèces bactériennes qui y sont sensibles.
+Pourquoi les glycopeptides sont-ils inefficaces contre les bactéries Gram - ?,Leur paroi empêche la pénétration de ces grosses molécules.
+Comment se transmet la résistance acquise d'origine chromosomique ?,Par transmission verticale (division cellulaire).
+Quelle est la vitesse de division moyenne d'une bactérie ?,Une division toutes les 20 minutes environ.
+Par quel vecteur s'effectue la transmission horizontale de la résistance bactérienne ?,Par les plasmides.
+Quel risque majeur représente la résistance plasmidique en milieu hospitalier ?,Une diffusion épidémique due au caractère transférable des gènes.
+Que signifie l'acronyme BMR ?,Bactéries Multi-Résistantes aux antibiotiques.
+Quel agent infectieux est responsable du paludisme ?,Un parasite.
+"Dans le score NNIS, quel score ASA est attribué à un patient en bonne santé ?",0
+Quel est le principal réservoir naturel des bactéries Gram + citées dans le cours ?,La peau du patient.
+Une chirurgie biliaire avec bile infectée est classée en quelle catégorie d'Altemeier ?,Classe 3
+Cloze : La diminution de la _____ et l'efflux sont des mécanismes de défense contre les antibiotiques.,perméabilité
+Comment appelle-t-on le transfert de gènes de résistance via des plasmides entre bactéries ?,La transmission horizontale.
+Pourquoi le manque de formation du personnel est-il cité comme facteur favorisant le risque infectieux ?,Il peut entraîner des erreurs de procédure et des ruptures d'hygiène.
+À quel type d'ISO correspond une infection atteignant le fascia et le muscle ?,ISO profonde.
+Quelle espèce bactérienne est naturellement résistante à l'ampicilline ?,Pseudomonas aeruginosa.
+Environ combien de bactéries sont produites à partir d'une seule cellule en 24 heures ?,100 millions ($10^8$).
+Citez un exemple de virus responsable d'infections associées aux soins.,Le virus de la grippe.
+La modification de la cible d'action est un mécanisme de résistance _____.,acquise
+Quelle est la conséquence d'un nombre élevé de personnes autour d'un même patient ?,Une augmentation du risque de transmission croisée.
+L'obésité est un facteur de risque d'ISO de type _____.,patient
+Quelle structure bactérienne est responsable de la différence de coloration au Gram ?,La paroi.
+L'état de choc est un facteur de risque d'ISO lié au _____.,contexte
+Le score NNIS peut varier de _____ à _____.,0 à 3

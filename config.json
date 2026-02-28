@@ -10,7 +10,8 @@
             "HEMOSTASE.csv",
             "SYSTEME_IMMUNITAIRE.csv",
             "APPAREIL_LOCOMOTEUR.csv",
-            "TRANSFUSION.csv"
+            "TRANSFUSION.csv",
+            "HYGIENE_ET_PREVENTION_DES_INFECTIONS.csv"
         ]
     },
     "schemas": {
@@ -22,7 +23,8 @@
     },
     "quiz": {
         "IADE": [
-            "TRANSFUSION.json"
+            "TRANSFUSION.json",
+            "HYGIENE_ET_PREVENTION_DES_INFECTIONS.json"
         ]
     }
 }

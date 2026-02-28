@@ -541,15 +541,26 @@
     }
 
     // --- 5. GENERATION DU QUIZ ---
-    function generateQuiz(quizData) {
+    function generateQuiz(originalQuizData) {
         container.innerHTML = '';
         container.classList.remove('mode-schemas');
         container.classList.add('mode-quiz');
 
-        if (!quizData || !Array.isArray(quizData) || quizData.length === 0) {
+        if (!originalQuizData || !Array.isArray(originalQuizData) || originalQuizData.length === 0) {
             container.innerHTML = '<p style="text-align:center; width:100%;">Aucune question dans ce quiz.</p>';
             return;
         }
+
+        const quizData = JSON.parse(JSON.stringify(originalQuizData));
+
+        quizData.forEach(q => {
+            if (q.answerOptions && Array.isArray(q.answerOptions)) {
+                for (let i = q.answerOptions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [q.answerOptions[i], q.answerOptions[j]] = [q.answerOptions[j], q.answerOptions[i]];
+                }
+            }
+        });
 
         let currentIndex = 0;
         let completedQuestions = new Array(quizData.length).fill(false);
