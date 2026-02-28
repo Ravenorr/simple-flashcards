@@ -27,6 +27,7 @@
 <div class="tabs-container">
     <button class="tab-btn active" data-mode="flashcards">📝 Flashcards</button>
     <button class="tab-btn" data-mode="schemas">🖼️ Schémas</button>
+    <button class="tab-btn" data-mode="quiz">❓ Quiz</button>
 </div>
 
 <div class="controls-wrapper">
@@ -43,25 +44,31 @@
         <button id="loadBtn" class="load-btn">Charger</button>
     </div>
 
-    <div style="width: 100%; text-align: center; margin: 15px 0 10px 0; color: #b2bec3; font-size: 0.8rem;">
-        — ou —
-    </div>
+    <!-- Container pour l'upload local -->
+    <div id="localFileSection">
+        <div style="width: 100%; text-align: center; margin: 15px 0 10px 0; color: #b2bec3; font-size: 0.8rem;">
+            — ou —
+        </div>
 
-    <div style="text-align: center;">
-        <label for="csvFileInput" class="custom-file-upload">
-            📂 Ouvrir un fichier local (.csv)
-        </label>
-        <input type="file" id="csvFileInput" accept=".csv"/>
+        <div style="text-align: center;">
+            <label for="csvFileInput" class="custom-file-upload">
+                📂 Ouvrir un fichier local (.csv)
+            </label>
+            <input type="file" id="csvFileInput" accept=".csv"/>
+        </div>
     </div>
 
     <h2 class="section-title"><span>Options</span></h2>
 
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+    <div id="optionsButtonsContainer" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
         <button id="flipAllBtn" class="action-btn" style="background-color: #a29bfe;">🔄 Tout retourner</button>
         <button id="filterBtn" class="action-btn">👁️ Cacher les acquis (5/5)</button>
         <button id="resetSaveBtn" class="action-btn"
                 style="background-color: #fab1a0; color: #d63031; font-size: 0.8rem;">🗑️ Reset ce sujet
         </button>
+
+        <button id="resetQuizBtn" class="action-btn"
+                style="background-color: #ff7675; color: white; display: none;">🔄 Recommencer le Quiz</button>
     </div>
 
 </div>
@@ -71,10 +78,11 @@
 <script>
     // Structure de données globale
     let GLOBAL_DATA = {};
-    let currentMode = 'flashcards'; // 'flashcards' ou 'schemas'
+    let currentMode = 'flashcards'; // 'flashcards' ou 'schemas' ou 'quiz'
 
     let savedData = JSON.parse(localStorage.getItem('flashcards_data') || '{}');
     let currentFileName = "";
+    let currentQuizData = null; // Pour stocker les données du quiz actuel
 
     // DOM Elements
     const categorySelect = document.getElementById('categorySelect');
@@ -83,10 +91,13 @@
     const fileInput = document.getElementById('csvFileInput');
     const container = document.getElementById('cards-container');
     const tabBtns = document.querySelectorAll('.tab-btn');
+    const localFileSection = document.getElementById('localFileSection');
+    const optionsButtonsContainer = document.getElementById('optionsButtonsContainer');
 
     const flipAllBtn = document.getElementById('flipAllBtn');
     const filterBtn = document.getElementById('filterBtn');
     const resetBtn = document.getElementById('resetSaveBtn');
+    const resetQuizBtn = document.getElementById('resetQuizBtn');
 
     let isFilterActive = false;
 
@@ -99,27 +110,45 @@
         })
         .catch(() => categorySelect.innerHTML = '<option disabled>Erreur config</option>');
 
-    // Gestion des onglets
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Change l'aspect visuel
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Change le mode logique
             currentMode = btn.dataset.mode;
+            updateOptionsVisibility();
 
-            // Vide l'interface actuelle
+            if (currentMode === 'flashcards') {
+                localFileSection.style.display = 'block';
+            } else {
+                localFileSection.style.display = 'none';
+            }
+
             container.innerHTML = '';
             currentFileName = "";
+            currentQuizData = null;
 
-            // Met à jour les listes déroulantes
             updateMenuForMode();
         });
     });
 
+    function updateOptionsVisibility() {
+        if (currentMode === 'quiz') {
+            optionsButtonsContainer.style.display = 'flex';
+            flipAllBtn.style.display = 'none';
+            filterBtn.style.display = 'none';
+            resetBtn.style.display = 'none';
+            resetQuizBtn.style.display = 'block';
+        } else {
+            optionsButtonsContainer.style.display = 'flex';
+            flipAllBtn.style.display = 'block';
+            filterBtn.style.display = 'block';
+            resetBtn.style.display = 'block';
+            resetQuizBtn.style.display = 'none';
+        }
+    }
+
     function updateMenuForMode() {
-        // Récupère les données correspondant au mode (flashcards ou schemas)
         const modeData = GLOBAL_DATA[currentMode];
 
         categorySelect.innerHTML = '<option value="" disabled selected>📁 Dossier</option>';
@@ -147,7 +176,7 @@
             modeData[categorySelect.value].forEach(f => {
                 const opt = document.createElement('option');
                 opt.value = f;
-                opt.textContent = f.replace('.csv', '').replace(/_/g, ' ');
+                opt.textContent = f.replace('.csv', '').replace('.json', '').replace(/_/g, ' ');
                 fileSelect.appendChild(opt);
             });
         }
@@ -157,27 +186,39 @@
     loadBtn.addEventListener('click', () => {
         if (categorySelect.value && fileSelect.value) {
             currentFileName = fileSelect.value;
-            const filePath = `datas/${encodeURIComponent(categorySelect.value)}/${currentMode}/${encodeURIComponent(fileSelect.value)}`;
-            // Le chemin dépend du dossier catégorie
-            Papa.parse(filePath, {
-                download: true,
-                complete: res => {
-                    // Check if response is HTML (SPA 404 fallback)
-                    if (res.data && res.data.length > 0 && typeof res.data[0][0] === 'string' && res.data[0][0].trim().startsWith('<!DOCTYPE')) {
-                        alert("Fichier introuvable (404). Vérifiez le nom du fichier.");
-                        return;
-                    }
-                    generateCards(res.data);
+            if (currentMode === 'quiz') {
+                const filePath = `datas/${encodeURIComponent(categorySelect.value)}/quiz/${encodeURIComponent(fileSelect.value)}`;
+                fetch(filePath)
+                    .then(r => r.json())
+                    .then(json => {
+                        currentQuizData = json.quiz; // Stocke les données
+                        generateQuiz(currentQuizData);
+                    })
+                    .catch(() => {
+                        container.innerHTML = '<p style="text-align:center; width:100%;">Erreur chargement quiz.</p>';
+                    });
+            } else {
+                const filePath = `datas/${encodeURIComponent(categorySelect.value)}/${currentMode}/${encodeURIComponent(fileSelect.value)}`;
+                Papa.parse(filePath, {
+                    download: true,
+                    complete: res => {
+                        // Check if response is HTML (SPA 404 fallback)
+                        if (res.data && res.data.length > 0 && typeof res.data[0][0] === 'string' && res.data[0][0].trim().startsWith('<!DOCTYPE')) {
+                            alert("Fichier introuvable (404). Vérifiez le nom du fichier.");
+                            return;
+                        }
+                        generateCards(res.data);
 
-                    // Scroll automatique vers la section Options
-                    const optionsTitle = document.querySelectorAll('.section-title')[1]; // Le deuxi��me titre est "Options"
-                    if (optionsTitle) {
-                        optionsTitle.scrollIntoView({behavior: 'smooth', block: 'start'});
-                    }
-                },
-                error: () => alert("Erreur chargement"),
-                header: false, skipEmptyLines: true
-            });
+                        // Scroll automatique vers la section Options
+                        const optionsTitle = document.querySelectorAll('.section-title')[1]; // Le deuxi��me titre est "Options"
+                        if (optionsTitle) {
+                            optionsTitle.scrollIntoView({behavior: 'smooth', block: 'start'});
+                        }
+                    },
+                    error: () => alert("Erreur chargement"),
+                    header: false, skipEmptyLines: true
+                });
+            }
         } else alert("Sélectionnez un sujet.");
     });
 
@@ -215,6 +256,14 @@
             });
             document.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('selected'));
             if (isFilterActive) applyFilterAndSort();
+        }
+    });
+
+    resetQuizBtn.addEventListener('click', () => {
+        if (currentQuizData && currentQuizData.length > 0) {
+            if (confirm("Voulez-vous recommencer ce quiz à zéro ?")) {
+                generateQuiz(currentQuizData);
+            }
         }
     });
 
@@ -299,6 +348,7 @@
         isFilterActive = false;
         filterBtn.classList.remove('active');
         filterBtn.textContent = "👁️ Cacher les acquis (5/5)";
+        container.classList.remove('mode-quiz');
 
         // Toggle container mode class
         if (currentMode === 'schemas') {
@@ -488,6 +538,195 @@
         });
 
         if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    // --- 5. GENERATION DU QUIZ ---
+    function generateQuiz(quizData) {
+        container.innerHTML = '';
+        container.classList.remove('mode-schemas');
+        container.classList.add('mode-quiz');
+
+        if (!quizData || !Array.isArray(quizData) || quizData.length === 0) {
+            container.innerHTML = '<p style="text-align:center; width:100%;">Aucune question dans ce quiz.</p>';
+            return;
+        }
+
+        let currentIndex = 0;
+        let completedQuestions = new Array(quizData.length).fill(false);
+        let firstAttempts = new Array(quizData.length).fill(true); // Pour le score
+        let score = 0;
+
+        function renderQuestion(idx) {
+            const q = quizData[idx];
+            if (!q) return;
+
+            const isNextDisabled = (idx === quizData.length - 1);
+
+            const hintHtml = q.hint
+                ? `<div class="quiz-hint-wrapper">
+                     <button class="quiz-show-hint-btn">💡 Voir l'indice</button>
+                     <div class="quiz-hint-text" style="display:none;">${q.hint}</div>
+                   </div>`
+                : '';
+
+            container.innerHTML = `
+                <div class="quiz-question-block">
+                    <div class="quiz-progress">${idx + 1} / ${quizData.length}</div>
+                    <div class="quiz-question">${q.question}</div>
+
+                    ${hintHtml}
+
+                    <div class="quiz-answers">
+                        ${q.answerOptions.map((opt, i) => `
+                            <button class="quiz-answer-btn" data-idx="${i}">
+                                <span class="answer-text">${opt.text}</span>
+                                <span class="quiz-answer-feedback" id="feedback-${i}" style="display:none;"></span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-nav">
+                        <button class="quiz-prev-btn" ${idx === 0 ? 'disabled' : ''}>Précédent</button>
+                        <button class="quiz-next-btn" ${isNextDisabled ? 'disabled' : ''}>Suivant</button>
+                    </div>
+                    <div class="quiz-global-feedback"></div>
+                </div>
+            `;
+
+            const hintBtn = container.querySelector('.quiz-show-hint-btn');
+            if (hintBtn) {
+                hintBtn.addEventListener('click', () => {
+                    const hintText = container.querySelector('.quiz-hint-text');
+                    hintText.style.display = 'block';
+                    hintBtn.style.display = 'none';
+                });
+            }
+
+            if (completedQuestions[idx]) {
+                const correctIdx = q.answerOptions.findIndex(o => o.isCorrect);
+                if (correctIdx !== -1) {
+                    showFeedback(idx, correctIdx, true); // true = restoration mode
+                }
+            }
+
+            document.querySelectorAll('.quiz-answer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const answerIdx = parseInt(btn.dataset.idx);
+                    handleAnswerClick(idx, answerIdx, btn);
+                });
+            });
+
+            document.querySelector('.quiz-prev-btn').onclick = () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    renderQuestion(currentIndex);
+                }
+            };
+            document.querySelector('.quiz-next-btn').onclick = () => {
+                if (currentIndex < quizData.length - 1) {
+                    currentIndex++;
+                    renderQuestion(currentIndex);
+                }
+            };
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function handleAnswerClick(idx, answerIdx, btnElement) {
+            const q = quizData[idx];
+            const isCorrect = q.answerOptions[answerIdx].isCorrect;
+
+            const feedbackEl = btnElement.querySelector(`#feedback-${answerIdx}`);
+
+            if (feedbackEl) {
+                feedbackEl.style.display = 'block';
+                feedbackEl.innerHTML = `
+                    <span class="quiz-feedback-divider"></span>
+                    <span class="quiz-feedback-msg">
+                        ${isCorrect ? '✅ Bonne réponse !' : '❌ Mauvaise réponse.'}
+                    </span>
+                    <span class="quiz-rationale">${q.answerOptions[answerIdx].rationale || ''}</span>
+                `;
+                if (window.MathJax) {
+                    MathJax.typesetPromise([feedbackEl]);
+                }
+            }
+
+            btnElement.classList.remove('correct', 'incorrect');
+
+            if (isCorrect) {
+                 btnElement.classList.add('correct');
+                 btnElement.style.background = '#00b894';
+                 btnElement.style.color = '#fff';
+                 btnElement.style.borderColor = '#00b894';
+
+                completedQuestions[idx] = true;
+
+                if (firstAttempts[idx]) {
+                    score++;
+                }
+
+                if (idx === quizData.length - 1) {
+                    showFinalScore(idx);
+                }
+
+            } else {
+                btnElement.classList.add('incorrect');
+                btnElement.style.background = '#ffeaa7';
+                btnElement.style.borderColor = '#d63031';
+                btnElement.style.color = '#2d3436';
+
+                const msg = feedbackEl.querySelector('.quiz-feedback-msg');
+                if(msg) msg.style.color = '#d63031';
+
+                firstAttempts[idx] = false;
+            }
+        }
+
+        function showFeedback(idx, answerIdx, isRestoration = false) {
+             const q = quizData[idx];
+             const btn = container.querySelector(`.quiz-answer-btn[data-idx="${answerIdx}"]`);
+             if(!btn) return;
+
+             const feedbackEl = btn.querySelector(`#feedback-${answerIdx}`);
+             if (feedbackEl) {
+                feedbackEl.style.display = 'block';
+                feedbackEl.innerHTML = `
+                    <span class="quiz-feedback-divider"></span>
+                    <span class="quiz-feedback-msg">✅ Bonne réponse !</span>
+                    <span class="quiz-rationale">${q.answerOptions[answerIdx].rationale || ''}</span>
+                `;
+                if (window.MathJax) {
+                    MathJax.typesetPromise([feedbackEl]);
+                }
+             }
+
+             container.querySelectorAll('.quiz-answer-btn').forEach((b, i) => {
+                 b.disabled = true;
+                 if (i === answerIdx) {
+                     b.classList.add('correct');
+                     b.style.background = '#00b894';
+                     b.style.color = '#fff';
+                     b.style.borderColor = '#00b894';
+                 }
+             });
+
+             if (idx === quizData.length - 1) {
+                 showFinalScore(idx);
+             }
+        }
+
+        function showFinalScore(idx) {
+             const globalFeedback = container.querySelector('.quiz-global-feedback');
+             if(globalFeedback) {
+                 globalFeedback.innerHTML = `<div class="quiz-final-score" style="margin-top:20px; font-size:1.2rem;">
+                    Score final : <b>${score} / ${quizData.length}</b>
+                </div>`;
+             }
+        }
+
+        renderQuestion(currentIndex);
     }
 </script>
 </body>

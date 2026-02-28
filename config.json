@@ -9,7 +9,8 @@
             "PHYSIOLOGIE_DE_LA_GROSSESSE.csv",
             "HEMOSTASE.csv",
             "SYSTEME_IMMUNITAIRE.csv",
-            "APPAREIL_LOCOMOTEUR.csv"
+            "APPAREIL_LOCOMOTEUR.csv",
+            "TRANSFUSION.csv"
         ]
     },
     "schemas": {
@@ -17,6 +18,11 @@
             "CARDIO.csv",
             "IMMUNO.csv",
             "SOINS_AU_PATIENT.csv"
+        ]
+    },
+    "quiz": {
+        "IADE": [
+            "TRANSFUSION.json"
         ]
     }
 }

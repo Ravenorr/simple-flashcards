@@ -1,0 +1,395 @@
+{
+  "quiz": [
+    {
+      "question": "Quel système de groupe sanguin est caractérisé par la présence d'anticorps naturels et réguliers dès l'âge de 6 mois ?",
+      "answerOptions": [
+        {
+          "text": "Le système Rhésus",
+          "isCorrect": false,
+          "rationale": "Ce système développe des anticorps de type immun, c'est-à-dire suite à une exposition étrangère, et non de manière systématique après la naissance."
+        },
+        {
+          "text": "Le système ABO",
+          "isCorrect": true,
+          "rationale": "Les anticorps anti-A ou anti-B apparaissent spontanément suite au contact avec l'environnement et sont présents chez tous les individus sains ne possédant pas l'antigène correspondant."
+        },
+        {
+          "text": "Le système Kell",
+          "isCorrect": false,
+          "rationale": "Dans ce système, les anticorps sont acquis uniquement par allo-immunisation, par exemple lors d'une grossesse ou d'une transfusion."
+        },
+        {
+          "text": "Le système Duffy",
+          "isCorrect": false,
+          "rationale": "Les anticorps de ce système sont le plus souvent immuns et ne font pas partie des anticorps réguliers présents chez tout individu."
+        }
+      ],
+      "hint": "Considérez le système dont la compatibilité est vérifiée par une épreuve sérique de routine nommée Simonin."
+    },
+    {
+      "question": "Dans la nomenclature internationale de Rosenfield, à quel antigène correspond la dénomination $RH1$ ?",
+      "answerOptions": [
+        {
+          "text": "L'antigène C",
+          "isCorrect": false,
+          "rationale": "L'antigène C correspond à la dénomination $RH2$ dans la nomenclature chiffrée internationale."
+        },
+        {
+          "text": "L'antigène E",
+          "isCorrect": false,
+          "rationale": "La nomenclature internationale attribue le code $RH3$ à l'antigène E."
+        },
+        {
+          "text": "L'antigène D",
+          "isCorrect": true,
+          "rationale": "L'antigène D est le premier et le plus important du système Rhésus, définissant le statut positif ou négatif d'un individu."
+        },
+        {
+          "text": "L'antigène c",
+          "isCorrect": false,
+          "rationale": "L'antigène c (petit c) est désigné par le code $RH4$ selon cette nomenclature."
+        }
+      ],
+      "hint": "Il s'agit de l'antigène majeur qui détermine si un patient est dit 'Rhésus positif'."
+    },
+    {
+      "question": "Quelle est la condition de conservation thermique impérative pour les Concentrés de Globules Rouges (CGR) avant leur utilisation ?",
+      "answerOptions": [
+        {
+          "text": "Entre $20^{\\circ}C$ et $24^{\\circ}C$ sous agitation",
+          "isCorrect": false,
+          "rationale": "Cette plage de température et l'agitation constante sont réservées à la conservation des concentrés de plaquettes pour maintenir leur fonctionnalité."
+        },
+        {
+          "text": "Entre $2^{\\circ}C$ et $6^{\\circ}C$",
+          "isCorrect": true,
+          "rationale": "Cette température permet de ralentir le métabolisme des hématies et de préserver leur viabilité pendant les 42 jours de conservation autorisés."
+        },
+        {
+          "text": "Inférieure à $-25^{\\circ}C$",
+          "isCorrect": false,
+          "rationale": "Les températures négatives sont utilisées pour la congélation du plasma, mais elles détruiraient les globules rouges par éclatement membranaire."
+        },
+        {
+          "text": "À température ambiante (environ $19^{\\circ}C$)",
+          "isCorrect": false,
+          "rationale": "Le maintien à température ambiante favoriserait la prolifération bactérienne et la dégradation rapide des composants cellulaires du sang."
+        }
+      ],
+      "hint": "Pensez aux conditions de stockage standard dans un réfrigérateur médical agréé."
+    },
+    {
+      "question": "Une Recherche d'Anticorps Irréguliers (RAI) est jugée valide pour une durée standard de combien de temps ?",
+      "answerOptions": [
+        {
+          "text": "24 heures",
+          "isCorrect": false,
+          "rationale": "Cette durée est trop courte par rapport à la cinétique d'apparition des anticorps et aux contraintes logistiques hospitalières."
+        },
+        {
+          "text": "72 heures",
+          "isCorrect": true,
+          "rationale": "Ce délai de 3 jours permet de s'assurer qu'aucun nouvel anticorps immun n'est apparu suite à une stimulation récente, garantissant la sécurité du patient."
+        },
+        {
+          "text": "7 jours",
+          "isCorrect": false,
+          "rationale": "Un délai d'une semaine est jugé trop risqué car une réponse immunitaire secondaire peut se développer plus rapidement que cela."
+        },
+        {
+          "text": "21 jours sans exception",
+          "isCorrect": false,
+          "rationale": "Bien qu'une dérogation à 21 jours existe, elle n'est pas la règle standard et nécessite l'absence d'épisodes immunisants récents."
+        }
+      ],
+      "hint": "Il s'agit du délai de validité légal permettant de garantir l'absence d'allo-immunisation récente."
+    },
+    {
+      "question": "Après réception d'un produit sanguin labile dans le service, de combien de temps dispose l'infirmier pour débuter la transfusion ?",
+      "answerOptions": [
+        {
+          "text": "30 minutes",
+          "isCorrect": false,
+          "rationale": "Il s'agit du délai visé pour les urgences vitales, mais le délai maximal autorisé pour le début de l'acte est plus étendu."
+        },
+        {
+          "text": "2 heures",
+          "isCorrect": false,
+          "rationale": "C'est la durée minimale de surveillance recommandée après l'acte, mais pas la limite pour commencer l'administration."
+        },
+        {
+          "text": "6 heures",
+          "isCorrect": true,
+          "rationale": "La réglementation impose de débuter la transfusion dans les 6 heures suivant la délivrance pour limiter les risques de rupture de la chaîne du froid ou de contamination."
+        },
+        {
+          "text": "12 heures",
+          "isCorrect": false,
+          "rationale": "Un tel délai augmenterait significativement les risques infectieux et la dégradation des composants sanguins hors enceinte thermostatée."
+        }
+      ],
+      "hint": "C'est le délai maximal pour raccorder la poche au patient une fois qu'elle a quitté le dépôt de sang."
+    },
+    {
+      "question": "Quel système d'antigènes est décrit comme étant 'perfide et dangereux' en raison d'anticorps qui peuvent devenir rapidement indétectables dans le temps ?",
+      "answerOptions": [
+        {
+          "text": "Le système Kidd (JK)",
+          "isCorrect": true,
+          "rationale": "L'anti-JK1 a la particularité de disparaître de la circulation tout en conservant une mémoire immunologique, risquant de provoquer une hémolyse retardée lors d'une nouvelle exposition."
+        },
+        {
+          "text": "Le système ABO",
+          "isCorrect": false,
+          "rationale": "Les anticorps de ce système sont réguliers et permanents, ce qui les rend facilement identifiables lors de chaque contrôle."
+        },
+        {
+          "text": "Le système Kell (KEL)",
+          "isCorrect": false,
+          "rationale": "Bien que très immunogène, l'anticorps antiquel reste généralement détectable sur de longues périodes après son apparition."
+        },
+        {
+          "text": "Le système MNS",
+          "isCorrect": false,
+          "rationale": "Les anticorps MNS1 et 2 sont souvent naturels et inactifs à $37^{\\circ}C$, ce qui réduit leur dangerosité immédiate en transfusion."
+        }
+      ],
+      "hint": "Ce système est nommé par deux lettres commençant par J, et ses anticorps nécessitent une vigilance historique du dossier patient."
+    },
+    {
+      "question": "Dans le cadre de la sécurité transfusionnelle, que signifie le principe de 'l'unité de temps, de lieu et d'action' lors du contrôle ultime ?",
+      "answerOptions": [
+        {
+          "text": "Que le contrôle doit être fait au poste de soins pour gagner du temps.",
+          "isCorrect": false,
+          "rationale": "Le contrôle doit impérativement être réalisé en présence du patient pour éviter toute erreur d'identité lors du transport de la poche."
+        },
+        {
+          "text": "Que les vérifications sont réparties entre deux soignants pour plus de sécurité.",
+          "isCorrect": false,
+          "rationale": "L'action doit être menée par une seule et même personne sans interruption pour garantir la cohérence totale de la chaîne de vérification."
+        },
+        {
+          "text": "Que la personne qui réalise le contrôle doit être celle qui pose la transfusion, immédiatement avant l'acte et au lit du patient.",
+          "isCorrect": true,
+          "rationale": "Cette règle garantit qu'aucun changement de patient, de poche ou de soignant n'intervienne entre la vérification finale et l'administration."
+        },
+        {
+          "text": "Que le contrôle doit durer au minimum 15 minutes pour être valide.",
+          "isCorrect": false,
+          "rationale": "La règle de l'unité ne définit pas une durée minimale de réalisation, mais une cohérence spatio-temporelle de l'acte de vérification."
+        }
+      ],
+      "hint": "Il s'agit d'éliminer tout risque d'interruption ou de substitution accidentelle avant le branchement."
+    },
+    {
+      "question": "Pour quel produit sanguin les règles de compatibilité ABO sont-elles dites 'en miroir' par rapport aux globules rouges ?",
+      "answerOptions": [
+        {
+          "text": "Le plasma thérapeutique",
+          "isCorrect": true,
+          "rationale": "Comme le plasma apporte des anticorps et non des antigènes membranaires, le groupe AB (dépourvu d'anticorps naturels) devient le donneur universel."
+        },
+        {
+          "text": "Les concentrés de plaquettes",
+          "isCorrect": false,
+          "rationale": "La compatibilité des plaquettes suit globalement les mêmes règles que les globules rouges pour minimiser l'apport d'antigènes incompatibles."
+        },
+        {
+          "text": "Les cryoprécipités",
+          "isCorrect": false,
+          "rationale": "Bien que dérivés du plasma, ils ne sont pas le produit principal dont les règles de compatibilité sont systématiquement présentées en opposition aux CGR."
+        },
+        {
+          "text": "Le sang total",
+          "isCorrect": false,
+          "rationale": "Le sang total contient à la fois des cellules et du plasma, ce qui rend l'application de règles 'en miroir' impossible."
+        }
+      ],
+      "hint": "Pensez au produit liquide qui ne contient pas de cellules mais uniquement des protéines plasmatiques."
+    },
+    {
+      "question": "Quelle est la conduite à tenir concernant les poches vides et les dispositifs de contrôle ultime (cartes) après une transfusion ?",
+      "answerOptions": [
+        {
+          "text": "Les éliminer immédiatement dans la filière DASRI.",
+          "isCorrect": false,
+          "rationale": "Une élimination immédiate empêcherait toute investigation biologique en cas de réaction transfusionnelle retardée."
+        },
+        {
+          "text": "Les conserver pendant 4 heures au minimum.",
+          "isCorrect": true,
+          "rationale": "Ce délai permet de disposer du matériel nécessaire pour des analyses complémentaires (bactériologie, hémolyse) si un incident survient peu après l'acte."
+        },
+        {
+          "text": "Les renvoyer systématiquement à l'EFS pour recyclage.",
+          "isCorrect": false,
+          "rationale": "L'EFS n'assure pas le recyclage des poches usagées ; elles doivent rester dans le service pour la sécurité post-transfusionnelle avant élimination locale."
+        },
+        {
+          "text": "Les garder au réfrigérateur pendant 24 heures.",
+          "isCorrect": false,
+          "rationale": "Une conservation de 24 heures n'est pas la norme standard requise, et le stockage au réfrigérateur n'est pas spécifié pour les déchets."
+        }
+      ],
+      "hint": "C'est le délai de sécurité minimal permettant de réaliser des enquêtes en cas d'effet indésirable immédiat."
+    },
+    {
+      "question": "En cas d'urgence vitale immédiate sans groupe sanguin connu, quel type de Concentré de Globules Rouges doit être délivré ?",
+      "answerOptions": [
+        {
+          "text": "CGR de groupe A Rhésus positif",
+          "isCorrect": false,
+          "rationale": "Le groupe A n'est pas compatible avec les receveurs de groupe O ou B, ce qui provoquerait un accident hémolytique immédiat."
+        },
+        {
+          "text": "CGR de groupe O Rhésus négatif",
+          "isCorrect": true,
+          "rationale": "Le groupe O négatif est considéré comme le donneur universel car il ne possède ni antigènes A ou B, ni antigène D, minimisant les risques de réaction."
+        },
+        {
+          "text": "CGR de groupe AB Rhésus négatif",
+          "isCorrect": false,
+          "rationale": "Le groupe AB possède les antigènes A et B, ce qui le rendrait dangereux pour environ $97\\%$ de la population."
+        },
+        {
+          "text": "N'importe quel groupe disponible au dépôt d'urgence",
+          "isCorrect": false,
+          "rationale": "Le respect de la compatibilité ABO est une règle absolue, même en urgence, pour éviter une hémolyse fatale."
+        }
+      ],
+      "hint": "Pensez au groupe sanguin qui ne porte aucun des antigènes majeurs du système ABO et Rhésus."
+    },
+    {
+      "question": "Pourquoi est-il crucial de ne jamais placer des concentrés de plaquettes au réfrigérateur ?",
+      "answerOptions": [
+        {
+          "text": "Cela provoque l'éclatement des cellules.",
+          "isCorrect": false,
+          "rationale": "Contrairement aux globules rouges lors de la congélation, les plaquettes ne s'éclatent pas au froid, mais perdent une autre propriété essentielle."
+        },
+        {
+          "text": "Cela entraîne une perte irréversible de leur fonction d'agrégation.",
+          "isCorrect": true,
+          "rationale": "Le froid modifie la structure des plaquettes, les rendant incapables de former le 'clou plaquettaire' nécessaire à l'hémostase."
+        },
+        {
+          "text": "Le froid favorise la croissance bactérienne dans le plasma.",
+          "isCorrect": false,
+          "rationale": "Au contraire, le froid ralentit généralement la croissance bactérienne, mais ici c'est la qualité fonctionnelle de la cellule qui est en jeu."
+        },
+        {
+          "text": "L'étiquette du produit devient illisible à cause de la condensation.",
+          "isCorrect": false,
+          "rationale": "Bien que la condensation soit possible, ce n'est pas la raison médicale fondamentale qui proscrit l'exposition au froid."
+        }
+      ],
+      "hint": "Rappelez-vous que ces cellules doivent rester actives pour stopper les saignements dès leur injection."
+    },
+    {
+      "question": "Quel est le critère clinique jugé comme le meilleur pour décider du déclenchement d'une transfusion de globules rouges ?",
+      "answerOptions": [
+        {
+          "text": "Un taux d'hémoglobine inférieur à $10 g/dL$.",
+          "isCorrect": false,
+          "rationale": "Bien que les seuils biologiques soient des indicateurs, une valeur brute ne prend pas en compte les capacités d'adaptation du patient."
+        },
+        {
+          "text": "L'âge du patient (supérieur à 80 ans).",
+          "isCorrect": false,
+          "rationale": "L'âge est un facteur de risque, mais il ne constitue pas en soi une indication transfusionnelle systématique sans signes associés."
+        },
+        {
+          "text": "La tolérance clinique à l'anémie.",
+          "isCorrect": true,
+          "rationale": "L'observation de signes tels que la dyspnée, la tachycardie ou la fatigue extrême prévaut sur le simple chiffre de l'hémogramme."
+        },
+        {
+          "text": "Le volume de sang estimé perdu lors d'une chirurgie.",
+          "isCorrect": false,
+          "rationale": "L'estimation des pertes est souvent imprécise et ne reflète pas toujours le besoin réel en transport d'oxygène des tissus restants."
+        }
+      ],
+      "hint": "Considérez comment l'organisme du patient réagit physiquement au manque d'oxygène."
+    },
+    {
+      "question": "Quelle est la particularité de la Recherche d'Anticorps Irréguliers (RAI) chez le nouveau-né de moins de 3 mois ?",
+      "answerOptions": [
+        {
+          "text": "Elle doit être réalisée toutes les 24 heures.",
+          "isCorrect": false,
+          "rationale": "Un tel rythme de prélèvement serait inutilement spoliateur pour un nouveau-né dont le système immunitaire est immature."
+        },
+        {
+          "text": "La RAI du bébé est considérée comme identique à celle de sa mère.",
+          "isCorrect": true,
+          "rationale": "Les anticorps de type IgG de la mère traversent la barrière placentaire, et le nouveau-né ne produit pas encore ses propres anticorps immuns de manière significative."
+        },
+        {
+          "text": "Elle nécessite un volume de sang plus important que chez l'adulte.",
+          "isCorrect": false,
+          "rationale": "Au contraire, on cherche à limiter au maximum les volumes prélevés chez les prématurés et nouveau-nés."
+        },
+        {
+          "text": "Elle n'est jamais nécessaire avant 1 an.",
+          "isCorrect": false,
+          "rationale": "Une RAI est obligatoire avant toute transfusion de CGR, mais on se base sur les résultats maternels pour les premiers mois."
+        }
+      ],
+      "hint": "Pensez au transfert passif d'immunité qui se produit durant la grossesse."
+    },
+    {
+      "question": "En cas d'administration de plaquettes Rhésus positif à une femme Rhésus négatif en âge de procréer, quelle mesure préventive doit être associée ?",
+      "answerOptions": [
+        {
+          "text": "Une double dose de plaquettes.",
+          "isCorrect": false,
+          "rationale": "Augmenter la dose de plaquettes augmenterait également la quantité de globules rouges résiduels et donc le risque d'immunisation."
+        },
+        {
+          "text": "Une injection d'immunoglobulines anti-D.",
+          "isCorrect": true,
+          "rationale": "Cette injection permet de détruire les quelques globules rouges Rh+ présents dans le concentré de plaquettes avant que la patiente ne s'immunise."
+        },
+        {
+          "text": "Une antibiothérapie préventive.",
+          "isCorrect": false,
+          "rationale": "Le problème ici est d'ordre immunologique (conflit de groupe sanguin) et non infectieux."
+        },
+        {
+          "text": "Un rinçage de la ligne de perfusion à l'albumine.",
+          "isCorrect": false,
+          "rationale": "L'albumine n'a aucun effet sur la prévention de l'allo-immunisation contre l'antigène D."
+        }
+      ],
+      "hint": "Il s'agit du traitement standard utilisé pour prévenir la Maladie Hémolytique du Nouveau-Né (MHNN)."
+    },
+    {
+      "question": "Quelle est la procédure correcte pour confirmer l'identité d'un patient conscient avant un prélèvement ou une transfusion ?",
+      "answerOptions": [
+        {
+          "text": "Demander : 'Êtes-vous bien Monsieur Durand ?'",
+          "isCorrect": false,
+          "rationale": "Cette question est inductive ; un patient stressé ou confus pourrait répondre par l'affirmative sans vérifier, menant à une erreur."
+        },
+        {
+          "text": "Vérifier uniquement le nom sur la porte de la chambre.",
+          "isCorrect": false,
+          "rationale": "L'affichage sur la porte peut être obsolète ou erroné après un changement de lit non signalé informatiquement."
+        },
+        {
+          "text": "Faire décliner au patient son identité complète (nom de naissance, prénom, date de naissance).",
+          "isCorrect": true,
+          "rationale": "L'identification déclinée par le patient lui-même est la méthode la plus fiable pour s'assurer de sa véritable identité en évitant les biais de suggestion."
+        },
+        {
+          "text": "Se fier à la reconnaissance visuelle par un collègue du service.",
+          "isCorrect": false,
+          "rationale": "La mémoire humaine est faillible, surtout en cas d'homonymie ou de ressemblance physique entre deux patients."
+        }
+      ],
+      "hint": "C'est une technique d'interrogation ouverte qui oblige le patient à fournir lui-même les informations."
+    }
+  ]
+}
+
