@@ -1,0 +1,264 @@
+{
+  "quiz": [
+    {
+      "question": "Quelle est la formule correcte pour calculer le trou anionique ($TAN$) d'après le document ?",
+      "answerOptions": [
+        {
+          "text": "$TAN = (Na^{+} + K^{+}) - (Cl^{-} + HCO_{3}^{-})$",
+          "isCorrect": true,
+          "rationale": "Le $TAN$ correspond à la différence entre les concentrations plasmatiques des cations mesurés et des anions mesurés."
+        },
+        {
+          "text": "$TAN = (Na^{+} + Cl^{-}) - (K^{+} + HCO_{3}^{-})$",
+          "isCorrect": false,
+          "rationale": "Cette option mélange des cations et des anions dans les mêmes parenthèses, ce qui ne respecte pas le principe d'électro-neutralité utilisé pour le calcul."
+        },
+        {
+          "text": "$TAN = (Cl^{-} + HCO_{3}^{-}) - (Na^{+} + K^{+})$",
+          "isCorrect": false,
+          "rationale": "Cette formule inverserait le résultat, donnant une valeur négative au lieu de mesurer l'écart des anions non mesurés."
+        },
+        {
+          "text": "$TAN = Na^{+} - (Cl^{-} + K^{+})$",
+          "isCorrect": false,
+          "rationale": "Cette formule ignore le bicarbonate et place le potassium du mauvais côté de l'équation."
+        }
+      ],
+      "hint": "Pensez à la différence entre la somme des cations principaux et la somme des anions mesurés."
+    },
+    {
+      "question": "Dans des conditions normales, quels anions contribuent au $TAN$ en dehors du chlorure et du bicarbonate ?",
+      "answerOptions": [
+        {
+          "text": "L'albumine, le phosphate et les anions organiques",
+          "isCorrect": true,
+          "rationale": "Ce sont les principaux anions non mesurés en routine qui maintiennent l'équilibre de charge dans le plasma."
+        },
+        {
+          "text": "Le glucose, l'urée et le sodium",
+          "isCorrect": false,
+          "rationale": "Le glucose et l'urée ne sont pas des ions, et le sodium est un cation, pas un anion."
+        },
+        {
+          "text": "L'hémoglobine et le calcium",
+          "isCorrect": false,
+          "rationale": "Le calcium est un cation et l'hémoglobine n'est pas mentionnée comme constituant du $TAN$ plasmatique dans ce contexte."
+        },
+        {
+          "text": "Seulement l'acide lactique",
+          "isCorrect": false,
+          "rationale": "Bien que l'acide lactique soit un anion organique, il n'est pas le seul à contribuer au $TAN$ normal."
+        }
+      ],
+      "hint": "Recherchez les protéines et les composés minéraux ou organiques cités comme composants habituels."
+    },
+    {
+      "question": "Laquelle des substances suivantes est produite par la fonction endocrine du rein pour contrôler l'absorption du calcium ?",
+      "answerOptions": [
+        {
+          "text": "$1,25$ dihydroxycholécalciférol",
+          "isCorrect": true,
+          "rationale": "Il s'agit du métabolite actif de la vitamine D, synthétisé par le rein pour réguler le métabolisme du calcium et du phosphore."
+        },
+        {
+          "text": "Érythropoïétine ($EPO$)",
+          "isCorrect": false,
+          "rationale": "L'$EPO$ est bien une hormone rénale, mais elle stimule la production de globules rouges et n'agit pas sur le calcium."
+        },
+        {
+          "text": "Rénine",
+          "isCorrect": false,
+          "rationale": "La rénine est une enzyme produite par le rein impliquée dans la régulation de la pression artérielle, pas dans l'absorption du calcium."
+        },
+        {
+          "text": "Aldostérone",
+          "isCorrect": false,
+          "rationale": "L'aldostérone est produite par les glandes surrénales, bien qu'elle agisse sur le rein."
+        }
+      ],
+      "hint": "C'est une forme spécifique de vitamine qui subit une activation finale dans le rein."
+    },
+    {
+      "question": "Quels sont les substrats utilisés par le rein pour participer à la néoglucogénèse ?",
+      "answerOptions": [
+        {
+          "text": "Les acides aminés et l'acide lactique",
+          "isCorrect": true,
+          "rationale": "Le rein est capable de convertir ces précurseurs non glucidiques en glucose, notamment en période de jeûne."
+        },
+        {
+          "text": "Les acides gras et le glycérol",
+          "isCorrect": false,
+          "rationale": "Bien que le glycérol soit un précurseur possible ailleurs, le document spécifie les acides aminés et l'acide lactique."
+        },
+        {
+          "text": "Le glycogène et l'amidon",
+          "isCorrect": false,
+          "rationale": "Le glycogène est une forme de stockage du glucose et l'amidon est un glucide alimentaire, pas un substrat de néoglucogénèse rénale."
+        },
+        {
+          "text": "L'insuline et le glucagon",
+          "isCorrect": false,
+          "rationale": "Ce sont des hormones régulatrices de la glycémie, pas des substrats chimiques pour la fabrication du glucose."
+        }
+      ],
+      "hint": "Consultez le schéma montrant les molécules entrant dans le rein pour en ressortir sous forme de glucose."
+    },
+    {
+      "question": "Quelle pathologie est associée à une hyperproduction endogène d'ions $H^{+}$ par écrasement musculaire ?",
+      "answerOptions": [
+        {
+          "text": "Le crush syndrome",
+          "isCorrect": true,
+          "rationale": "L'écrasement des muscles libère des métabolites acides dans la circulation, provoquant une acidose métabolique intense."
+        },
+        {
+          "text": "L'insuffisance hépatique aiguë",
+          "isCorrect": false,
+          "rationale": "Bien que citée, l'insuffisance hépatique concerne le foie et non spécifiquement les conséquences d'un traumatisme musculaire."
+        },
+        {
+          "text": "Le diabète déséquilibré",
+          "isCorrect": false,
+          "rationale": "Le diabète produit des corps cétoniques acides, mais n'est pas causé par un traumatisme physique des muscles."
+        },
+        {
+          "text": "L'intoxication à l'antigel",
+          "isCorrect": false,
+          "rationale": "Il s'agit d'une cause exogène (éthylène-glycol) et non d'une production endogène liée aux muscles."
+        }
+      ],
+      "hint": "Ce terme anglais désigne les conséquences systémiques d'une compression prolongée des membres."
+    },
+    {
+      "question": "Comment le rein est-il positionné dans le corps humain ?",
+      "answerOptions": [
+        {
+          "text": "Comme un organe double dans la cavité rétro-péritonéale",
+          "isCorrect": true,
+          "rationale": "Les reins sont situés derrière le péritoine, de chaque côté de la colonne vertébrale."
+        },
+        {
+          "text": "Comme un organe unique dans la cavité pelvienne",
+          "isCorrect": false,
+          "rationale": "L'être humain possède normalement deux reins et ils sont situés dans l'abdomen, pas dans le pelvis."
+        },
+        {
+          "text": "À l'intérieur de la cavité péritonéale, devant les intestins",
+          "isCorrect": false,
+          "rationale": "Les reins sont des organes rétro-péritonéaux, ce qui signifie qu'ils se trouvent derrière la membrane péritonéale."
+        },
+        {
+          "text": "Dans la cavité thoracique, sous le diaphragme",
+          "isCorrect": false,
+          "rationale": "Bien qu'ils soient sous le diaphragme, ils appartiennent à la cavité abdominale (rétro-péritonéale) et non thoracique."
+        }
+      ],
+      "hint": "Réfléchissez à leur nombre et à leur position par rapport à la membrane qui tapisse l'abdomen."
+    },
+    {
+      "question": "Lequel de ces dispositifs de drainage urinaire est spécifiquement lié à la vessie ?",
+      "answerOptions": [
+        {
+          "text": "Le Cystocath",
+          "isCorrect": true,
+          "rationale": "Le Cystocath est un cathéter sus-pubien inséré directement dans la vessie pour drainer l'urine."
+        },
+        {
+          "text": "La pyélostomie",
+          "isCorrect": false,
+          "rationale": "La pyélostomie concerne le drainage du bassinet (pelvis rénal) et non de la vessie."
+        },
+        {
+          "text": "La sonde urétérale",
+          "isCorrect": false,
+          "rationale": "Cette sonde est placée dans l'uretère, le canal reliant le rein à la vessie, mais ne draine pas la vessie directement."
+        },
+        {
+          "text": "La néphrostomie",
+          "isCorrect": false,
+          "rationale": "Ce dispositif draine directement le rein à travers la peau du dos."
+        }
+      ],
+      "hint": "Le nom de ce dispositif commence par un préfixe grec désignant la vessie."
+    },
+    {
+      "question": "Selon le document, l'utilisation de quel médicament pour le glaucome peut causer une non-élimination des ions $H^{+}$ ?",
+      "answerOptions": [
+        {
+          "text": "Diamox*",
+          "isCorrect": true,
+          "rationale": "L'acétazolamide (Diamox) interfère avec l'excrétion rénale des acides, pouvant mener à une acidose métabolique."
+        },
+        {
+          "text": "Phénacétine",
+          "isCorrect": false,
+          "rationale": "La phénacétine est citée comme une substance toxique rénale, mais n'est pas le médicament primaire pour le glaucome mentionné."
+        },
+        {
+          "text": "Aspirine",
+          "isCorrect": false,
+          "rationale": "L'aspirine cause une acidose par hyperproduction/intoxication exogène, pas par le mécanisme du glaucome."
+        },
+        {
+          "text": "Chlorure d'ammonium",
+          "isCorrect": false,
+          "rationale": "C'est un agent acidifiant exogène, pas un traitement pour le glaucome."
+        }
+      ],
+      "hint": "Il s'agit d'un inhibiteur de l'anhydrase carbonique dont le nom commercial est suivi d'un astérisque dans le texte."
+    },
+    {
+      "question": "Quelle structure anatomique représente la jonction entre le rein et l'uretère ?",
+      "answerOptions": [
+        {
+          "text": "La jonction pyélo-urétérale",
+          "isCorrect": true,
+          "rationale": "C'est la zone de transition où le bassinet (pyélon) se rétrécit pour devenir l'uretère."
+        },
+        {
+          "text": "Le calice majeur",
+          "isCorrect": false,
+          "rationale": "Les calices majeurs sont des structures de collecte internes qui se jettent dans le bassinet, avant l'uretère."
+        },
+        {
+          "text": "La papille rénale",
+          "isCorrect": false,
+          "rationale": "La papille est le sommet d'une pyramide rénale qui débouche dans un calice mineur."
+        },
+        {
+          "text": "Le sinus rénal",
+          "isCorrect": false,
+          "rationale": "Le sinus est la cavité centrale du rein contenant les vaisseaux, les nerfs et les conduits collecteurs."
+        }
+      ],
+      "hint": "Le nom combine le terme latin pour le bassinet et le nom du conduit qui mène à la vessie."
+    },
+    {
+      "question": "Parmi les causes exogènes d'acidose métabolique, laquelle est associée à l'ingestion d'antigel ?",
+      "answerOptions": [
+        {
+          "text": "L'éthylène-glycol",
+          "isCorrect": true,
+          "rationale": "C'est le composant principal de l'antigel qui, une fois métabolisé, génère des acides organiques toxiques."
+        },
+        {
+          "text": "L'alcool méthylique",
+          "isCorrect": false,
+          "rationale": "Bien que toxique et causant une acidose, le méthanol est généralement associé à d'autres produits que l'antigel standard."
+        },
+        {
+          "text": "Le chlorhydrate d'arginine",
+          "isCorrect": false,
+          "rationale": "C'est un acide aminé utilisé en milieu médical qui peut acidifier le sang, mais ce n'est pas de l'antigel."
+        },
+        {
+          "text": "La vitamine D",
+          "isCorrect": false,
+          "rationale": "La vitamine D à dose toxique cause une acidose par atteinte rénale (tubule), pas par le mécanisme de l'antigel."
+        }
+      ],
+      "hint": "Cherchez le nom chimique placé entre parenthèses juste après le mot 'antigel' dans le texte."
+    }
+  ]
+}

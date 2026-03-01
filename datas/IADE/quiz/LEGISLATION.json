@@ -1,0 +1,264 @@
+{
+  "quiz": [
+    {
+      "question": "Selon la pyramide de Kelsen présentée dans le document, quel bloc de normes prévaut sur le droit interne français ?",
+      "answerOptions": [
+        {
+          "text": "Le bloc de conventionnalité",
+          "isCorrect": true,
+          "rationale": "Ce bloc regroupe les traités internationaux et le droit de l'Union européenne, qui ont une valeur supérieure aux lois nationales."
+        },
+        {
+          "text": "Le bloc de légalité",
+          "isCorrect": false,
+          "rationale": "Le bloc de légalité concerne les lois votées par le Parlement, qui sont subordonnées aux traités internationaux."
+        },
+        {
+          "text": "Le bloc réglementaire",
+          "isCorrect": false,
+          "rationale": "Les règlements et décrets se situent au bas de la hiérarchie et doivent respecter toutes les normes supérieures."
+        },
+        {
+          "text": "Les actes administratifs",
+          "isCorrect": false,
+          "rationale": "Il s'agit du niveau le plus bas de la pyramide, incluant les protocoles et notes de service internes."
+        }
+      ],
+      "hint": "Considérez le niveau qui inclut les traités internationaux et le droit communautaire."
+    },
+    {
+      "question": "En cas de litige concernant l'information délivrée à un patient, sur qui repose la charge de la preuve ?",
+      "answerOptions": [
+        {
+          "text": "Le professionnel ou l'établissement de santé",
+          "isCorrect": true,
+          "rationale": "Le Code de la santé publique inverse la charge de la preuve : c'est au soignant de prouver qu'il a bien informé le patient."
+        },
+        {
+          "text": "Le patient ou ses ayants droit",
+          "isCorrect": false,
+          "rationale": "Bien que demandeur, le patient bénéficie d'une protection légale qui dispense sa démonstration de l'absence d'information."
+        },
+        {
+          "text": "Le juge administratif ou civil",
+          "isCorrect": false,
+          "rationale": "Le juge apprécie les preuves apportées mais n'a pas la charge initiale de démontrer la délivrance de l'information."
+        },
+        {
+          "text": "L'Ordre National des Infirmiers",
+          "isCorrect": false,
+          "rationale": "L'Ordre intervient sur le plan disciplinaire mais n'est pas responsable de la preuve dans un litige indemnitaire."
+        }
+      ],
+      "hint": "Pensez au principe d'inversion de la charge de la preuve dans le droit de la santé."
+    },
+    {
+      "question": "Quelle est l'évolution majeure de la loi infirmière du 27 juin 2025 par rapport à l'ancienne définition de la profession ?",
+      "answerOptions": [
+        {
+          "text": "La reconnaissance du raisonnement clinique comme fondement de l'exercice",
+          "isCorrect": true,
+          "rationale": "La nouvelle loi délaisse l'approche purement technique pour valoriser la capacité d'analyse et de décision de l'infirmier."
+        },
+        {
+          "text": "La suppression totale du rôle prescrit par le médecin",
+          "isCorrect": false,
+          "rationale": "Le rôle prescrit subsiste, mais il est désormais complété par une autonomie et une capacité de prescription élargies."
+        },
+        {
+          "text": "L'obligation de travailler exclusivement en structure coordonnée",
+          "isCorrect": false,
+          "rationale": "Si l'exercice coordonné est encouragé, il ne constitue pas la définition même de la compétence infirmière."
+        },
+        {
+          "text": "La limitation des soins au seul domaine curatif",
+          "isCorrect": false,
+          "rationale": "Au contraire, la loi réaffirme les missions préventives, palliatives et de coordination."
+        }
+      ],
+      "hint": "Réfléchissez au passage d'une approche centrée sur l'acte à une approche centrée sur l'analyse de situation."
+    },
+    {
+      "question": "Dans le cadre du secret professionnel partagé, quelle condition est indispensable pour échanger des informations ?",
+      "answerOptions": [
+        {
+          "text": "Les informations doivent être strictement nécessaires à la coordination ou à la continuité des soins",
+          "isCorrect": true,
+          "rationale": "Le partage n'est pas automatique ; il doit être proportionné et limité à ce qui est utile pour la prise en charge du patient."
+        },
+        {
+          "text": "Les professionnels doivent appartenir à des établissements différents",
+          "isCorrect": false,
+          "rationale": "Le secret partagé s'applique prioritairement au sein d'une même équipe de soins ou entre professionnels identifiés."
+        },
+        {
+          "text": "Le patient doit donner un accord écrit pour chaque donnée échangée",
+          "isCorrect": false,
+          "rationale": "Au sein d'une équipe de soins, les informations sont réputées confiées par le patient à l'ensemble de l'équipe."
+        },
+        {
+          "text": "L'information doit concerner uniquement le diagnostic médical",
+          "isCorrect": false,
+          "rationale": "Le secret couvre l'ensemble des informations (sociales, personnelles, médicales) venues à la connaissance du professionnel."
+        }
+      ],
+      "hint": "Le critère principal est l'utilité directe pour le parcours de soins du patient."
+    },
+    {
+      "question": "Quel principe juridique fondamental régit la responsabilité pénale d'un professionnel de santé ?",
+      "answerOptions": [
+        {
+          "text": "Nul n'est responsable pénalement que de son propre fait",
+          "isCorrect": true,
+          "rationale": "L'article 121-1 du Code pénal établit que la responsabilité pénale est strictement personnelle et individuelle."
+        },
+        {
+          "text": "La responsabilité pénale peut être transférée à l'employeur",
+          "isCorrect": false,
+          "rationale": "Seule la responsabilité civile (indemnitaire) peut être couverte par l'employeur ; le pénal reste personnel."
+        },
+        {
+          "text": "L'obéissance hiérarchique exonère de toute poursuite pénale",
+          "isCorrect": false,
+          "rationale": "Un ordre manifestement illégal ou dangereux ne dédouane jamais l'infirmier de sa responsabilité personnelle devant le juge."
+        },
+        {
+          "text": "L'absence de dommage physique empêche toute condamnation pénale",
+          "isCorrect": false,
+          "rationale": "Certaines infractions, comme la violation du secret professionnel, sont punies même sans dommage corporel constaté."
+        }
+      ],
+      "hint": "Pensez au caractère individuel et non transférable de la sanction punitive."
+    },
+    {
+      "question": "Concernant le consentement aux soins, que doit faire un infirmier face à un patient qui refuse un traitement nécessaire ?",
+      "answerOptions": [
+        {
+          "text": "Respecter le refus tout en informant le patient des conséquences et en traçant l'échange",
+          "isCorrect": true,
+          "rationale": "Le refus est un droit ; le rôle du soignant est d'assurer une information renforcée et de documenter la décision dans le dossier."
+        },
+        {
+          "text": "Passer outre le refus si le pronostic vital est engagé à moyen terme",
+          "isCorrect": false,
+          "rationale": "Hors urgence vitale immédiate et patient hors d'état de s'exprimer, on ne peut pas imposer un soin contre la volonté du patient."
+        },
+        {
+          "text": "Demander immédiatement l'autorisation à la famille pour réaliser le soin",
+          "isCorrect": false,
+          "rationale": "La volonté du patient apte prime sur celle de sa famille ou de ses proches."
+        },
+        {
+          "text": "Cesser toute prise en charge et demander la sortie du patient",
+          "isCorrect": false,
+          "rationale": "Le refus d'un traitement n'entraîne pas l'arrêt de l'accompagnement, notamment palliatif ou de confort."
+        }
+      ],
+      "hint": "Le respect de l'autonomie du patient est un principe constitutionnel."
+    },
+    {
+      "question": "Quelles sont les trois conditions cumulatives nécessaires pour engager la responsabilité civile ou administrative ?",
+      "answerOptions": [
+        {
+          "text": "Une faute, un préjudice et un lien de causalité",
+          "isCorrect": true,
+          "rationale": "La démonstration de la responsabilité exige de prouver qu'une erreur a directement provoqué un dommage spécifique."
+        },
+        {
+          "text": "Une intention de nuire, un acte positif et une victime",
+          "isCorrect": false,
+          "rationale": "La responsabilité civile n'exige pas d'intention (élément moral) ; une simple imprudence suffit."
+        },
+        {
+          "text": "Un dépôt de plainte, un constat d'huissier et un préjudice",
+          "isCorrect": false,
+          "rationale": "Ce sont des éléments de procédure, non des conditions de fond pour établir la responsabilité juridique."
+        },
+        {
+          "text": "Une erreur médicale, un témoin et une demande d'indemnisation",
+          "isCorrect": false,
+          "rationale": "La présence d'un témoin n'est pas une condition juridique nécessaire si la preuve peut être apportée par d'autres moyens."
+        }
+      ],
+      "hint": "C'est le triptyque classique de la réparation des dommages."
+    },
+    {
+      "question": "En droit administratif hospitalier, quelle est la conséquence d'une 'faute de service' ?",
+      "answerOptions": [
+        {
+          "text": "Elle engage la responsabilité de l'établissement public et non celle de l'agent",
+          "isCorrect": true,
+          "rationale": "Dans ce cas, l'hôpital indemnise la victime, protégeant ainsi l'agent public des conséquences financières de ses erreurs professionnelles."
+        },
+        {
+          "text": "Elle entraîne systématiquement la radiation de l'Ordre",
+          "isCorrect": false,
+          "rationale": "La radiation est une sanction disciplinaire indépendante de la qualification de la faute en droit administratif."
+        },
+        {
+          "text": "Elle oblige l'infirmier à payer personnellement les dommages et intérêts",
+          "isCorrect": false,
+          "rationale": "C'est la faute personnelle détachable du service qui permettrait de poursuivre l'agent sur ses deniers propres."
+        },
+        {
+          "text": "Elle relève exclusivement du juge pénal",
+          "isCorrect": false,
+          "rationale": "La faute de service est une notion de droit administratif visant à la réparation, et non à la punition pénale."
+        }
+      ],
+      "hint": "Pensez à la distinction entre la faute liée au fonctionnement du service et la faute personnelle grave."
+    },
+    {
+      "question": "Quelle sanction est spécifique à la responsabilité disciplinaire ordinale ?",
+      "answerOptions": [
+        {
+          "text": "L'interdiction temporaire ou définitive d'exercer la profession",
+          "isCorrect": true,
+          "rationale": "Les chambres disciplinaires de l'Ordre ont le pouvoir de retirer le droit d'exercice pour protéger la santé publique et l'honneur de la profession."
+        },
+        {
+          "text": "Une peine d'emprisonnement avec sursis",
+          "isCorrect": false,
+          "rationale": "Seul le juge pénal peut prononcer des peines privatives de liberté."
+        },
+        {
+          "text": "L'octroi de dommages et intérêts à la victime",
+          "isCorrect": false,
+          "rationale": "C'est la finalité des juridictions civiles ou administratives, pas celle de l'instance ordinale."
+        },
+        {
+          "text": "Une amende forfaitaire versée au Trésor Public",
+          "isCorrect": false,
+          "rationale": "Les sanctions ordinales sont d'ordre professionnel (avertissement, blâme, suspension) et non pécuniaires."
+        }
+      ],
+      "hint": "Réfléchissez à l'impact direct sur le droit de travailler en tant qu'infirmier."
+    },
+    {
+      "question": "Que signifie le principe professionnel : 'Ce qui n'est pas tracé est juridiquement présumé non fait' ?",
+      "answerOptions": [
+        {
+          "text": "L'absence de traçabilité dans le dossier de soins équivaut à un défaut de réalisation du soin devant le juge",
+          "isCorrect": true,
+          "rationale": "La traçabilité est l'unique preuve tangible de l'activité infirmière ; son absence crée une présomption de négligence."
+        },
+        {
+          "text": "Le juge ne peut pas utiliser de témoignages oraux pour prouver un acte",
+          "isCorrect": false,
+          "rationale": "La preuve est libre, mais le dossier de soins a une valeur probante prépondérante par rapport aux souvenirs oraux."
+        },
+        {
+          "text": "Les soins informels ne sont pas couverts par l'assurance professionnelle",
+          "isCorrect": false,
+          "rationale": "Le problème n'est pas l'assurance, mais la capacité à démontrer la conformité de sa pratique en cas de litige."
+        },
+        {
+          "text": "Toute erreur de saisie informatique annule la validité de la prescription",
+          "isCorrect": false,
+          "rationale": "Le principe concerne la preuve de l'exécution des soins infirmiers, non la validité intrinsèque de la prescription médicale."
+        }
+      ],
+      "hint": "Considérez l'importance du dossier de soins comme outil de défense juridique."
+    }
+  ]
+}
