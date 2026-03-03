@@ -1,0 +1,254 @@
+{
+  "quiz": [
+    {
+      "question": "Selon l'étymologie présentée dans le cours, quel terme latin est à l'origine du mot 'vigilance' et signifie 'être vif et ardent' ?",
+      "answerOptions": [
+        {
+          "text": "vigilare",
+          "isCorrect": false,
+          "rationale": "Ce terme renvoie à la fonction de veille et d'observation, comme celle d'une vigie, plutôt qu'à l'état d'ardeur."
+        },
+        {
+          "text": "vegere",
+          "isCorrect": true,
+          "rationale": "Le cours précise que 'vegere' signifie être vif et ardent, constituant l'une des deux racines latines de la notion de vigilance."
+        },
+        {
+          "text": "vigere",
+          "isCorrect": false,
+          "rationale": "Bien que phonétiquement proche, ce terme n'est pas cité comme l'origine étymologique spécifique dans le document fourni."
+        },
+        {
+          "text": "velare",
+          "isCorrect": false,
+          "rationale": "Ce terme signifie 'voiler' ou 'couvrir' en latin, ce qui est l'opposé du concept de surveillance et de transparence de la vigilance."
+        }
+      ],
+      "hint": "Considérez le verbe latin qui évoque l'énergie et la vivacité plutôt que l'action de guetter."
+    },
+    {
+      "question": "Parmi les principes de la sécurité sanitaire, lequel impose d'intervenir dès que les risques peuvent l'emporter sur les bénéfices attendus ?",
+      "answerOptions": [
+        {
+          "text": "Évaluation",
+          "isCorrect": false,
+          "rationale": "L'évaluation consiste à connaître le rapport bénéfice/risque d'une thérapie, mais n'est pas l'action d'intervenir préventivement."
+        },
+        {
+          "text": "Transparence",
+          "isCorrect": false,
+          "rationale": "La transparence est la condition d'une alerte précoce et de la diffusion de l'information, et non la règle de décision d'intervention."
+        },
+        {
+          "text": "Indépendance",
+          "isCorrect": false,
+          "rationale": "L'indépendance garantit que les décisions ne sont pas influencées par des intérêts économiques ou sectoriels."
+        },
+        {
+          "text": "Précaution",
+          "isCorrect": true,
+          "rationale": "Le principe de précaution stipule que l'on doit agir dès l'apparition d'un risque potentiel supérieur aux bénéfices, même en l'absence de certitude absolue."
+        }
+      ],
+      "hint": "Il s'agit d'un principe fondamental du droit de l'environnement et de la santé qui prône l'action prudente face à l'incertitude."
+    },
+    {
+      "question": "Quelle loi est responsable de la création des Structures Régionales d'Appui (SRA) et de la coordination des vigilances par les ARS ?",
+      "answerOptions": [
+        {
+          "text": "Loi du 1er juillet 1998",
+          "isCorrect": false,
+          "rationale": "Cette loi concernait le renforcement de la veille sanitaire et la création des premières agences, mais pas la modernisation récente via les ARS."
+        },
+        {
+          "text": "Loi du 26 janvier 2016",
+          "isCorrect": true,
+          "rationale": "La loi de modernisation du système de santé de 2016 a confié aux ARS la responsabilité de l'organisation territoriale des vigilances."
+        },
+        {
+          "text": "Décret du 13 mars 1995",
+          "isCorrect": false,
+          "rationale": "Ce décret est spécifiquement lié à la mise en place de la pharmacovigilance et non à l'organisation globale des ARS."
+        },
+        {
+          "text": "Loi du 4 mars 2002",
+          "isCorrect": false,
+          "rationale": "Connue sous le nom de loi Kouchner, elle traite des droits des malades mais n'est pas le cadre cité pour la création des SRA."
+        }
+      ],
+      "hint": "C'est la loi la plus récente mentionnée dans le cadre réglementaire de la modernisation du système de santé français."
+    },
+    {
+      "question": "Quelle vigilance sanitaire s'occupe spécifiquement de la surveillance des incidents liés aux dispositifs médicaux de diagnostic in vitro (DMDIV) ?",
+      "answerOptions": [
+        {
+          "text": "Matériovigilance",
+          "isCorrect": false,
+          "rationale": "La matériovigilance concerne les dispositifs médicaux généraux (comme les pompes), pas spécifiquement ceux destinés aux analyses biologiques."
+        },
+        {
+          "text": "Réactovigilance",
+          "isCorrect": true,
+          "rationale": "Le document définit la réactovigilance comme la surveillance des incidents résultant de l'utilisation d'un DMDIV utilisé pour les analyses de biologie médicale."
+        },
+        {
+          "text": "Infectiovigilance",
+          "isCorrect": false,
+          "rationale": "Elle concerne les infections associées aux soins (nosocomiales) et non les défauts des réactifs de laboratoire."
+        },
+        {
+          "text": "Pharmacovigilance",
+          "isCorrect": false,
+          "rationale": "Cette vigilance est dédiée aux médicaments et non aux outils de diagnostic de laboratoire."
+        }
+      ],
+      "hint": "Le nom de cette vigilance évoque les 'réactifs' utilisés dans les analyses de laboratoire."
+    },
+    {
+      "question": "En pharmacovigilance, comment qualifie-t-on un effet indésirable dont la nature ou la sévérité ne correspond pas aux informations du résumé des caractéristiques du produit (RCP) ?",
+      "answerOptions": [
+        {
+          "text": "Effet indésirable grave",
+          "isCorrect": false,
+          "rationale": "La gravité est définie par les conséquences cliniques (décès, hospitalisation), indépendamment de la connaissance préalable de l'effet."
+        },
+        {
+          "text": "Effet indésirable inattendu",
+          "isCorrect": true,
+          "rationale": "Un effet est dit 'inattendu' lorsqu'il n'est pas mentionné dans le RCP officiel du médicament."
+        },
+        {
+          "text": "Mésusage",
+          "isCorrect": false,
+          "rationale": "Le mésusage désigne une utilisation intentionnelle non conforme au RCP, et non une caractéristique de l'effet produit lui-même."
+        },
+        {
+          "text": "Abus de médicament",
+          "isCorrect": false,
+          "rationale": "L'abus est une utilisation excessive et intentionnelle accompagnée de réactions physiques ou psychiques nocives."
+        }
+      ],
+      "hint": "Ce terme souligne la surprise par rapport aux données documentées officiellement."
+    },
+    {
+      "question": "Lequel de ces produits relève de la biovigilance et non de l'hémovigilance ?",
+      "answerOptions": [
+        {
+          "text": "Concentré de globules rouges",
+          "isCorrect": false,
+          "rationale": "Les produits sanguins labiles comme les globules rouges relèvent strictement de l'hémovigilance."
+        },
+        {
+          "text": "Plasma frais congelé",
+          "isCorrect": false,
+          "rationale": "Comme tout produit sanguin labile, le plasma fait partie de la chaîne transfusionnelle suivie par l'hémovigilance."
+        },
+        {
+          "text": "Organes destinés à la greffe",
+          "isCorrect": true,
+          "rationale": "La biovigilance surveille les risques liés aux éléments du corps humain comme les organes, les tissus et les cellules (hors sang)."
+        },
+        {
+          "text": "Gamètes et embryons",
+          "isCorrect": false,
+          "rationale": "Le cours précise que ces éléments relèvent de la vigilance de l'assistance médicale à la procréation (AMP) et non de la biovigilance standard."
+        }
+      ],
+      "hint": "La biovigilance exclut les produits sanguins labiles et possède une exception pour la procréation."
+    },
+    {
+      "question": "Quel est le rôle du correspondant local de vigilance au sein d'un établissement de santé selon le schéma de fonctionnement ?",
+      "answerOptions": [
+        {
+          "text": "Prendre les sanctions administratives contre les soignants",
+          "isCorrect": false,
+          "rationale": "Le système de vigilance est basé sur le signalement pour la sécurité et non sur une logique de sanction disciplinaire."
+        },
+        {
+          "text": "Analyser les incidents signalés par les soignants avant de les relayer",
+          "isCorrect": true,
+          "rationale": "Le correspondant local reçoit les signalements des professionnels, les analyse, puis les transmet aux autorités sanitaires comme l'ANSM."
+        },
+        {
+          "text": "Remplacer le médecin dans la prescription thérapeutique",
+          "isCorrect": false,
+          "rationale": "Le correspondant de vigilance a une fonction de veille et de gestion des risques, pas une fonction de soin direct."
+        },
+        {
+          "text": "Gérer les intérêts économiques des laboratoires pharmaceutiques",
+          "isCorrect": false,
+          "rationale": "Le dispositif doit être indépendant des intérêts économiques pour garantir la sécurité sanitaire."
+        }
+      ],
+      "hint": "Il sert de filtre et de pont entre le terrain (l'hôpital) et le niveau national (les agences)."
+    },
+    {
+      "question": "Quelle agence nationale est principalement responsable de l'évaluation et de l'expertise des produits de santé avec des pouvoirs de police sanitaire ?",
+      "answerOptions": [
+        {
+          "text": "HAS",
+          "isCorrect": false,
+          "rationale": "La Haute Autorité de Santé s'occupe de la qualité des soins et des recommandations, mais n'a pas les pouvoirs de police sanitaire de l'ANSM."
+        },
+        {
+          "text": "Santé Publique France (InVS)",
+          "isCorrect": false,
+          "rationale": "L'InVS (maintenant SPF) s'occupe de la surveillance épidémiologique et des alertes sur les maladies, pas de la police des produits de santé."
+        },
+        {
+          "text": "ANSM",
+          "isCorrect": true,
+          "rationale": "L'Agence Nationale de Sécurité du Médicament et des produits de santé est l'autorité centrale pour la plupart des vigilances liées aux produits (médicaments, DM, etc.)."
+        },
+        {
+          "text": "ABM",
+          "isCorrect": false,
+          "rationale": "L'Agence de la Biomédecine est limitée aux domaines de la greffe, de l'assistance à la procréation et de l'embryologie."
+        }
+      ],
+      "hint": "C'est l'agence héritière de l'AFSSAPS qui gère la pharmacovigilance et la matériovigilance."
+    },
+    {
+      "question": "Qu'est-ce que le 'mésusage' d'un médicament selon la définition de la pharmacovigilance ?",
+      "answerOptions": [
+        {
+          "text": "Une erreur involontaire lors de l'administration",
+          "isCorrect": false,
+          "rationale": "Cela correspond à la définition de l'erreur médicamenteuse, qui est par nature non intentionnelle."
+        },
+        {
+          "text": "Une utilisation intentionnelle non conforme au RCP dans un but médical",
+          "isCorrect": true,
+          "rationale": "Le mésusage est défini comme un usage intentionnel et inapproprié qui ne respecte pas les recommandations officielles (AMM, RCP)."
+        },
+        {
+          "text": "Une utilisation excessive pour obtenir un effet de défonce",
+          "isCorrect": false,
+          "rationale": "Il s'agit ici de la définition de l'abus de médicament ou de la pharmacodépendance."
+        },
+        {
+          "text": "Une exposition accidentelle au produit sur le lieu de travail",
+          "isCorrect": false,
+          "rationale": "Cela relève de l'exposition professionnelle et non du mésusage thérapeutique."
+        }
+      ],
+      "hint": "Il s'agit d'une décision délibérée de sortir du cadre de l'autorisation de mise sur le marché, mais toujours à visée de soin."
+    },
+    {
+      "question": "Vrai ou Faux : Depuis juin 2011, un patient peut déclarer directement un effet indésirable au CRPV sans passer par un professionnel de santé.",
+      "answerOptions": [
+        {
+          "text": "Vrai",
+          "isCorrect": true,
+          "rationale": "Le cours mentionne explicitement que la déclaration par le patient directement au Centre Régional de Pharmacovigilance est possible depuis juin 2011."
+        },
+        {
+          "text": "Faux",
+          "isCorrect": false,
+          "rationale": "Bien que non obligatoire, cette possibilité a été introduite pour renforcer le recueil des signaux de sécurité."
+        }
+      ],
+      "hint": "Considérez les évolutions vers une démocratie sanitaire où l'usager devient acteur de sa sécurité."
+    }
+  ]
+}

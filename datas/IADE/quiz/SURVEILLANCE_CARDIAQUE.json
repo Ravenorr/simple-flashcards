@@ -1,0 +1,394 @@
+{
+  "quiz": [
+    {
+      "question": "Quelle est la définition physiologique exacte des pulsations perçues lors de la prise du pouls ?",
+      "answerOptions": [
+        {
+          "text": "La perception des vibrations de l'ondée sanguine à chaque systole due à la distension des artères.",
+          "isCorrect": true,
+          "rationale": "Le pouls correspond physiquement à l'onde de choc générée par l'éjection systolique du ventricule gauche se propageant dans les parois artérielles."
+        },
+        {
+          "text": "Le reflux veineux vers l'oreillette droite pendant la phase de diastole ventriculaire.",
+          "isCorrect": false,
+          "rationale": "Le pouls est un phénomène artériel lié à la haute pression et non un phénomène de retour veineux passif."
+        },
+        {
+          "text": "Le passage de l'onde électrique à travers le faisceau de His mesuré à la périphérie.",
+          "isCorrect": false,
+          "rationale": "Il s'agit ici d'un processus mécanique de distension vasculaire, bien qu'il soit déclenché par l'activité électrique cardiaque."
+        },
+        {
+          "text": "La contraction isolée des capillaires permettant les échanges gazeux tissulaires.",
+          "isCorrect": false,
+          "rationale": "Les capillaires n'ont pas de couche musculaire permettant de générer une pulsation palpable."
+        }
+      ],
+      "hint": "Considérez le lien entre la contraction du ventricule gauche et la réaction des parois artérielles."
+    },
+    {
+      "question": "Quelle est la fréquence cardiaque normale moyenne pour un enfant âgé de $6$ ans selon les données fournies ?",
+      "answerOptions": [
+        {
+          "text": "$130-140$ /min",
+          "isCorrect": false,
+          "rationale": "Cette plage de fréquence élevée correspond aux besoins métaboliques et à la physiologie du nouveau-né."
+        },
+        {
+          "text": "$90$ /min",
+          "isCorrect": true,
+          "rationale": "La fréquence cardiaque diminue progressivement avec la croissance de l'enfant pour atteindre des niveaux intermédiaires entre le nourrisson et l'adulte."
+        },
+        {
+          "text": "$60-70$ /min",
+          "isCorrect": false,
+          "rationale": "Il s'agit de la plage de repos typique pour un adulte sain, plus basse que celle requise pour un enfant de $6$ ans."
+        },
+        {
+          "text": "$50$ /min",
+          "isCorrect": false,
+          "rationale": "Une telle fréquence est généralement considérée comme une bradycardie chez l'enfant, sauf chez les sportifs de haut niveau."
+        }
+      ],
+      "hint": "La fréquence cardiaque tend à ralentir de la naissance jusqu'à l'âge adulte."
+    },
+    {
+      "question": "À partir de quel seuil définit-on cliniquement une bradycardie ?",
+      "answerOptions": [
+        {
+          "text": "Inférieure à $60$ /min",
+          "isCorrect": false,
+          "rationale": "Bien que ce soit la limite inférieure de la normale adulte, le document spécifie un seuil pathologique ou de surveillance plus bas."
+        },
+        {
+          "text": "Inférieure à $50$ /min",
+          "isCorrect": true,
+          "rationale": "Sous ce seuil de $50$ battements par minute, le rythme est considéré comme bradycarde, qu'il soit sinusal ou non."
+        },
+        {
+          "text": "Inférieure à $40$ /min",
+          "isCorrect": false,
+          "rationale": "Ce niveau correspond souvent à une bradycardie sévère ou à un bloc auriculo-ventriculaire, mais le seuil de définition commence plus haut."
+        },
+        {
+          "text": "Inférieure à $70$ /min",
+          "isCorrect": false,
+          "rationale": "C'est une fréquence de repos tout à fait normale pour la majorité de la population adulte."
+        }
+      ],
+      "hint": "Le document identifie ce seuil précis pour différencier les états sinusaux des blocs."
+    },
+    {
+      "question": "Quelle anomalie de l'électrocardiogramme (ECG) caractérise spécifiquement une Extrasystole Auriculaire (ESA) ?",
+      "answerOptions": [
+        {
+          "text": "Des complexes $QRS$ larges",
+          "isCorrect": false,
+          "rationale": "Les complexes $QRS$ larges sont typiques des extrasystoles ventriculaires car la dépolarisation ne suit pas les voies de conduction habituelles."
+        },
+        {
+          "text": "Des complexes $QRS$ fins",
+          "isCorrect": true,
+          "rationale": "L'ESA naissant au-dessus des ventricules, l'influx utilise les voies de conduction normales (nœud $AV$ et faisceau de His), produisant un complexe fin."
+        },
+        {
+          "text": "Une absence totale d'ondes $P$",
+          "isCorrect": false,
+          "rationale": "L'absence d'onde $P$ est caractéristique de la fibrillation auriculaire ou de certains rythmes jonctionnels, pas spécifiquement d'une ESA isolée."
+        },
+        {
+          "text": "Un espace $PR$ supérieur à $0,20$ seconde",
+          "isCorrect": false,
+          "rationale": "Un allongement de l'espace $PR$ définit un bloc auriculo-ventriculaire du premier degré et non une extrasystole."
+        }
+      ],
+      "hint": "Réfléchissez au chemin emprunté par l'influx électrique lorsqu'il provient des oreillettes."
+    },
+    {
+      "question": "Que peut indiquer la perception d'un pouls 'filiforme' lors d'un examen clinique ?",
+      "answerOptions": [
+        {
+          "text": "Un état de choc",
+          "isCorrect": true,
+          "rationale": "Un pouls filiforme, caractérisé par une faible amplitude et une fréquence rapide, traduit une chute du volume d'éjection systolique et une vasoconstriction périphérique."
+        },
+        {
+          "text": "Une septicémie au stade hyperdynamique",
+          "isCorrect": false,
+          "rationale": "Dans ce cas, le pouls est plutôt décrit comme bondissant en raison de la vasoplégie et de l'augmentation du débit cardiaque."
+        },
+        {
+          "text": "Une insuffisance aortique sévère",
+          "isCorrect": false,
+          "rationale": "L'insuffisance aortique provoque typiquement un pouls bondissant (pouls de Corrigan) dû à la forte différence entre les pressions systolique et diastolique."
+        },
+        {
+          "text": "Une hyperthyroïdie traitée",
+          "isCorrect": false,
+          "rationale": "L'hyperthyroïdie provoque généralement une tachycardie bien frappée plutôt qu'un pouls faible et difficilement perceptible."
+        }
+      ],
+      "hint": "Ce terme décrit un pouls très fin et rapide, souvent lié à une défaillance circulatoire."
+    },
+    {
+      "question": "Le 'pouls grimpant de Mahler' est associé à quelle pathologie spécifique ?",
+      "answerOptions": [
+        {
+          "text": "Une phlébite",
+          "isCorrect": true,
+          "rationale": "Cette dissociation, où le pouls s'accélère alors que la température reste initialement normale, est un signe d'alerte classique pour une thrombose veineuse profonde."
+        },
+        {
+          "text": "Un problème de thyroïde",
+          "isCorrect": false,
+          "rationale": "Les problèmes thyroïdiens montrent souvent une élévation de la température sans accélération proportionnelle du pouls, soit l'inverse de Mahler."
+        },
+        {
+          "text": "Un phéochromocytome",
+          "isCorrect": false,
+          "rationale": "Cette tumeur provoque des pics d'hypertension et de tachycardie paroxystiques, mais n'est pas définie par cette dissociation thermique spécifique."
+        },
+        {
+          "text": "Une insuffisance cardiaque droite",
+          "isCorrect": false,
+          "rationale": "L'insuffisance droite se manifeste par d'autres signes comme la turgescence jugulaire et les œdèmes des membres inférieurs."
+        }
+      ],
+      "hint": "Il s'agit d'une dissociation entre la fréquence cardiaque et la température corporelle."
+    },
+    {
+      "question": "Selon la formule du débit cardiaque ($Qc$), quels sont les deux paramètres qui le déterminent ?",
+      "answerOptions": [
+        {
+          "text": "$Qc = VES \\times fréquence$",
+          "isCorrect": true,
+          "rationale": "Le débit cardiaque est le produit du Volume d'Éjection Systolique (quantité de sang par battement) et de la fréquence cardiaque (nombre de battements par minute)."
+        },
+        {
+          "text": "$Qc = PAS + 2 PAD$",
+          "isCorrect": false,
+          "rationale": "Cette expression fait partie du calcul de la pression artérielle moyenne et non du débit cardiaque."
+        },
+        {
+          "text": "$Qc = RVS \\times diamètre$",
+          "isCorrect": false,
+          "rationale": "Les résistances vasculaires systémiques ($RVS$) sont inversement proportionnelles au diamètre, mais ne définissent pas le débit directement."
+        },
+        {
+          "text": "$Qc = Volémie \\times Viscosité$",
+          "isCorrect": false,
+          "rationale": "Bien que ces facteurs influencent la pression, ils ne constituent pas la formule de calcul du débit cardiaque."
+        }
+      ],
+      "hint": "Le débit correspond au volume de sang expulsé par le cœur en une minute."
+    },
+    {
+      "question": "Quelle règle doit-on appliquer pour choisir la taille adaptée d'un brassard de tension artérielle ?",
+      "answerOptions": [
+        {
+          "text": "La largeur du brassard doit être égale à la distance épaule-coude divisée par $2$.",
+          "isCorrect": true,
+          "rationale": "Une largeur appropriée est cruciale pour assurer une transmission uniforme de la pression du brassard vers l'artère brachiale."
+        },
+        {
+          "text": "Le brassard doit couvrir l'intégralité du bras, du creux de l'aisselle au pli du coude.",
+          "isCorrect": false,
+          "rationale": "Un brassard trop large surestimerait la compression et pourrait donner des résultats erronés ou gêner la mesure."
+        },
+        {
+          "text": "La taille est standard pour tous les adultes pesant moins de $100$ kg.",
+          "isCorrect": false,
+          "rationale": "La morphologie du bras varie indépendamment du poids total, rendant l'utilisation d'un brassard adapté indispensable."
+        },
+        {
+          "text": "La longueur du brassard doit faire trois fois le tour du membre choisi.",
+          "isCorrect": false,
+          "rationale": "Un tel chevauchement fausserait la mesure ; seule la poche gonflable doit entourer suffisamment le membre sans excès."
+        }
+      ],
+      "hint": "Considérez le repère anatomique du bras mentionné dans les conditions de validité."
+    },
+    {
+      "question": "Comment calcule-t-on la Pression Artérielle Moyenne ($P.A.M.$) ?",
+      "answerOptions": [
+        {
+          "text": "$P.A.M. = \\frac{P.A.S. + 2 P.A.D.}{3}$",
+          "isCorrect": true,
+          "rationale": "La diastole durant environ deux fois plus longtemps que la systole dans le cycle cardiaque au repos, elle pèse davantage dans le calcul de la moyenne."
+        },
+        {
+          "text": "$P.A.M. = \\frac{P.A.S. + P.A.D.}{2}$",
+          "isCorrect": false,
+          "rationale": "Cette moyenne arithmétique simple ne tient pas compte du fait que le cœur passe plus de temps en phase de relaxation (diastole)."
+        },
+        {
+          "text": "$P.A.M. = P.A.S. - P.A.D.$",
+          "isCorrect": false,
+          "rationale": "Cette soustraction correspond à la pression pulsée (ou différentielle) et non à la pression moyenne."
+        },
+        {
+          "text": "$P.A.M. = P.A.D. + 10$ mmHg",
+          "isCorrect": false,
+          "rationale": "Cette formule est une simplification erronée qui ne respecte pas les principes de l'hémodynamique cardiaque."
+        }
+      ],
+      "hint": "Tenez compte de la durée respective de la systole et de la diastole dans un cycle cardiaque normal."
+    },
+    {
+      "question": "Quelles sont les valeurs normales de référence pour la Pression Artérielle Systolique ($P.A.S.$) chez l'adulte ?",
+      "answerOptions": [
+        {
+          "text": "$130$ à $140$ mmHg",
+          "isCorrect": true,
+          "rationale": "Ces valeurs représentent la pression maximale atteinte dans les artères lors de la contraction du ventricule gauche."
+        },
+        {
+          "text": "$70$ à $80$ mmHg",
+          "isCorrect": false,
+          "rationale": "Il s'agit des valeurs normales pour la pression artérielle diastolique (pression minimale)."
+        },
+        {
+          "text": "$90$ à $100$ mmHg",
+          "isCorrect": false,
+          "rationale": "Ces valeurs sont basses pour une systolique et pourraient évoquer une hypotension ou un état physiologique particulier chez un sujet jeune."
+        },
+        {
+          "text": "$150$ à $160$ mmHg",
+          "isCorrect": false,
+          "rationale": "De telles valeurs indiquent généralement une hypertension artérielle nécessitant une évaluation médicale."
+        }
+      ],
+      "hint": "La systolique correspond à la 'pression maximale' lors de la contraction cardiaque."
+    },
+    {
+      "question": "Quel effet l'orthostatisme (passage à la position debout) a-t-il généralement sur la pression artérielle ?",
+      "answerOptions": [
+        {
+          "text": "Une légère diminution de la pression",
+          "isCorrect": true,
+          "rationale": "La gravité entraîne une séquestration sanguine veineuse dans les membres inférieurs, ce qui peut provoquer une baisse transitoire de la pression artérielle."
+        },
+        {
+          "text": "Une augmentation franche de la pression systolique",
+          "isCorrect": false,
+          "rationale": "Une hausse importante serait une réponse anormale, car le corps doit compenser la chute de débit liée à la gravité."
+        },
+        {
+          "text": "Aucun changement, la pression est une constante fixe",
+          "isCorrect": false,
+          "rationale": "La pression artérielle est une variable dynamique qui s'adapte en permanence aux changements de posture."
+        },
+        {
+          "text": "Une disparition du pouls radial",
+          "isCorrect": false,
+          "rationale": "La disparition du pouls lors du passage debout indiquerait une hypotension orthostatique sévère ou un collapsus, ce qui n'est pas physiologique."
+        }
+      ],
+      "hint": "Réfléchissez à l'action de la gravité sur le retour veineux lors d'un changement de position."
+    },
+    {
+      "question": "Le phéochromocytome est une cause secondaire d'HTA liée à une tumeur de quelle zone ?",
+      "answerOptions": [
+        {
+          "text": "La médullo-surrénale",
+          "isCorrect": true,
+          "rationale": "Cette tumeur sécrète des catécholamines (adrénaline et noradrénaline) qui provoquent une vasoconstriction puissante et une hypertension."
+        },
+        {
+          "text": "La cortico-surrénale",
+          "isCorrect": false,
+          "rationale": "La cortico-surrénale est liée à la sécrétion d'aldostérone (Syndrome de Conn) ou de cortisol, pas au phéochromocytome."
+        },
+        {
+          "text": "L'isthme de l'aorte",
+          "isCorrect": false,
+          "rationale": "L'isthme est le siège possible d'une coarctation de l'aorte, qui est une anomalie structurelle et non une tumeur sécrétante."
+        },
+        {
+          "text": "L'oreillette droite",
+          "isCorrect": false,
+          "rationale": "Bien que le cœur sécrète le peptide natriurétique auriculaire, il n'est pas le siège du phéochromocytome."
+        }
+      ],
+      "hint": "Cette glande est responsable de la sécrétion d'adrénaline et de noradrénaline."
+    },
+    {
+      "question": "Selon les critères fournis, à partir de quelle valeur de $PAS$ parle-t-on d'hypotension artérielle ?",
+      "answerOptions": [
+        {
+          "text": "Inférieure à $90$ mmHg",
+          "isCorrect": true,
+          "rationale": "Sous ce seuil de $90$ mmHg pour la pression systolique, on considère que la perfusion tissulaire peut devenir insuffisante."
+        },
+        {
+          "text": "Inférieure à $110$ mmHg",
+          "isCorrect": false,
+          "rationale": "Beaucoup d'adultes jeunes ou de sportifs ont une $PAS$ entre $100$ et $110$ mmHg sans que cela soit pathologique."
+        },
+        {
+          "text": "Inférieure à $70$ mmHg",
+          "isCorrect": false,
+          "rationale": "C'est un niveau d'hypotension très sévère souvent associé à un état de choc critique, mais la définition commence plus haut."
+        },
+        {
+          "text": "Inférieure à $120$ mmHg",
+          "isCorrect": false,
+          "rationale": "$120$ mmHg est considéré comme une tension artérielle idéale selon les standards actuels."
+        }
+      ],
+      "hint": "Ce seuil est souvent utilisé pour définir les causes de collapsus vasculaire ou de chute de débit."
+    },
+    {
+      "question": "Quelles sont les causes mentionnées pouvant provoquer un collapsus vasculaire ?",
+      "answerOptions": [
+        {
+          "text": "Hémorragie et Allergie",
+          "isCorrect": true,
+          "rationale": "L'hémorragie réduit la volémie (choc hypovolémique) tandis que l'allergie provoque une vasoplégie massive (choc anaphylactique)."
+        },
+        {
+          "text": "Digestion et Effort",
+          "isCorrect": false,
+          "rationale": "Ces situations physiologiques tendent au contraire à augmenter la fréquence cardiaque et parfois la pression artérielle."
+        },
+        {
+          "text": "Grossesse et Sommeil",
+          "isCorrect": false,
+          "rationale": "Bien que la grossesse modifie l'hémodynamique, elle ne provoque pas par nature un collapsus vasculaire chez une patiente saine."
+        },
+        {
+          "text": "Hyperthermie et Hyperthyroïdie",
+          "isCorrect": false,
+          "rationale": "Ces états sont généralement associés à une tachycardie et à une augmentation du métabolisme basal plutôt qu'à un collapsus."
+        }
+      ],
+      "hint": "Recherchez des situations entraînant soit une perte de volume sanguin, soit une dilatation subite des vaisseaux."
+    },
+    {
+      "question": "Pourquoi est-il recommandé de vérifier les pouls de manière symétrique et bilatérale ?",
+      "answerOptions": [
+        {
+          "text": "Pour détecter une éventuelle maladie artérielle si les pouls sont différents.",
+          "isCorrect": true,
+          "rationale": "Une asymétrie des pouls peut révéler une sténose, une occlusion ou une compression artérielle localisée d'un côté du corps."
+        },
+        {
+          "text": "Pour confirmer que le cœur possède bien deux ventricules fonctionnels.",
+          "isCorrect": false,
+          "rationale": "Le pouls perçu partout est généré par le seul ventricule gauche ; le ventricule droit alimente la circulation pulmonaire."
+        },
+        {
+          "text": "Pour s'assurer que le monitorage cardiaque ne subit pas d'interférences.",
+          "isCorrect": false,
+          "rationale": "La prise de pouls est une technique manuelle indépendante du monitorage électrique de l'ECG."
+        },
+        {
+          "text": "Pour diviser par deux le temps nécessaire au comptage de la fréquence.",
+          "isCorrect": false,
+          "rationale": "Prendre les deux pouls simultanément ne réduit pas le temps de comptage nécessaire pour obtenir une mesure fiable sur une minute."
+        }
+      ],
+      "hint": "L'asymétrie physique suggère souvent un obstacle sur le trajet des vaisseaux d'un côté spécifique."
+    }
+  ]
+}

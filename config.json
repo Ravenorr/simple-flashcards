@@ -13,7 +13,9 @@
             "TRANSFUSION.csv",
             "HYGIENE_ET_PREVENTION_DES_INFECTIONS.csv",
             "EQUILIBRE_ACIDO_BASE.csv",
-            "LEGISLATION.csv"
+            "LEGISLATION.csv",
+            "VIGILANCES_SANITAIRES.csv",
+            "SURVEILLANCE_CARDIAQUE.csv"
         ]
     },
     "schemas": {
@@ -28,7 +30,9 @@
             "TRANSFUSION.json",
             "HYGIENE_ET_PREVENTION_DES_INFECTIONS.json",
             "EQUILIBRE_ACIDO_BASE.json",
-            "LEGISLATION.json"
+            "LEGISLATION.json",
+            "VIGILANCES_SANITAIRES.json",
+            "SURVEILLANCE_CARDIAQUE.json"
         ]
     }
 }
