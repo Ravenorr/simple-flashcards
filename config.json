@@ -23,7 +23,8 @@
         "IADE": [
             "CARDIO.csv",
             "IMMUNO.csv",
-            "SOINS_AU_PATIENT.csv"
+            "SOINS_AU_PATIENT.csv",
+            "DIGESTIF.csv"
         ]
     },
     "quiz": {
