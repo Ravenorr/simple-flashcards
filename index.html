@@ -162,6 +162,12 @@
                 opt.textContent = cat;
                 categorySelect.appendChild(opt);
             });
+
+            // Sélection automatique du premier dossier s'il existe
+            if (categorySelect.options.length > 1) {
+                categorySelect.selectedIndex = 1;
+                categorySelect.dispatchEvent(new Event('change'));
+            }
         } else {
             categorySelect.innerHTML = '<option disabled>Aucune donnée</option>';
         }
