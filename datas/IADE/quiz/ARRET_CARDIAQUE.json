@@ -1,0 +1,269 @@
+{
+  "quiz": [
+    {
+      "question": "Selon la définition médicale présentée, quels sont les deux éléments principaux caractérisant un arrêt cardiaque (AC) ?",
+      "answerOptions": [
+        {
+          "text": "L'interruption de l'activité mécanique du cœur et de la ventilation.",
+          "isCorrect": true,
+          "rationale": "L'arrêt cardiaque est défini par une interruption brutale de l'activité mécanique efficace du cœur, s'accompagnant systématiquement d'un arrêt respiratoire."
+        },
+        {
+          "text": "La perte de conscience et l'hypotension artérielle sévère.",
+          "isCorrect": false,
+          "rationale": "Bien que présentes, ces signes ne suffisent pas à définir l'AC car une hypotension n'implique pas nécessairement un arrêt de l'activité mécanique du cœur."
+        },
+        {
+          "text": "Une arythmie ventriculaire maligne sans perte de connaissance.",
+          "isCorrect": false,
+          "rationale": "Par définition, l'arrêt cardiaque entraîne une perte de conscience immédiate due à l'absence de perfusion cérébrale."
+        },
+        {
+          "text": "Une obstruction des voies aériennes supérieures uniquement.",
+          "isCorrect": false,
+          "rationale": "L'obstruction des voies aériennes est une cause potentielle d'asphyxie, mais l'AC lui-même concerne la pompe cardiaque."
+        }
+      ],
+      "hint": "Considérez les fonctions vitales qui cessent de fonctionner de manière efficace lors de cette urgence absolue."
+    },
+    {
+      "question": "Quel est l'impact de la pratique immédiate d'une réanimation cardiopulmonaire de base (RCPB) par un témoin sur la survie à $J30$ ?",
+      "answerOptions": [
+        {
+          "text": "Elle permet de doubler les chances de survie, passant d'environ $4,9\\%$ à $10,4\\%$.",
+          "isCorrect": true,
+          "rationale": "Les données montrent que l'intervention immédiate d'un témoin améliore significativement le pronostic à court terme."
+        },
+        {
+          "text": "Elle garantit une survie globale supérieure à $50\\%$.",
+          "isCorrect": false,
+          "rationale": "Malgré la RCPB, la survie globale reste malheureusement faible, avec une survie à un an avec issue neurologique favorable inférieure à $2\\%$.",
+          "answer": "La survie passe d'environ $4,9\\%$ à $10,4\\%$.",
+          "hint": "Regardez les statistiques de survie comparant l'absence d'intervention et l'intervention immédiate."
+        },
+        {
+          "text": "Elle n'a aucun impact statistique sur la survie à long terme.",
+          "isCorrect": false,
+          "rationale": "Le facteur temps est crucial ; chaque minute sans RCP diminue les chances de survie de $10\\%$.",
+          "answer": "La survie passe d'environ $4,9\\%$ à $10,4\\%$.",
+          "hint": "Regardez les statistiques de survie comparant l'absence d'intervention et l'intervention immédiate."
+        },
+        {
+          "text": "Elle réduit uniquement le risque de séquelles mais n'augmente pas la survie.",
+          "isCorrect": false,
+          "rationale": "La RCPB immédiate augmente à la fois les chances de survie immédiate et les chances d'un meilleur pronostic neurologique.",
+          "answer": "La survie passe d'environ $4,9\\%$ à $10,4\\%$.",
+          "hint": "Regardez les statistiques de survie comparant l'absence d'intervention et l'intervention immédiate."
+        }
+      ]
+    },
+    {
+      "question": "Lors du diagnostic clinique d'un arrêt cardiaque, comment doit être interprétée une respiration de type 'gasps' ?",
+      "answerOptions": [
+        {
+          "text": "Comme un signe d'arrêt respiratoire ou de ventilation anormale nécessitant la RCP.",
+          "isCorrect": true,
+          "rationale": "Les gasps sont des mouvements respiratoires inefficaces qui ne doivent pas être confondus avec une respiration normale et confirment l'AC."
+        },
+        {
+          "text": "Comme une respiration agonisante indiquant que le cœur bat encore efficacement.",
+          "isCorrect": false,
+          "rationale": "C'est une erreur commune ; les gasps surviennent souvent au début de l'AC alors que le cœur n'est plus efficace."
+        },
+        {
+          "text": "Comme un signe d'obstruction partielle nécessitant uniquement des tapes dans le dos.",
+          "isCorrect": false,
+          "rationale": "L'obstruction se manifeste différemment ; en présence d'inconscience et de gasps, la priorité est le massage cardiaque."
+        },
+        {
+          "text": "Comme une phase de récupération spontanée de la ventilation.",
+          "isCorrect": false,
+          "rationale": "Les gasps ne permettent pas une oxygénation suffisante et précèdent généralement l'arrêt respiratoire complet."
+        }
+      ],
+      "hint": "Il s'agit d'une respiration saccadée et inefficace souvent observée au début du processus."
+    },
+    {
+      "question": "Quelles sont les recommandations actuelles pour la fréquence et la profondeur des compressions thoraciques (CT) chez l'adulte ?",
+      "answerOptions": [
+        {
+          "text": "$100$ à $120$ compressions par minute avec une profondeur d'environ $5$ cm.",
+          "isCorrect": true,
+          "rationale": "Ce rythme et cette profondeur (sans dépasser $6$ cm) assurent un débit cardiaque optimal pendant la réanimation."
+        },
+        {
+          "text": "$60$ à $80$ compressions par minute avec une profondeur de $3$ cm.",
+          "isCorrect": false,
+          "rationale": "Cette fréquence est trop lente et la profondeur insuffisante pour générer une pression de perfusion adéquate."
+        },
+        {
+          "text": "Exactement $140$ compressions par minute pour maximiser le flux.",
+          "isCorrect": false,
+          "rationale": "Au-delà de $120$ compressions par minute, le temps de remplissage cardiaque est insuffisant, ce qui diminue l'efficacité."
+        },
+        {
+          "text": "$100$ compressions par minute avec une relaxation partielle du thorax.",
+          "isCorrect": false,
+          "rationale": "Une relaxation complète du thorax est impérative entre chaque compression pour permettre le retour veineux au cœur."
+        }
+      ],
+      "hint": "Pensez aux normes internationales visant à équilibrer la perfusion et le remplissage cardiaque."
+    },
+    {
+      "question": "Dans quel cas la double défibrillation séquentielle est-elle préconisée selon les études récentes (ex: Cheskes et al.) ?",
+      "answerOptions": [
+        {
+          "text": "Dès l'échec d'un troisième choc électrique externe (CEE) en cas de fibrillation ventriculaire (FV) réfractaire.",
+          "isCorrect": true,
+          "rationale": "Cette stratégie utilise deux défibrillateurs pour modifier le vecteur de courant et augmenter les chances de succès sur les rythmes résistants."
+        },
+        {
+          "text": "Systématiquement lors du premier choc pour assurer le succès.",
+          "isCorrect": false,
+          "rationale": "La défibrillation standard est privilégiée initialement ; la double séquence est réservée aux cas réfractaires."
+        },
+        {
+          "text": "Uniquement pour les arrêts cardiaques d'origine traumatique.",
+          "isCorrect": false,
+          "rationale": "Elle est spécifiquement étudiée pour les troubles du rythme ventriculaire (FV/TV) et non pour les causes traumatiques."
+        },
+        {
+          "text": "En cas d'asystolie prolongée pour tenter de 'réveiller' le cœur.",
+          "isCorrect": false,
+          "rationale": "La défibrillation n'a aucune indication dans l'asystolie, car il n'y a aucune activité électrique à synchroniser."
+        }
+      ],
+      "hint": "Cette technique intervient lorsqu'une anomalie du rythme persiste malgré plusieurs tentatives de chocs classiques."
+    },
+    {
+      "question": "Quelle est la valeur pronostique d'une $ETCO_{2}$ inférieure à $10$ mmHg après $20$ minutes de réanimation spécialisée ?",
+      "answerOptions": [
+        {
+          "text": "Elle représente un facteur de mauvais pronostic (valeur péjorative).",
+          "isCorrect": true,
+          "rationale": "Une $ETCO_{2}$ durablement basse malgré une réanimation bien conduite reflète un débit cardiaque très faible et un échec probable de la réanimation."
+        },
+        {
+          "text": "Elle indique un succès imminent de la reprise d'activité circulatoire spontanée (RACS).",
+          "isCorrect": false,
+          "rationale": "Au contraire, une hausse brutale de l'$ETCO_{2}$ est souvent le premier signe d'une RACS."
+        },
+        {
+          "text": "Elle signifie que l'intubation trachéale est parfaitement positionnée.",
+          "isCorrect": false,
+          "rationale": "Bien que l'$ETCO_{2}$ confirme la position du tube, une valeur aussi basse est liée au faible débit pulmonaire, pas seulement au placement."
+        },
+        {
+          "text": "Elle impose l'arrêt immédiat des compressions thoraciques pour éviter l'hyperventilation.",
+          "isCorrect": false,
+          "rationale": "Une valeur basse doit encourager à vérifier la qualité du massage cardiaque plutôt qu'à l'arrêter."
+        }
+      ],
+      "hint": "Considérez le lien entre le gaz carbonique expiré et l'efficacité du transport d'oxygène par le sang."
+    },
+    {
+      "question": "Quelle est la règle de priorité pour l'accès vasculaire lors d'une réanimation spécialisée ?",
+      "answerOptions": [
+        {
+          "text": "Essai de voie veineuse périphérique (VVP) pendant $30$ secondes, puis passage immédiat à la voie intra-osseuse (IO) en cas d'échec.",
+          "isCorrect": true,
+          "rationale": "L'accès IO est rapide et efficace, évitant de perdre du temps précieux sur des tentatives itératives de VVP sur un patient collabé."
+        },
+        {
+          "text": "Priorité absolue à la voie veineuse centrale (V. fémorale ou jugulaire interne).",
+          "isCorrect": false,
+          "rationale": "La pose d'une voie centrale est plus complexe et nécessite l'arrêt ou la gêne des compressions thoraciques, contrairement à l'IO."
+        },
+        {
+          "text": "Utilisation exclusive de la voie intra-trachéale pour tous les médicaments.",
+          "isCorrect": false,
+          "rationale": "La voie trachéale est peu fiable en termes d'absorption et n'est plus recommandée si un accès IO ou IV est possible."
+        },
+        {
+          "text": "Attendre d'avoir une voie veineuse avant de débuter les compressions thoraciques.",
+          "isCorrect": false,
+          "rationale": "Les compressions thoraciques sont la priorité absolue et ne doivent jamais être retardées pour un geste invasif."
+        }
+      ],
+      "hint": "Il existe un temps limite très court pour les tentatives classiques avant de passer à une méthode alternative rapide."
+    },
+    {
+      "question": "Quel est l'effet de l'adrénaline sur les résultats de la réanimation selon les données du cours ?",
+      "answerOptions": [
+        {
+          "text": "Elle augmente la RACS et la survie à l'admission, mais peut avoir un effet délétère sur le pronostic neurologique.",
+          "isCorrect": true,
+          "rationale": "L'adrénaline améliore la perfusion coronaire mais peut réduire la microcirculation cérébrale à fortes doses."
+        },
+        {
+          "text": "Elle garantit une survie à long terme sans séquelles chez $90\\%$ des patients.",
+          "isCorrect": false,
+          "rationale": "Les statistiques de survie à long terme avec issue neurologique favorable restent très basses malgré l'usage d'adrénaline."
+        },
+        {
+          "text": "Elle est recommandée uniquement en cas de transplantation cardiaque.",
+          "isCorrect": false,
+          "rationale": "C'est l'inverse : elle est formellement contre-indiquée ou à utiliser avec une extrême prudence chez les transplantés cardiaques."
+        },
+        {
+          "text": "Elle agit principalement en diminuant la résistance vasculaire périphérique.",
+          "isCorrect": false,
+          "rationale": "L'adrénaline augmente au contraire la résistance vasculaire périphérique (effet alpha-adrénergique) pour favoriser la pression de perfusion."
+        }
+      ],
+      "hint": "Analysez la différence entre la reprise immédiate du pouls et la qualité de vie à long terme."
+    },
+    {
+      "question": "Pourquoi est-il crucial d'éviter l'hyperventilation (grand volume et grande fréquence) pendant la RCP ?",
+      "answerOptions": [
+        {
+          "text": "Car elle augmente la pression intra-thoracique, ce qui diminue le retour veineux et l'efficacité du massage.",
+          "isCorrect": true,
+          "rationale": "Une pression intra-thoracique excessive empêche le cœur de se remplir correctement entre deux compressions, réduisant le débit sanguin généré."
+        },
+        {
+          "text": "Car elle provoque une alcalose respiratoire qui empêche la défibrillation.",
+          "isCorrect": false,
+          "rationale": "Bien que l'alcalose soit un effet métabolique, le danger immédiat est d'ordre hémodynamique (pression sur les vaisseaux)."
+        },
+        {
+          "text": "Car elle épuise trop rapidement les réserves d'oxygène du ballon autoremplisseur à valve (BAVU).",
+          "isCorrect": false,
+          "rationale": "La gestion des stocks d'oxygène n'est pas la raison médicale prioritaire ; c'est l'impact sur la mécanique circulatoire qui prime."
+        },
+        {
+          "text": "Car elle déclenche systématiquement des vomissements.",
+          "isCorrect": false,
+          "rationale": "L'insufflation gastrique peut causer des vomissements, mais c'est l'augmentation de la pression thoracique qui est l'effet le plus délétère pour la survie."
+        }
+      ],
+      "hint": "Réfléchissez à l'espace limité à l'intérieur de la poitrine et à ce qui se passe quand la pression y devient trop forte."
+    },
+    {
+      "question": "Quel est le rapport compressions/insufflations recommandé lorsqu'un patient n'est pas encore intubé ?",
+      "answerOptions": [
+        {
+          "text": "$30$ compressions pour $2$ insufflations.",
+          "isCorrect": true,
+          "rationale": "Ce ratio est le standard pour maintenir un équilibre entre la perfusion sanguine et l'oxygénation minimale requise."
+        },
+        {
+          "text": "$15$ compressions pour $2$ insufflations.",
+          "isCorrect": false,
+          "rationale": "Ce ratio est utilisé en pédiatrie par les secouristes professionnels, mais pour l'adulte, la priorité est donnée aux compressions avec $30:2$."
+        },
+        {
+          "text": "$5$ compressions pour $1$ insufflation.",
+          "isCorrect": false,
+          "rationale": "C'est un ratio obsolète qui ne permettait pas de maintenir une pression de perfusion coronaire suffisante."
+        },
+        {
+          "text": "Compressions continues sans aucune insufflation.",
+          "isCorrect": false,
+          "rationale": "Bien que les compressions soient prioritaires, les insufflations restent nécessaires, surtout si l'AC est d'origine asphyxique ou prolongé."
+        }
+      ],
+      "hint": "Il s'agit du cycle classique alternant massage et ventilation manuelle."
+    }
+  ]
+}
