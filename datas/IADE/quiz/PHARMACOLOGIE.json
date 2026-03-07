@@ -1,0 +1,264 @@
+{
+  "quiz": [
+    {
+      "question": "Parmi les exemples suivants, lequel correspond à une Dénomination Commune Internationale (DCI) ?",
+      "answerOptions": [
+        {
+          "text": "Glucophage",
+          "isCorrect": false,
+          "rationale": "Il s'agit du nom de spécialité ou nom commercial du médicament princeps."
+        },
+        {
+          "text": "Metformine",
+          "isCorrect": true,
+          "rationale": "La DCI est le nom scientifique universel de la substance active, utilisé notamment pour les médicaments génériques."
+        },
+        {
+          "text": "Célocurine",
+          "isCorrect": false,
+          "rationale": "C'est le nom de spécialité déposé pour la molécule de suxaméthonium."
+        },
+        {
+          "text": "Durogésic",
+          "isCorrect": false,
+          "rationale": "Il s'agit d'un nom de spécialité pour un dispositif transdermique de fentanyl."
+        }
+      ],
+      "hint": "Cherchez le terme utilisé pour désigner la substance active de manière universelle, sans marque commerciale."
+    },
+    {
+      "question": "Quelle discipline étudie spécifiquement le devenir d'un médicament une fois introduit dans l'organisme ?",
+      "answerOptions": [
+        {
+          "text": "La pharmacodynamie",
+          "isCorrect": false,
+          "rationale": "Cette discipline étudie l'action du médicament sur l'organisme et non son parcours."
+        },
+        {
+          "text": "La pharmacocinétique",
+          "isCorrect": true,
+          "rationale": "Elle analyse les étapes d'absorption, de distribution, de métabolisation et d'élimination de la molécule."
+        },
+        {
+          "text": "La pharmacovigilance",
+          "isCorrect": false,
+          "rationale": "Il s'agit de la surveillance des effets secondaires après la commercialisation."
+        },
+        {
+          "text": "La galénique",
+          "isCorrect": false,
+          "rationale": "C'est l'étude de la mise en forme pharmaceutique du médicament (comprimé, sirop, etc.)."
+        }
+      ],
+      "hint": "Pensez au terme grec 'kinêsis' qui évoque le mouvement ou le parcours."
+    },
+    {
+      "question": "L'utilisation de curares pour bloquer un fonctionnement physiologique lors d'une anesthésie relève de quel type d'action ?",
+      "answerOptions": [
+        {
+          "text": "Action curative",
+          "isCorrect": false,
+          "rationale": "Une action curative vise à traiter la cause d'une maladie, comme un antibiotique."
+        },
+        {
+          "text": "Action préventive",
+          "isCorrect": false,
+          "rationale": "La prévention vise à empêcher l'apparition d'une pathologie, comme un vaccin."
+        },
+        {
+          "text": "Action symptomatique",
+          "isCorrect": true,
+          "rationale": "Elle consiste à lutter contre les symptômes ou à bloquer temporairement une fonction physiologique comme la motricité."
+        },
+        {
+          "text": "Action de substitution",
+          "isCorrect": false,
+          "rationale": "La substitution apporte une molécule normalement présente mais absente dans l'organisme, comme l'insuline."
+        }
+      ],
+      "hint": "Considérez si le médicament traite la cause de la pathologie ou s'il agit sur une fonction précise pour faciliter un acte."
+    },
+    {
+      "question": "Concernant les effets secondaires, laquelle de ces affirmations est exacte selon le document ?",
+      "answerOptions": [
+        {
+          "text": "Ils sont systématiquement indépendants de la posologie.",
+          "isCorrect": false,
+          "rationale": "Certains effets, comme ceux du paracétamol, sont directement liés à la dose administrée."
+        },
+        {
+          "text": "Ils peuvent nécessiter un monitorage spécifique comme l'INR pour les AVK.",
+          "isCorrect": true,
+          "rationale": "Le suivi biologique permet d'ajuster le traitement pour éviter des complications graves comme les hémorragies."
+        },
+        {
+          "text": "Une réaction allergique diminue d'intensité avec la poursuite du traitement.",
+          "isCorrect": false,
+          "rationale": "Au contraire, une réaction allergique a tendance à s'aggraver lors des expositions ultérieures."
+        },
+        {
+          "text": "L'ototoxicité de la gentamicine est un effet principal recherché.",
+          "isCorrect": false,
+          "rationale": "C'est un effet secondaire toxique grave qu'il faut éviter par le dosage des pics et des creux."
+        }
+      ],
+      "hint": "Réfléchissez aux outils de surveillance nécessaires pour sécuriser certains traitements à risque."
+    },
+    {
+      "question": "Quelle est la définition de la biodisponibilité d'un médicament ?",
+      "answerOptions": [
+        {
+          "text": "La vitesse à laquelle le médicament est éliminé par les reins.",
+          "isCorrect": false,
+          "rationale": "Cela correspond à la clairance rénale, pas à la biodisponibilité."
+        },
+        {
+          "text": "La quantité de médicament qui se retrouve dans la circulation générale.",
+          "isCorrect": true,
+          "rationale": "Elle représente la fraction de la dose administrée qui atteint intacte le compartiment sanguin systémique."
+        },
+        {
+          "text": "La force de liaison du médicament à son récepteur cible.",
+          "isCorrect": false,
+          "rationale": "Ce concept définit l'affinité pharmacodynamique."
+        },
+        {
+          "text": "Le temps nécessaire pour diminuer la concentration plasmatique de moitié.",
+          "isCorrect": false,
+          "rationale": "Il s'agit de la définition de la demi-vie plasmatique ($T_{\\frac{1}{2}}$)."
+        }
+      ],
+      "hint": "Ce concept mesure la fraction de la dose qui parvient réellement à 'destination' sanguine."
+    },
+    {
+      "question": "Pourquoi l'absorption d'un acide faible est-elle favorisée au niveau de l'estomac (pH compris entre $1$ et $3,5$) ?",
+      "answerOptions": [
+        {
+          "text": "Parce qu'il s'y trouve majoritairement sous forme ionisée.",
+          "isCorrect": false,
+          "rationale": "La forme ionisée est hydrophile et traverse très mal les membranes biologiques."
+        },
+        {
+          "text": "Parce qu'il s'y trouve essentiellement sous forme non ionisée.",
+          "isCorrect": true,
+          "rationale": "En milieu acide, un acide faible reste sous forme non ionisée, ce qui le rend liposoluble et facilite sa diffusion à travers la barrière gastrique."
+        },
+        {
+          "text": "Parce que l'estomac possède une vascularisation plus importante que l'intestin.",
+          "isCorrect": false,
+          "rationale": "L'intestin a une surface d'échange et une vascularisation bien supérieures, mais le pH influence la forme chimique."
+        },
+        {
+          "text": "Parce que le pKa de l'acide faible augmente en milieu acide.",
+          "isCorrect": false,
+          "rationale": "Le pKa est une constante intrinsèque à la molécule et ne change pas selon le milieu."
+        }
+      ],
+      "hint": "Rappelez-vous la relation entre le pH du milieu, le pKa et le caractère liposoluble de la forme non chargée."
+    },
+    {
+      "question": "Qu'est-ce que l'effet du premier passage hépatique ?",
+      "answerOptions": [
+        {
+          "text": "La métabolisation du médicament par le foie avant qu'il n'atteigne la circulation systémique.",
+          "isCorrect": true,
+          "rationale": "Après administration orale, le sang veineux digestif passe par la veine porte vers le foie où la molécule peut être dégradée."
+        },
+        {
+          "text": "L'excrétion biliaire du médicament après sa distribution tissulaire.",
+          "isCorrect": false,
+          "rationale": "C'est une étape d'élimination terminale, pas un 'premier passage'."
+        },
+        {
+          "text": "Le stockage des molécules liposolubles dans les hépatocytes.",
+          "isCorrect": false,
+          "rationale": "Le foie métabolise mais n'est pas le site principal de stockage passif comme le tissu adipeux."
+        },
+        {
+          "text": "L'activation systématique de toutes les drogues en pro-drogues.",
+          "isCorrect": false,
+          "rationale": "C'est l'inverse : le foie transforme souvent des pro-drogues inactives en drogues actives."
+        }
+      ],
+      "hint": "Pensez au trajet anatomique du sang quittant le tube digestif vers le cœur."
+    },
+    {
+      "question": "Sur une courbe dose-effet, comment appelle-t-on la dose permettant d'obtenir $50\\%$ de l'effet maximal ($E_{max}$) ?",
+      "answerOptions": [
+        {
+          "text": "La dose toxique $50$ ($DT_{50}$)",
+          "isCorrect": false,
+          "rationale": "Cette mesure concerne la toxicité et non l'efficacité thérapeutique."
+        },
+        {
+          "text": "La dose efficace $50$ ($DE_{50}$)",
+          "isCorrect": true,
+          "rationale": "Elle permet de comparer la puissance de différentes molécules agissant sur la même cible."
+        },
+        {
+          "text": "La concentration létale $50$ ($CL_{50}$)",
+          "isCorrect": false,
+          "rationale": "Il s'agit de la concentration entraînant le décès de $50\\%$ d'une population de test."
+        },
+        {
+          "text": "Le seuil thérapeutique",
+          "isCorrect": false,
+          "rationale": "Le seuil est la concentration minimale pour observer un début d'effet, pas la moitié de l'effet maximum."
+        }
+      ],
+      "hint": "Cherchez l'abréviation qui lie la dose à un niveau d'efficacité moyen."
+    },
+    {
+      "question": "Quelle est la principale caractéristique d'un antagoniste compétitif au niveau d'un récepteur ?",
+      "answerOptions": [
+        {
+          "text": "Il mime parfaitement l'action de la molécule endogène.",
+          "isCorrect": false,
+          "rationale": "C'est la définition d'un agoniste."
+        },
+        {
+          "text": "Il se fixe sur le récepteur et empêche l'agoniste d'agir en occupant le site.",
+          "isCorrect": true,
+          "rationale": "La compétition se joue sur l'occupation du site de liaison ; l'effet peut être levé en augmentant la dose d'agoniste."
+        },
+        {
+          "text": "Il agit sur plusieurs sites différents comme la Kétamine.",
+          "isCorrect": false,
+          "rationale": "La Kétamine est citée comme un exemple d'antagoniste non compétitif à action multisites."
+        },
+        {
+          "text": "Il rend le récepteur insensible de manière irréversible.",
+          "isCorrect": false,
+          "rationale": "Un antagoniste compétitif est généralement réversible selon les concentrations respectives."
+        }
+      ],
+      "hint": "Imaginez deux molécules luttant pour obtenir la même 'place' sur une cible limitée."
+    },
+    {
+      "question": "Dans la répartition hydrique de l'organisme, quel pourcentage du poids du corps représente le secteur intravasculaire ?",
+      "answerOptions": [
+        {
+          "text": "$20\\%$",
+          "isCorrect": false,
+          "rationale": "Cela correspond au secteur extracellulaire total."
+        },
+        {
+          "text": "$15\\%$",
+          "isCorrect": false,
+          "rationale": "Il s'agit du pourcentage de l'eau interstitielle."
+        },
+        {
+          "text": "$5\\%$",
+          "isCorrect": true,
+          "rationale": "Le plasma contenu dans les vaisseaux représente une faible part du poids corporel total comparativement aux tissus."
+        },
+        {
+          "text": "$60\\%$",
+          "isCorrect": false,
+          "rationale": "C'est l'eau totale de l'organisme, pas seulement le secteur intravasculaire."
+        }
+      ],
+      "hint": "C'est la plus petite fraction citée pour les secteurs hydriques extracellulaires."
+    }
+  ]
+}

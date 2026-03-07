@@ -1,0 +1,80 @@
+Que signifie l'acronyme DCI en pharmacologie ?,Dénomination commune internationale
+"Dans l'exemple « metformine = Glucophage », quel terme correspond au nom de spécialité (princeps) ?",Glucophage
+"Dans l'exemple « suxaméthonium = Célocurine », quel terme correspond à la DCI ?",Suxaméthonium
+Quel autre nom est couramment utilisé pour la DCI suxaméthonium ?,Succinylcholine
+Définition : Pharmacocinétique,Étude du devenir d’un médicament introduit dans l’organisme.
+Définition : Pharmacodynamie,Étude de l’action du médicament sur l'organisme.
+Comment appelle-t-on l'effet d'un médicament qui constitue l'objectif thérapeutique ?,L'effet principal
+Comment appelle-t-on les effets non recherchés d'un médicament ?,Les effets secondaires
+Donnez un exemple de médicament ayant une action de prévention de la maladie.,Les vaccins (ou traitement antirétroviral après exposition au VIH).
+Donnez un exemple de médicament utilisé pour une action de substitution.,L'insuline (ou les vitamines).
+Le curare et les hypnotiques sont classés dans quelle catégorie d'action pharmacodynamique ?,L'action symptomatique (blocage d'un fonctionnement physiologique).
+L'utilisation d'un antibiotique pour traiter une infection bactérienne est un exemple d'_____.,Action curative
+Quel est l'effet principal recherché lors de l'administration d'atropine pour le cœur ?,Accélérer le rythme cardiaque.
+Citez deux effets secondaires fréquents de l'atropine.,Assèchement des muqueuses et ralentissement du transit.
+Quel est l'effet secondaire de la morphine sur le système respiratoire ?,Diminution de la fréquence respiratoire.
+Citez trois effets secondaires digestifs ou urinaires de la morphine.,"Troubles du transit, nausées/vomissements et rétention d’urine."
+Vrai ou Faux : Les effets secondaires sont toujours dépendants de la posologie.,Faux (ex : AINS chez la femme enceinte).
+Quel paramètre biologique doit être monitoré lors d'un traitement par AVK ?,L'INR
+Quelles sont les deux toxicités majeures à surveiller lors de l'utilisation de la gentamicine ?,La néphrotoxicité et l'ototoxicité.
+Définition : Biodisponibilité,Quantité de médicament qui se retrouve dans la circulation générale.
+Citez deux avantages majeurs de la voie intraveineuse (IV).,Rapidité d’action et contrôle précis de la quantité atteignant la circulation.
+Quel est le risque lié à la taille de la molécule lors d'une administration sous-cutanée (SC) ?,Le passage peut être influencé par la taille de la molécule.
+"Classez par rapidité d'action croissante : voies IM/SC, voie IV, voie sublinguale.",IM/SC $<$ sublinguale $<$ IV.
+Quelle voie d'administration permet une rapidité d'action équivalente à la voie $IV$ ?,La voie pulmonaire (ex : adrénaline).
+Quel type d'agent est nécessaire pour une administration par voie cutanée ou percutanée ?,Un agent liposoluble.
+Quel est le $pH$ approximatif de l'estomac ?,"$1$ à $3,5$."
+Quel est le $pH$ approximatif de l'iléon ?,$8$.
+Quelle forme d'un médicament traverse le plus facilement les membranes cellulaires ?,La forme non ionisée (lipophile).
+Dans quel milieu l'absorption d'un acide faible est-elle favorisée ?,En milieu acide (estomac).
+Pourquoi une base faible est-elle mieux absorbée au niveau intestinal qu'au niveau stomacal ?,Car elle est moins ionisée en milieu intestinal où le $pH$ est plus élevé.
+Définition : Effet du premier passage hépatique,Métabolisation ou élimination du médicament par le foie avant son arrivée dans la circulation générale.
+Quel est le but principal de la biotransformation hépatique des médicaments ?,Passer de l'état lipophile à l'état hydrophile pour permettre l'élimination.
+Quel complexe enzymatique est responsable de la Phase 1 du métabolisme hépatique ?,Les $CYP\ 450$ (Cytochromes $P450$).
+Comment appelle-t-on la Phase 2 de la biotransformation hépatique ?,La conjugaison.
+Quel est le risque pour un patient considéré comme « métaboliseur lent » ?,Une augmentation de la possible toxicité du médicament.
+Quelle est la conséquence pour un patient considéré comme « métaboliseur rapide » ?,"Une efficacité réduite, voire une inefficacité du traitement."
+Pourquoi le traitement des ostéites est-il souvent difficile ?,Parce que les os sont des tissus peu vascularisés.
+Quelle pathologie organique influence principalement le devenir des médicaments liposolubles ?,Les pathologies hépatiques (ex : cirrhose).
+Quel état pathologique influence principalement le devenir des médicaments hydrosolubles ?,L'insuffisance rénale.
+Définition : Intervalle thérapeutique,Zone de concentration située entre le seuil thérapeutique et le seuil de toxicité.
+"Sur la courbe dose-effet, que représente la zone de plateau ($DE$) ?",L'effet maximal ($Emax$) où l'augmentation de dose n'augmente plus l'effet désiré.
+Définition : $DE_{50}$,Dose permettant d'obtenir $50\%$ de l'effet maximal.
+Donnez un exemple de médicament ciblant des récepteurs membranaires.,Les anti-sécrétoires gastriques (antagonistes H2) ou les $\beta$-lactamines.
+Donnez un exemple de classe de médicaments ciblant des récepteurs nucléaires.,Les corticoïdes (ou les immunosuppresseurs).
+Citez trois propriétés caractéristiques des récepteurs pharmacologiques.,"Saturables, affinité et spécificité."
+Concept : Agoniste,Molécule qui mime l’action de la molécule endogène en se fixant sur son récepteur.
+Concept : Antagoniste compétitif,Molécule qui inhibe l’action de la molécule endogène en se fixant sur le même site du récepteur.
+Pourquoi la kétamine est-elle considérée comme un antagoniste non compétitif ?,"Car elle possède une action multisites (NMDA, opioïde, $\beta+$, sérotonine, etc.)."
+Donnez un exemple de médicament ayant une action agoniste-antagoniste.,La nalbuphine.
+Quel pourcentage du poids du corps représente le secteur extracellulaire ?,$20\%$.
+Quel pourcentage du poids du corps représente l'eau intravasculaire ?,$5\%$.
+L'eau interstitielle représente _____ $\%$ du poids du corps.,$15\%$.
+La forme _____ d'un médicament possède une faible liposolubilité mais une forte solubilité dans l'eau.,Ionisée
+Quels sont les deux principaux modes d'excrétion d'un médicament après métabolisation ?,Voie biliaire et voie urinaire.
+Quel est l'impact de la fixation aux protéines plasmatiques sur la diffusion tissulaire ?,Seule la forme libre du médicament peut diffuser vers les tissus.
+Citez un exemple de barrière physiologique limitant la diffusion des médicaments.,Les méninges (barrière hémato-encéphalique).
+L'accoutumance et l'hyperalgésie sont des effets secondaires possibles de quel antalgique majeur ?,La morphine.
+Pourquoi le monitoring des « pics et creux » est-il nécessaire pour la gentamicine ?,Pour garantir l'efficacité tout en évitant la toxicité rénale et auditive.
+"Dans le modèle ADME, que signifie le « M » ?",Métabolisation
+Quel est l'avantage de la voie pulmonaire pour les gaz halogénés ?,La possibilité d'un contrôle continu de la concentration.
+La résorption intestinale d'un médicament conduit directement au _____ avant la circulation générale.,Système porte hépatique
+Un médicament administré par voie _____ évite totalement l'étape d'absorption.,Intraveineuse ($IV$)
+La _____ est la force de liaison entre un médicament et son récepteur.,Affinité
+Comment l'état local de la peau influence-t-il l'effet d'un patch de Durogésic ?,L'absorption percutanée dépend de l'intégrité et de la vascularisation locale de la peau.
+Quel paramètre pharmacocinétique permet de choisir la fréquence des doses ?,L'intervalle thérapeutique (lié à la demi-vie d'élimination).
+L'adrénaline et les benzodiazépines agissent comme des _____ sur leurs récepteurs respectifs.,Agonistes
+Vrai ou Faux : Les comprimés gastro-résistants sont conçus pour être absorbés dans l'estomac.,Faux (ils résistent à l'acidité gastrique pour être libérés dans l'intestin).
+La transformation d'une prodrogue en drogue active se produit généralement lors du _____.,Passage hépatique
+Pourquoi la taille de la molécule n'est-elle pas un problème pour l'absorption SC de l'insuline ?,Car c'est une molécule dont la taille permet un passage adéquat malgré la voie $SC$.
+Quelle est la principale protéine de fixation des médicaments dans le sang (indiquée par « P » dans le schéma) ?,L'albumine (protéines plasmatiques).
+Le passage d'une solution lipidique par voie $IM$ est-il rapide ou lent ?,Lent
+Quelle voie d'administration utilise la muqueuse sous la langue pour une action rapide ?,La voie sublinguale.
+Citez un médicament administré par voie pulmonaire pour un effet local.,Le salbutamol.
+"L'étude du devenir du médicament comprend quatre étapes : Absorption, Distribution, Métabolisme et _____.",Excrétion (ou Élimination).
+Quel terme désigne la concentration plasmatique correspondant à $50\%$ de l'effet maximal ?,$CE_{50}$
+"Sur une courbe dose-effet, quelle partie montre une augmentation proportionnelle de l'effet avec la dose ?",Le segment linéaire (zone $BD$).
+Qu'est-ce qu'un effet secondaire « indépendant de la posologie » ?,Un effet qui peut survenir même à faible dose (ex: réaction allergique).
+La spécificité d'un récepteur permet de limiter quoi ?,Les effets secondaires.
+Dans quel compartiment liquidien se trouve l'eau interstitielle ?,Le secteur extracellulaire.
+L'effet principal d'un vaccin est une action de _____.,Prévention

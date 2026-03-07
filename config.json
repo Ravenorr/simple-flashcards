@@ -16,7 +16,9 @@
             "LEGISLATION.csv",
             "VIGILANCES_SANITAIRES.csv",
             "SURVEILLANCE_CARDIAQUE.csv",
-            "ARRET_CARDIAQUE.csv"
+            "ARRET_CARDIAQUE.csv",
+            "PHARMACOLOGIE.csv",
+            "SYSTEME_NERVEUX.csv"
         ]
     },
     "schemas": {
@@ -36,7 +38,9 @@
             "LEGISLATION.json",
             "VIGILANCES_SANITAIRES.json",
             "SURVEILLANCE_CARDIAQUE.json",
-            "ARRET_CARDIAQUE.json"
+            "ARRET_CARDIAQUE.json",
+            "PHARMACOLOGIE.json",
+            "SYSTEME_NERVEUX.json"
         ]
     }
 }

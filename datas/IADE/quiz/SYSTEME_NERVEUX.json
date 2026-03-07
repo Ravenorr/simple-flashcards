@@ -1,0 +1,316 @@
+{
+  "quiz": [
+    {
+      "question": "Parmi les structures suivantes, laquelle est la seule partie du cerveau à contenir des récepteurs à la douleur ?",
+      "answerOptions": [
+        {
+          "text": "L'arachnoïde",
+          "isCorrect": false,
+          "rationale": "Cette membrane intermédiaire joue un rôle dans la circulation du liquide cérébrospinal mais est dépourvue de récepteurs nociceptifs."
+        },
+        {
+          "text": "La pie-mère",
+          "isCorrect": false,
+          "rationale": "Bien que très vascularisée et en contact direct avec le tissu nerveux, elle ne transmet pas de sensation de douleur."
+        },
+        {
+          "text": "La dure-mère",
+          "isCorrect": true,
+          "rationale": "Cette enveloppe fibreuse externe est la seule structure méningée possédant des récepteurs à la douleur, ce qui explique son importance lors des chirurgies éveillées."
+        },
+        {
+          "text": "Le cortex cérébral",
+          "isCorrect": false,
+          "rationale": "Le parenchyme cérébral lui-même est insensible, c'est pourquoi on peut opérer un patient éveillé sans qu'il ne sente l'incision du tissu nerveux."
+        }
+      ],
+      "hint": "C'est l'enveloppe la plus externe et la plus résistante du système nerveux central."
+    },
+    {
+      "question": "Quelle hormone est stockée par la post-hypophyse (neurohypophyse) bien qu'elle soit initialement sécrétée par l'hypothalamus ?",
+      "answerOptions": [
+        {
+          "text": "L'hormone de croissance (GH)",
+          "isCorrect": false,
+          "rationale": "La GH est produite et sécrétée par l'anté-hypophyse pour stimuler la croissance des tissus."
+        },
+        {
+          "text": "L'hormone antidiurétique (ADH)",
+          "isCorrect": true,
+          "rationale": "Aussi appelée vasopressine, elle est produite par l'hypothalamus puis stockée et libérée par la post-hypophyse pour réguler la rétention d'eau."
+        },
+        {
+          "text": "La prolactine (PRL)",
+          "isCorrect": false,
+          "rationale": "Cette hormone est directement produite par le lobe antérieur de l'hypophyse."
+        },
+        {
+          "text": "La mélatonine",
+          "isCorrect": false,
+          "rationale": "La mélatonine est sécrétée par l'épiphyse (glande pinéale) et non par l'hypophyse."
+        }
+      ],
+      "hint": "Cette hormone joue un rôle crucial dans l'équilibre hydrique en agissant sur les reins."
+    },
+    {
+      "question": "Selon la doctrine de Monro-Kellie, quels sont les trois volumes qui doivent rester constants à l'intérieur de la boîte crânienne ?",
+      "answerOptions": [
+        {
+          "text": "Cerveau, Liquide Cérébrospinal (LCR), Sang",
+          "isCorrect": true,
+          "rationale": "La somme de ces trois volumes est constante ; toute augmentation de l'un doit être compensée par la diminution d'un autre pour éviter l'hypertension intracrânienne."
+        },
+        {
+          "text": "Cerveau, Méninges, Sang",
+          "isCorrect": false,
+          "rationale": "Les méninges sont des structures fixes et non des volumes fluides capables de compensation rapide."
+        },
+        {
+          "text": "LCR, Sang, Nerfs crâniens",
+          "isCorrect": false,
+          "rationale": "Le volume occupé par les nerfs crâniens est négligeable par rapport aux trois compartiments majeurs régis par cette loi de pression."
+        },
+        {
+          "text": "Cervelet, Tronc cérébral, Cerveau",
+          "isCorrect": false,
+          "rationale": "Ces éléments constituent tous le compartiment tissulaire (parentime) mais n'incluent pas les compartiments liquidiens essentiels à l'homéostasie de la pression."
+        }
+      ],
+      "hint": "Pensez aux composants tissulaires, aqueux et vasculaires contenus dans le crâne."
+    },
+    {
+      "question": "Dans quel espace circule normalement le liquide cérébrospinal (LCR) ?",
+      "answerOptions": [
+        {
+          "text": "L'espace extra-dural",
+          "isCorrect": false,
+          "rationale": "Il s'agit d'un espace virtuel entre l'os et la dure-mère où un saignement peut créer un hématome extradural."
+        },
+        {
+          "text": "L'espace sous-dural",
+          "isCorrect": false,
+          "rationale": "Cet espace se situe entre la dure-mère et l'arachnoïde et contient normalement une très faible quantité de liquide lymphatique."
+        },
+        {
+          "text": "L'espace sous-arachnoïdien",
+          "isCorrect": true,
+          "rationale": "C'est entre l'arachnoïde et la pie-mère que le LCR circule pour protéger et nourrir le système nerveux central."
+        },
+        {
+          "text": "Le canal de l'épendyme",
+          "isCorrect": false,
+          "rationale": "Bien que le canal de l'épendyme contienne du LCR au centre de la moelle, l'essentiel de la circulation externe se fait entre deux membranes méningées spécifiques."
+        }
+      ],
+      "hint": "C'est l'espace situé entre les deux méninges les plus profondes."
+    },
+    {
+      "question": "Quelle est la formule correcte pour calculer la Pression de Perfusion Cérébrale (PPC) ?",
+      "answerOptions": [
+        {
+          "text": "$PPC = PAM + PIC$",
+          "isCorrect": false,
+          "rationale": "L'ajout de la pression intracrânienne à la pression artérielle ne reflète pas la force nette disponible pour perfuser le cerveau."
+        },
+        {
+          "text": "$PPC = PAM - PIC$",
+          "isCorrect": true,
+          "rationale": "La pression de perfusion est le résultat de la pression artérielle moyenne (force poussante) moins la pression intracrânienne (force opposante)."
+        },
+        {
+          "text": "$PPC = PAM \\times PIC$",
+          "isCorrect": false,
+          "rationale": "La perfusion cérébrale dépend d'une différence de pression et non d'un produit multiplicatif."
+        },
+        {
+          "text": "$PPC = \\frac{PAM}{PIC}$",
+          "isCorrect": false,
+          "rationale": "La relation entre ces pressions est soustractive, car la PIC agit comme une résistance directe à l'entrée du sang artériel."
+        }
+      ],
+      "hint": "Considérez que la pression intracrânienne s'oppose à la pression artérielle moyenne."
+    },
+    {
+      "question": "Quel lobe cérébral est principalement responsable du raisonnement, des fonctions du langage et de la coordination motrice volontaire ?",
+      "answerOptions": [
+        {
+          "text": "Lobe occipital",
+          "isCorrect": false,
+          "rationale": "Le lobe occipital est essentiellement dédié au traitement et à l'interprétation des stimuli visuels."
+        },
+        {
+          "text": "Lobe pariétal",
+          "isCorrect": false,
+          "rationale": "Il est le siège de la conscience du corps, du toucher et de la perception de l'espace environnant."
+        },
+        {
+          "text": "Lobe temporal",
+          "isCorrect": false,
+          "rationale": "Le lobe temporal est principalement lié à l'audition et aux mécanismes complexes de la mémorisation."
+        },
+        {
+          "text": "Lobe frontal",
+          "isCorrect": true,
+          "rationale": "Situé à l'avant, il gère les fonctions exécutives supérieures, le langage moteur et la planification des mouvements."
+        }
+      ],
+      "hint": "Il s'agit de la partie la plus antérieure des hémisphères cérébraux."
+    },
+    {
+      "question": "Où se termine physiologiquement la moelle épinière chez l'adulte ?",
+      "answerOptions": [
+        {
+          "text": "Au niveau du coccyx",
+          "isCorrect": false,
+          "rationale": "Seul le filum terminale (prolongement fibreux de la pie-mère) descend jusqu'au coccyx, mais la moelle nerveuse s'arrête bien plus haut."
+        },
+        {
+          "text": "Au niveau de la deuxième vertèbre lombaire (L2)",
+          "isCorrect": true,
+          "rationale": "La moelle épinière s'arrête généralement à hauteur de L1-L2, ce qui permet de réaliser des ponctions lombaires en dessous de ce niveau sans risque de lésion médullaire."
+        },
+        {
+          "text": "Au niveau de la cinquième vertèbre lombaire (L5)",
+          "isCorrect": false,
+          "rationale": "À ce niveau, on ne trouve que les racines nerveuses de la 'queue de cheval' baignant dans le LCR, et non la moelle elle-même."
+        },
+        {
+          "text": "Au niveau de la douzième vertèbre thoracique (T12)",
+          "isCorrect": false,
+          "rationale": "Bien que proche de la fin, la moelle descend légèrement plus bas que la dernière vertèbre thoracique avant de former le cône médullaire."
+        }
+      ],
+      "hint": "Cela explique pourquoi on pique entre L3-L4 ou L4-L5 pour prélever du LCR sans danger."
+    },
+    {
+      "question": "Quel nerf crânien est responsable de la motricité des muscles de la langue ?",
+      "answerOptions": [
+        {
+          "text": "Nerf Vague (X)",
+          "isCorrect": false,
+          "rationale": "Le nerf vague s'occupe de la régulation végétative et de la phonation, mais pas de la motricité linguale directe."
+        },
+        {
+          "text": "Nerf Accessoire (XI)",
+          "isCorrect": false,
+          "rationale": "Ce nerf innerve principalement les muscles du cou comme le trapèze et le sternocléidomastoïdien."
+        },
+        {
+          "text": "Nerf Hypoglosse (XII)",
+          "isCorrect": true,
+          "rationale": "Le nerf XII est exclusivement moteur et assure les mouvements complexes de la langue nécessaires à la parole et à la déglutition."
+        },
+        {
+          "text": "Nerf Glossopharyngien (IX)",
+          "isCorrect": false,
+          "rationale": "Bien qu'il participe à la gustation et aux mouvements de la gorge, il n'est pas le moteur principal de la langue."
+        }
+      ],
+      "hint": "Son nom vient du grec signifiant 'sous la langue'."
+    },
+    {
+      "question": "Quel est l'effet d'une augmentation de la pression artérielle partielle en $CO_2$ ($PaCO_2$) sur le débit sanguin cérébral (DSC) ?",
+      "answerOptions": [
+        {
+          "text": "Elle entraîne une vasoconstriction et diminue le DSC.",
+          "isCorrect": false,
+          "rationale": "C'est l'hypocapnie (baisse du $CO_2$) qui provoque une vasoconstriction pour réduire le volume sanguin cérébral."
+        },
+        {
+          "text": "Elle entraîne une vasodilatation et augmente le DSC.",
+          "isCorrect": true,
+          "rationale": "Le $CO_2$ est un puissant vasodilatateur cérébral ; une augmentation de $1$ mmHg de $PaCO_2$ augmente le débit d'environ $5 \\% $."
+        },
+        {
+          "text": "Elle n'a aucun effet grâce à l'autorégulation.",
+          "isCorrect": false,
+          "rationale": "Si l'autorégulation gère les variations de pression artérielle, les gaz du sang (particulièrement le $CO_2$) sont des stimuli métaboliques qui court-circuitent ce système."
+        },
+        {
+          "text": "Elle diminue la pression intracrânienne.",
+          "isCorrect": false,
+          "rationale": "En dilatant les vaisseaux, l'hypercapnie augmente le volume sanguin cérébral, ce qui tend à augmenter la pression intracrânienne."
+        }
+      ],
+      "hint": "Pensez au rôle du $CO_2$ sur le diamètre des vaisseaux sanguins du cerveau."
+    },
+    {
+      "question": "Comment s'appelle la structure artérielle qui permet d'assurer une suppléance de l'irrigation cérébrale en cas d'obstruction d'un vaisseau majeur ?",
+      "answerOptions": [
+        {
+          "text": "Le sinus sagittal supérieur",
+          "isCorrect": false,
+          "rationale": "C'est une structure veineuse de drainage et non un système artériel d'alimentation."
+        },
+        {
+          "text": "Le polygone de Willis",
+          "isCorrect": true,
+          "rationale": "Aussi appelé cercle artériel de la base du cerveau, il relie les systèmes carotidien et vertébro-basilaire pour assurer une perfusion continue."
+        },
+        {
+          "text": "L'aqueduc de Sylvius",
+          "isCorrect": false,
+          "rationale": "C'est un canal permettant le passage du LCR entre le troisième et le quatrième ventricule, sans rôle vasculaire."
+        },
+        {
+          "text": "Le tronc basilaire",
+          "isCorrect": false,
+          "rationale": "C'est une artère importante issue de l'union des vertébrales, mais elle ne constitue qu'une partie du système d'anastomose complet."
+        }
+      ],
+      "hint": "C'est un cercle d'artères situé à la base du cerveau."
+    },
+    {
+      "question": "Quelle structure sépare physiologiquement les étages supra-tentoriel et sous-tentoriel du cerveau ?",
+      "answerOptions": [
+        {
+          "text": "La faux du cerveau",
+          "isCorrect": false,
+          "rationale": "La faux du cerveau sépare verticalement les deux hémisphères cérébraux dans le plan sagittal."
+        },
+        {
+          "text": "La tente du cervelet",
+          "isCorrect": true,
+          "rationale": "Ce repli de la dure-mère forme une cloison horizontale séparant le cerveau (en haut) du cervelet et du tronc cérébral (en bas)."
+        },
+        {
+          "text": "Le corps calleux",
+          "isCorrect": false,
+          "rationale": "Il s'agit d'un faisceau de fibres nerveuses reliant les deux hémisphères, et non d'une cloison méningée."
+        },
+        {
+          "text": "La scissure de Sylvius",
+          "isCorrect": false,
+          "rationale": "C'est un sillon profond séparant principalement le lobe frontal du lobe temporal sur la face latérale du cerveau."
+        }
+      ],
+      "hint": "C'est un repli de la dure-mère dont le nom évoque un abri de camping."
+    },
+    {
+      "question": "Un patient présentant une atteinte du motoneurone supérieur (par exemple une lésion cérébrale au-dessus de la corne antérieure) présentera typiquement :",
+      "answerOptions": [
+        {
+          "text": "Une abolition complète des réflexes ostéotendineux.",
+          "isCorrect": false,
+          "rationale": "L'abolition des réflexes est le signe d'une atteinte du motoneurone inférieur ou de l'arc réflexe lui-même."
+        },
+        {
+          "text": "Une augmentation des réflexes (hyperréflexie).",
+          "isCorrect": true,
+          "rationale": "La lésion du motoneurone supérieur lève l'inhibition corticale sur la moelle, ce qui entraîne des réflexes vifs ou exagérés."
+        },
+        {
+          "text": "Une atrophie musculaire immédiate et massive.",
+          "isCorrect": false,
+          "rationale": "L'atrophie rapide est caractéristique d'une dénervation périphérique (atteinte du motoneurone inférieur)."
+        },
+        {
+          "text": "Une absence de réponse à la douleur uniquement.",
+          "isCorrect": false,
+          "rationale": "L'atteinte du motoneurone est d'ordre moteur ; la sensibilité dépend des voies afférentes sensitives."
+        }
+      ],
+      "hint": "Pensez au contrôle exercé par les centres supérieurs sur l'excitabilité de la moelle épinière."
+    }
+  ]
+}
