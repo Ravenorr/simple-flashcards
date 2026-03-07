@@ -24,7 +24,8 @@
             "CARDIO.csv",
             "IMMUNO.csv",
             "SOINS_AU_PATIENT.csv",
-            "DIGESTIF.csv"
+            "DIGESTIF.csv",
+            "LOCOMOTEUR.csv"
         ]
     },
     "quiz": {
