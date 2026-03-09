@@ -18,7 +18,8 @@
             "SURVEILLANCE_CARDIAQUE.csv",
             "ARRET_CARDIAQUE.csv",
             "PHARMACOLOGIE.csv",
-            "SYSTEME_NERVEUX.csv"
+            "SYSTEME_NERVEUX.csv",
+            "REMPLISSAGE_VASCULAIRE.csv"
         ]
     },
     "schemas": {
@@ -40,7 +41,8 @@
             "SURVEILLANCE_CARDIAQUE.json",
             "ARRET_CARDIAQUE.json",
             "PHARMACOLOGIE.json",
-            "SYSTEME_NERVEUX.json"
+            "SYSTEME_NERVEUX.json",
+            "REMPLISSAGE_VASCULAIRE.json"
         ]
     }
 }

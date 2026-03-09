@@ -1,0 +1,264 @@
+{
+  "quiz": [
+    {
+      "question": "Selon les définitions physiologiques, quelle est la distinction entre l'osmolalité et l'osmolarité ?",
+      "answerOptions": [
+        {
+          "text": "L'osmolalité se mesure par kilogramme de solvant, tandis que l'osmolarité se mesure par litre de solution.",
+          "isCorrect": true,
+          "rationale": "L'osmolalité rapporte le nombre d'osmoles à la masse du solvant, alors que l'osmolarité le rapporte au volume total de la solution."
+        },
+        {
+          "text": "L'osmolalité concerne les molécules non dissociées, tandis que l'osmolarité concerne les molécules dissociées.",
+          "isCorrect": false,
+          "rationale": "Les deux termes se réfèrent aux molécules dissociées (osmoles) présentes dans le milieu."
+        },
+        {
+          "text": "L'osmolalité se mesure par litre de solution, tandis que l'osmolarité se mesure par kilogramme de solvant.",
+          "isCorrect": false,
+          "rationale": "Cette option inverse les définitions standards de la concentration massique et volumique des osmoles."
+        },
+        {
+          "text": "L'osmolalité dépend uniquement de la température, contrairement à l'osmolarité.",
+          "isCorrect": false,
+          "rationale": "Bien que l'osmolarité puisse varier légèrement avec la température à cause de la dilatation des liquides, ce n'est pas la distinction fondamentale."
+        }
+      ],
+      "hint": "Considérez l'unité de mesure utilisée pour quantifier le solvant par rapport à la solution totale."
+    },
+    {
+      "question": "Dans le phénomène d'osmose, quel est le sens naturel du mouvement de l'eau à travers une membrane semi-perméable ?",
+      "answerOptions": [
+        {
+          "text": "Du milieu le moins concentré vers le milieu le plus concentré.",
+          "isCorrect": true,
+          "rationale": "L'eau se déplace spontanément pour diluer le milieu ayant la plus forte concentration en solutés afin d'atteindre un équilibre."
+        },
+        {
+          "text": "Du milieu le plus concentré vers le milieu le moins concentré.",
+          "isCorrect": false,
+          "rationale": "Ce mouvement correspondrait au transport des solutés par diffusion, et non au mouvement du solvant par osmose."
+        },
+        {
+          "text": "Uniquement du secteur intracellulaire vers le secteur interstitiel.",
+          "isCorrect": false,
+          "rationale": "Le mouvement dépend du gradient de concentration et non du type de compartiment anatomique."
+        },
+        {
+          "text": "Elle suit le gradient de pression hydrostatique sans lien avec la concentration.",
+          "isCorrect": false,
+          "rationale": "Le mouvement lié à la concentration est spécifiquement défini par la loi de l'osmose, distinct de la filtration hydrostatique."
+        }
+      ],
+      "hint": "Pensez au processus naturel qui cherche à équilibrer les concentrations de part et d'autre d'une membrane."
+    },
+    {
+      "question": "Quelle force physique, générée par la contraction myocardique, favorise la sortie d'eau des capillaires vers l'interstitium ?",
+      "answerOptions": [
+        {
+          "text": "La pression hydrostatique.",
+          "isCorrect": true,
+          "rationale": "La pression hydrostatique est la force exercée par le sang sur la paroi vasculaire qui pousse le liquide vers l'extérieur du vaisseau."
+        },
+        {
+          "text": "La pression oncotique.",
+          "isCorrect": false,
+          "rationale": "La pression oncotique, liée aux protéines, exerce une force d'attraction qui retient l'eau à l'intérieur des capillaires."
+        },
+        {
+          "text": "La pression osmotique intracellulaire.",
+          "isCorrect": false,
+          "rationale": "Cette pression concerne le mouvement entre l'interstitium et la cellule, et non la sortie initiale du capillaire."
+        },
+        {
+          "text": "Le gradient de natrémie.",
+          "isCorrect": false,
+          "rationale": "Bien que le sodium influence l'osmolarité, ce n'est pas la force mécanique issue de l'éjection cardiaque."
+        }
+      ],
+      "hint": "Réfléchissez à la pression mécanique exercée directement contre les parois des vaisseaux lors de l'éjection systolique."
+    },
+    {
+      "question": "Quel composant plasmatique est principalement responsable du maintien de la pression oncotique ?",
+      "answerOptions": [
+        {
+          "text": "Les protéines (comme l'albumine).",
+          "isCorrect": true,
+          "rationale": "La pression oncotique est une forme de pression osmotique exercée spécifiquement par les macromolécules protéiques qui ne traversent pas la paroi capillaire."
+        },
+        {
+          "text": "Les ions sodium ($Na^+$).",
+          "isCorrect": false,
+          "rationale": "Le sodium est le principal déterminant de l'osmolarité totale, mais pas de la pression oncotique qui est protéique."
+        },
+        {
+          "text": "Le glucose.",
+          "isCorrect": false,
+          "rationale": "Le glucose contribue à la tonicité plasmatique mais sa petite taille lui permet de diffuser plus librement que les protéines."
+        },
+        {
+          "text": "Les globules rouges.",
+          "isCorrect": false,
+          "rationale": "Les éléments figurés du sang n'exercent pas de pression oncotique ; celle-ci dépend des substances dissoutes dans le plasma."
+        }
+      ],
+      "hint": "Identifiez les molécules de grande taille qui ne franchissent pas facilement la paroi vasculaire physiologique."
+    },
+    {
+      "question": "Quel est le rôle principal du glycocalyx vasculaire dans la gestion des fluides ?",
+      "answerOptions": [
+        {
+          "text": "Il régule la perméabilité vasculaire et nuance l'équilibre de Starling.",
+          "isCorrect": true,
+          "rationale": "Cette couche de glycoprotéines agit comme une barrière supplémentaire filtrant le passage des fluides et des molécules."
+        },
+        {
+          "text": "Il assure le transport actif du potassium ($K^+$) vers l'intérieur de la cellule.",
+          "isCorrect": false,
+          "rationale": "Cette fonction est assurée par les pompes membranaires $ATP$-dépendantes et non par le glycocalyx endothélial."
+        },
+        {
+          "text": "Il produit les protéines responsables de la pression oncotique.",
+          "isCorrect": false,
+          "rationale": "Les protéines plasmatiques sont principalement synthétisées par le foie, pas par le glycocalyx."
+        },
+        {
+          "text": "Il déclenche la vasoconstriction lors d'un choc hypovolémique.",
+          "isCorrect": false,
+          "rationale": "La vasoconstriction est une réponse médiée par le système nerveux sympathique et les hormones, et non par cette barrière physique."
+        }
+      ],
+      "hint": "Pensez à la structure protectrice qui tapisse l'intérieur des vaisseaux et influence les échanges trans-capillaires."
+    },
+    {
+      "question": "Que définit la pression osmotique ($\\pi$) selon le matériel fourni ?",
+      "answerOptions": [
+        {
+          "text": "La pression nécessaire pour empêcher le passage d'eau au travers d'une membrane semi-perméable.",
+          "isCorrect": true,
+          "rationale": "Elle représente la force de contre-pression requise pour stopper l'osmose induite par un gradient de concentration."
+        },
+        {
+          "text": "La différence de concentration en électrolytes entre le milieu interstitiel et intracellulaire.",
+          "isCorrect": false,
+          "rationale": "Ceci décrit un gradient de concentration, qui est la cause de la pression osmotique mais pas la pression elle-même."
+        },
+        {
+          "text": "La force de frottement du sang contre la paroi endothéliale.",
+          "isCorrect": false,
+          "rationale": "Cette description correspond davantage aux forces de cisaillement (shear stress) hydrauliques."
+        },
+        {
+          "text": "La quantité totale d'énergie nécessaire pour le transport actif de l'ATP.",
+          "isCorrect": false,
+          "rationale": "L'osmose est un processus passif, contrairement aux mécanismes nécessitant de l'énergie métabolique."
+        }
+      ],
+      "hint": "Il s'agit de la force d'opposition nécessaire pour contrebalancer le mouvement spontané du solvant."
+    },
+    {
+      "question": "Quel paramètre biologique régit principalement la pression osmotique plasmatique ?",
+      "answerOptions": [
+        {
+          "text": "La natrémie.",
+          "isCorrect": true,
+          "rationale": "Le sodium est l'ion prédominant du secteur extracellulaire et dicte majoritairement le mouvement de l'eau."
+        },
+        {
+          "text": "La kaliémie.",
+          "isCorrect": false,
+          "rationale": "Le potassium est le principal ion intracellulaire ; son impact sur la pression osmotique plasmatique est limité par sa faible concentration extracellulaire."
+        },
+        {
+          "text": "La glycémie.",
+          "isCorrect": false,
+          "rationale": "Bien que le glucose soit osmotiquement actif, sa contribution est normalement secondaire à celle du sodium, sauf en cas de diabète décompensé."
+        },
+        {
+          "text": "Le taux d'hémoglobine.",
+          "isCorrect": false,
+          "rationale": "L'hémoglobine transporte l'oxygène mais n'intervient pas de manière significative dans la pression osmotique du plasma."
+        }
+      ],
+      "hint": "Recherchez l'électrolyte le plus abondant dans le compartiment extracellulaire."
+    },
+    {
+      "question": "Selon l'équation d'Ernest Starling révisée, quelle est la conséquence d'une dégradation du glycocalyx lors d'un sepsis ?",
+      "answerOptions": [
+        {
+          "text": "Une hyperperméabilité vasculaire favorisant la formation d'œdèmes.",
+          "isCorrect": true,
+          "rationale": "La destruction de cette barrière protectrice permet un passage excessif de liquide et de protéines vers le secteur interstitiel."
+        },
+        {
+          "text": "Une augmentation de la pression oncotique intracellulaire.",
+          "isCorrect": false,
+          "rationale": "La dégradation du glycocalyx affecte la barrière capillaire et non la concentration en protéines à l'intérieur des cellules."
+        },
+        {
+          "text": "Une diminution de la pression hydrostatique capillaire.",
+          "isCorrect": false,
+          "rationale": "La pression hydrostatique dépend du débit cardiaque et des résistances, pas directement de l'intégrité de la paroi."
+        },
+        {
+          "text": "Une imperméabilisation totale de la paroi aux cristalloïdes.",
+          "isCorrect": false,
+          "rationale": "Au contraire, la dégradation du glycocalyx rend la paroi plus perméable, et non moins."
+        }
+      ],
+      "hint": "Considérez comment l'altération de la barrière endothéliale modifie les mouvements de fluides vers les tissus."
+    },
+    {
+      "question": "Un remplissage vasculaire agressif peut avoir un effet iatrogène par quel mécanisme ?",
+      "answerOptions": [
+        {
+          "text": "Par la destruction ou dégradation du glycocalyx.",
+          "isCorrect": true,
+          "rationale": "Un apport trop rapide ou volumineux peut altérer la couche protectrice endothéliale, aggravant la fuite capillaire."
+        },
+        {
+          "text": "Par une augmentation excessive de la kaliémie intracellulaire.",
+          "isCorrect": false,
+          "rationale": "Le remplissage influence principalement le secteur extracellulaire et n'augmente pas directement le potassium cellulaire."
+        },
+        {
+          "text": "En provoquant une vasoconstriction systémique réflexe.",
+          "isCorrect": false,
+          "rationale": "Le remplissage vise généralement à traiter une hypovolémie et tend à diminuer la vasoconstriction réactionnelle."
+        },
+        {
+          "text": "Par la transformation des cristalloïdes en colloïdes naturels.",
+          "isCorrect": false,
+          "rationale": "Les cristalloïdes et les colloïdes sont des classes de solutés distinctes et l'une ne se transforme pas en l'autre dans l'organisme."
+        }
+      ],
+      "hint": "Pensez aux dommages structurels que peut subir la fine couche protectrice des vaisseaux lors d'une gestion inappropriée des fluides."
+    },
+    {
+      "question": "Quelle est la proportion de patients pouvant souffrir de complications liées à une administration inappropriée de fluides IV selon les sources citées ?",
+      "answerOptions": [
+        {
+          "text": "1 patient sur 5.",
+          "isCorrect": true,
+          "rationale": "Les données du NICE clinical guideline 174 indiquent qu'un cinquième des patients subit des complications dues à une mauvaise gestion des solutés."
+        },
+        {
+          "text": "1 patient sur 10.",
+          "isCorrect": false,
+          "rationale": "Cette estimation est inférieure à la prévalence rapportée dans les études internationales mentionnées."
+        },
+        {
+          "text": "50% des patients en réanimation.",
+          "isCorrect": false,
+          "rationale": "Bien que fréquent, le chiffre spécifique de 1 sur 5 est celui mis en avant par l'IFAD et Baxter dans le document."
+        },
+        {
+          "text": "Uniquement les patients en choc septique.",
+          "isCorrect": false,
+          "rationale": "Les complications liées aux fluides peuvent toucher tout patient hospitalisé recevant une thérapie intraveineuse."
+        }
+      ],
+      "hint": "Rappelez-vous de l'infographie montrant une silhouette bleue parmi quatre silhouettes grises."
+    }
+  ]
+}
