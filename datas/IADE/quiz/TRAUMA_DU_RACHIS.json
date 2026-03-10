@@ -1,0 +1,264 @@
+{
+  "quiz": [
+    {
+      "question": "Selon les données épidémiologiques du document, quels sont les deux pics d'incidence principaux pour les traumatismes vertébro-médullaires ?",
+      "answerOptions": [
+        {
+          "text": "16-25 ans et les plus de 50 ans",
+          "isCorrect": true,
+          "rationale": "Le document identifie ces deux tranches d'âge comme étant les plus exposées aux risques de traumatismes du rachis."
+        },
+        {
+          "text": "10-15 ans et 30-45 ans",
+          "isCorrect": false,
+          "rationale": "Bien que les accidents arrivent à tout âge, ces périodes ne correspondent pas aux pics statistiques mentionnés."
+        },
+        {
+          "text": "Moins de 10 ans et 25-35 ans",
+          "isCorrect": false,
+          "rationale": "Les traumatismes sont plus rares chez l'enfant en raison de la laxité ligamentaire."
+        },
+        {
+          "text": "40-50 ans et plus de 75 ans",
+          "isCorrect": false,
+          "rationale": "Le second pic commence dès 50 ans, mais le premier pic concerne une population beaucoup plus jeune."
+        }
+      ],
+      "hint": "L'un des pics concerne les jeunes adultes et l'autre les seniors."
+    },
+    {
+      "question": "Quelle règle de prudence doit être appliquée systématiquement pour tout patient polytraumatisé ou traumatisé crânien ?",
+      "answerOptions": [
+        {
+          "text": "Le considérer comme un traumatisé vertébro-médullaire jusqu'à preuve du contraire",
+          "isCorrect": true,
+          "rationale": "Cette approche préventive est cruciale pour éviter l'aggravation de lésions instables non diagnostiquées immédiatement."
+        },
+        {
+          "text": "Attendre l'imagerie avant toute tentative d'immobilisation",
+          "isCorrect": false,
+          "rationale": "L'immobilisation précoce est essentielle pour prévenir une compression médullaire avant même les examens radiologiques."
+        },
+        {
+          "text": "Prioriser systématiquement l'examen neurologique avant la stabilisation des fonctions vitales",
+          "isCorrect": false,
+          "rationale": "La prise en charge des fonctions vitales (ABC) reste prioritaire, bien que le rachis doive être protégé simultanément."
+        },
+        {
+          "text": "Ne suspecter une lésion du rachis que si le patient se plaint de douleurs dorsales",
+          "isCorrect": false,
+          "rationale": "L'altération de la vigilance ou d'autres traumatismes peuvent masquer la douleur rachidienne."
+        }
+      ],
+      "hint": "Il s'agit d'un principe de précaution maximale appliqué dès la prise en charge initiale."
+    },
+    {
+      "question": "Comment définit-on une tétraplégie ?",
+      "answerOptions": [
+        {
+          "text": "Un déficit moteur intéressant les quatre membres",
+          "isCorrect": true,
+          "rationale": "Le terme désigne l'atteinte des membres supérieurs et inférieurs, généralement liée à une lésion cervicale."
+        },
+        {
+          "text": "Un déficit moteur des deux membres inférieurs uniquement",
+          "isCorrect": false,
+          "rationale": "Cette description correspond à la paraplégie, souvent causée par des lésions dorsales ou lombaires."
+        },
+        {
+          "text": "Une perte de sensibilité sans atteinte motrice",
+          "isCorrect": false,
+          "rationale": "Le suffixe '-plégie' fait spécifiquement référence à un déficit de la motricité."
+        },
+        {
+          "text": "Un déficit moteur d'un seul côté du corps",
+          "isCorrect": false,
+          "rationale": "Cela correspondrait plutôt à une hémiplégie, différente dans son origine anatomique."
+        }
+      ],
+      "hint": "Le préfixe grec fait référence au chiffre quatre."
+    },
+    {
+      "question": "Quelle est la particularité anatomique de la deuxième vertèbre cervicale ($C2$), aussi appelée l'Axis ?",
+      "answerOptions": [
+        {
+          "text": "Elle possède une apophyse odontoïde (dent) qui s'articule avec $C1$",
+          "isCorrect": true,
+          "rationale": "Cette structure permet la rotation de la tête mais peut causer des lésions graves du tronc cérébral en cas de fracture."
+        },
+        {
+          "text": "Elle est la seule vertèbre à ne pas posséder de corps vertébral",
+          "isCorrect": false,
+          "rationale": "C'est la première vertèbre cervicale ($C1$), l'Atlas, qui présente cette caractéristique."
+        },
+        {
+          "text": "Elle supporte directement les condyles occipitaux de la tête",
+          "isCorrect": false,
+          "rationale": "Cette fonction de support direct du crâne est dévolue à l'Atlas ($C1$)."
+        },
+        {
+          "text": "Elle est la plus volumineuse des vertèbres cervicales pour supporter le poids du cou",
+          "isCorrect": false,
+          "rationale": "Le volume des vertèbres augmente progressivement en descendant vers le rachis lombaire."
+        }
+      ],
+      "hint": "Cherchez l'élément qui permet de pivoter la tête de gauche à droite."
+    },
+    {
+      "question": "À quel niveau sensitif (dermatome) correspond l'ombilic ?",
+      "answerOptions": [
+        {
+          "text": "$T10$",
+          "isCorrect": true,
+          "rationale": "Le dermatome $T10$ est un repère clinique classique situé au niveau du nombril."
+        },
+        {
+          "text": "$T4$",
+          "isCorrect": false,
+          "rationale": "$T4$ est le repère sensitif correspondant aux mamelons."
+        },
+        {
+          "text": "$L3$",
+          "isCorrect": false,
+          "rationale": "$L3$ correspond au niveau du genou."
+        },
+        {
+          "text": "$C4$",
+          "isCorrect": false,
+          "rationale": "$C4$ concerne la face antérieure de l'épaule."
+        }
+      ],
+      "hint": "C'est un niveau thoracique situé entre l'appendice xiphoïde ($T6$) et l'aine ($T12$)."
+    },
+    {
+      "question": "Lors d'un choc neurogénique (lésion $> T6$), quels signes cliniques cardiovasculaires observe-t-on généralement ?",
+      "answerOptions": [
+        {
+          "text": "Hypotension et bradycardie sinusale",
+          "isCorrect": true,
+          "rationale": "La perte du tonus sympathique libère le tonus vagal, provoquant une vasodilatation et un ralentissement cardiaque."
+        },
+        {
+          "text": "Hypertension et tachycardie de compensation",
+          "isCorrect": false,
+          "rationale": "C'est la réponse classique à une hypovolémie vraie, mais le choc spinal bloque ces réflexes d'adaptation."
+        },
+        {
+          "text": "Hypotension avec tachycardie réactionnelle",
+          "isCorrect": false,
+          "rationale": "Dans une lésion haute, le système sympathique est déconnecté, empêchant la tachycardie compensatrice."
+        },
+        {
+          "text": "Hypertension isolée avec sueurs profuses",
+          "isCorrect": false,
+          "rationale": "Cela peut évoquer une dysréflexie autonome en phase chronique, mais pas le choc initial."
+        }
+      ],
+      "hint": "Pensez à l'effet d'une domination du système parasympathique (vagal)."
+    },
+    {
+      "question": "Pourquoi la manœuvre de Sellick est-elle déconseillée lors de l'intubation d'un traumatisé du rachis cervical ?",
+      "answerOptions": [
+        {
+          "text": "Elle risque de mobiliser un rachis instable et d'aggraver les lésions",
+          "isCorrect": true,
+          "rationale": "La pression exercée sur le cartilage cricoïde peut déplacer des vertèbres fracturées et comprimer la moelle."
+        },
+        {
+          "text": "Elle favorise systématiquement les régurgitations",
+          "isCorrect": false,
+          "rationale": "Au contraire, son but théorique est de prévenir l'inhalation, mais le risque traumatique prime ici."
+        },
+        {
+          "text": "Elle rend la visualisation des cordes vocales impossible",
+          "isCorrect": false,
+          "rationale": "Bien qu'elle puisse gêner, le motif principal de contre-indication est la sécurité médullaire."
+        },
+        {
+          "text": "Elle provoque une bradycardie réflexe immédiate",
+          "isCorrect": false,
+          "rationale": "Ce n'est pas l'effet principal recherché ou redouté dans ce contexte précis de traumatisme osseux."
+        }
+      ],
+      "hint": "Considérez l'effet d'une pression externe directe sur les structures antérieures du cou."
+    },
+    {
+      "question": "Quel est l'objectif de Pression Artérielle Moyenne ($PAM$) recommandé pour maintenir une perfusion médullaire optimale ?",
+      "answerOptions": [
+        {
+          "text": "$> 85$ mmHg",
+          "isCorrect": true,
+          "rationale": "Cet objectif élevé vise à compenser la perte d'autorégulation vasculaire et à prévenir l'ischémie médullaire secondaire."
+        },
+        {
+          "text": "$> 65$ mmHg",
+          "isCorrect": false,
+          "rationale": "$65$ mmHg est l'objectif standard pour la plupart des états de choc, mais il est insuffisant pour le traumatisé médullaire."
+        },
+        {
+          "text": "$> 100$ mmHg",
+          "isCorrect": false,
+          "rationale": "Une pression trop élevée pourrait favoriser des saignements ou des œdèmes sans bénéfice prouvé par rapport à $85$ mmHg."
+        },
+        {
+          "text": "Entre $50$ et $60$ mmHg pour limiter l'oedème",
+          "isCorrect": false,
+          "rationale": "Une telle hypotension aggraverait dramatiquement les lésions nerveuses par défaut d'oxygénation."
+        }
+      ],
+      "hint": "C'est un objectif plus élevé que la normale pour garantir que le sang arrive bien aux tissus nerveux lésés."
+    },
+    {
+      "question": "Quel syndrome médullaire se caractérise par une hémiplégie d'un côté et une hémianesthésie thermo-algique du côté opposé ?",
+      "answerOptions": [
+        {
+          "text": "Syndrome de Brown-Séquard",
+          "isCorrect": true,
+          "rationale": "Ce syndrome résulte d'une lésion d'une seule moitié latérale de la moelle épinière."
+        },
+        {
+          "text": "Syndrome central de la moelle",
+          "isCorrect": false,
+          "rationale": "Il touche principalement les membres supérieurs et est souvent causé par une atteinte de la partie centrale."
+        },
+        {
+          "text": "Syndrome antérieur de la moelle",
+          "isCorrect": false,
+          "rationale": "Il entraîne une paralysie motrice bilatérale mais préserve souvent la sensibilité profonde."
+        },
+        {
+          "text": "Syndrome de la queue de cheval",
+          "isCorrect": false,
+          "rationale": "Il concerne les racines nerveuses sous le niveau de $L1$ et provoque des troubles périnéaux et sphinctériens."
+        }
+      ],
+      "hint": "Il est également appelé syndrome de l'hémimoelle."
+    },
+    {
+      "question": "En combien de temps des escarres peuvent-elles se constituer chez un patient atteint d'une lésion médullaire complète ?",
+      "answerOptions": [
+        {
+          "text": "En moins de 2 heures",
+          "isCorrect": true,
+          "rationale": "L'altération de la vasomotricité et l'immobilité totale accélèrent dramatiquement la nécrose cutanée aux points de pression."
+        },
+        {
+          "text": "Après 12 à 24 heures",
+          "isCorrect": false,
+          "rationale": "C'est le délai habituel pour un patient mobile, mais beaucoup trop long pour un blessé médullaire."
+        },
+        {
+          "text": "Seulement après plusieurs jours d'hospitalisation",
+          "isCorrect": false,
+          "rationale": "Les lésions cutanées commencent dès la phase pré-hospitalière si l'installation n'est pas minutieuse."
+        },
+        {
+          "text": "Environ 6 heures",
+          "isCorrect": false,
+          "rationale": "Bien que rapide, ce délai est encore surestimé par rapport à la fragilité vasculaire de ces patients."
+        }
+      ],
+      "hint": "La rapidité est extrême à cause de la perte du contrôle de la circulation sanguine cutanée."
+    }
+  ]
+}

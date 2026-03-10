@@ -19,7 +19,8 @@
             "ARRET_CARDIAQUE.csv",
             "PHARMACOLOGIE.csv",
             "SYSTEME_NERVEUX.csv",
-            "REMPLISSAGE_VASCULAIRE.csv"
+            "REMPLISSAGE_VASCULAIRE.csv",
+            "TRAUMA_DU_RACHIS.csv"
         ]
     },
     "schemas": {
@@ -42,7 +43,8 @@
             "ARRET_CARDIAQUE.json",
             "PHARMACOLOGIE.json",
             "SYSTEME_NERVEUX.json",
-            "REMPLISSAGE_VASCULAIRE.json"
+            "REMPLISSAGE_VASCULAIRE.json",
+            "TRAUMA_DU_RACHIS.json"
         ]
     }
 }
